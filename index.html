@@ -227,11 +227,6 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
   padding:0.75rem 0 0.75rem 1.25rem;margin:1.75rem 0 2rem;
   background:rgba(212,102,142,0.04);border-radius:0 8px 8px 0;
 }
-.skill-bars{margin-bottom:2rem;}
-.skill-bar-item{margin-bottom:1rem;}
-.skill-bar-top{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.4rem;color:var(--text-mid);font-weight:500;}
-.skill-bar-track{height:5px;background:var(--blush-mid);border-radius:100px;overflow:hidden;}
-.skill-bar-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--rose),var(--rose-light));transition:width 1.5s cubic-bezier(0.4,0,0.2,1);}
 
 /* ─── PROFIL CALON GURU ─── */
 .profil-section{background:var(--white);}
@@ -282,27 +277,62 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
 /* ─── ARTEFAK ─── */
 .artefak-section{background:var(--white);}
 .artefak-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem;flex-wrap:wrap;}
-.artefak-filters{display:flex;gap:0.5rem;flex-shrink:0;flex-wrap:wrap;}
-.filter-pill{
-  padding:0.35rem 1rem;border-radius:100px;font-size:0.76rem;font-weight:500;
-  border:1.5px solid var(--blush-mid);background:white;color:var(--text-soft);
-  cursor:pointer;transition:all 0.2s;font-family:var(--font-body);
+
+/* PPL Cards */
+.ppl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+.ppl-card{
+  background:var(--white);border:1.5px solid var(--blush-mid);border-radius:8px;
+  overflow:hidden;transition:all var(--transition);position:relative;
 }
-.filter-pill:hover,.filter-pill.active{background:var(--rose);border-color:var(--rose);color:white;box-shadow:0 4px 14px rgba(212,102,142,0.3);}
-.artefak-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.artefak-card{
-  background:var(--white);border:1.5px solid var(--blush-mid);border-radius:4px;
-  overflow:hidden;cursor:pointer;transition:all var(--transition);text-decoration:none;color:inherit;display:block;
+.ppl-card:hover{border-color:var(--rose);transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.ppl-card-header{
+  background:linear-gradient(135deg,var(--blush),var(--blush-mid));
+  padding:2rem 1.5rem 1.5rem;position:relative;
 }
-.artefak-card:hover{border-color:var(--rose);transform:translateY(-6px);box-shadow:var(--shadow-lg);}
-.artefak-thumb{height:170px;background:linear-gradient(135deg,var(--blush-mid),var(--blush));display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
-.artefak-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(212,102,142,0.18));}
-.artefak-body{padding:1.25rem;}
-.artefak-tag{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose);background:rgba(212,102,142,0.1);padding:2px 10px;border-radius:100px;display:inline-block;margin-bottom:0.6rem;}
-.artefak-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;line-height:1.45;}
-.artefak-desc{font-size:0.76rem;color:var(--text-soft);line-height:1.65;}
-.artefak-arrow{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.74rem;color:var(--rose);font-weight:600;margin-top:0.7rem;opacity:0;transition:opacity 0.2s;}
-.artefak-card:hover .artefak-arrow{opacity:1;}
+.ppl-card-num{
+  font-family:var(--font-mono);font-size:0.65rem;font-weight:600;
+  color:var(--rose);background:rgba(255,255,255,0.7);
+  padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:0.75rem;
+}
+.ppl-card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--text);line-height:1.2;}
+.ppl-card-subtitle{font-size:0.75rem;color:var(--text-soft);margin-top:0.3rem;}
+.ppl-card-emoji{position:absolute;right:1.25rem;top:1.25rem;font-size:2rem;opacity:0.5;}
+.ppl-card-body{padding:1.25rem 1.5rem;}
+.ppl-card-desc{font-size:0.8rem;color:var(--text-mid);line-height:1.7;margin-bottom:1rem;}
+.ppl-sub-links{display:flex;flex-direction:column;gap:0.45rem;}
+.ppl-sub-link{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.5rem 0.75rem;border-radius:6px;
+  background:var(--petal);border:1px solid var(--border-soft);
+  text-decoration:none;color:var(--text-mid);font-size:0.78rem;font-weight:500;
+  transition:all 0.2s;cursor:pointer;
+}
+.ppl-sub-link:hover{background:rgba(212,102,142,0.08);border-color:var(--rose);color:var(--rose);}
+.ppl-sub-link .sub-icon{font-size:0.9rem;flex-shrink:0;}
+.ppl-sub-link .sub-arrow{margin-left:auto;font-size:0.7rem;color:var(--text-ghost);}
+.ppl-card-footer{
+  padding:0.75rem 1.5rem;border-top:1px solid var(--border-soft);
+  font-size:0.7rem;color:var(--text-ghost);display:flex;align-items:center;gap:0.4rem;
+}
+.ppl-card.coming-soon{opacity:0.6;}
+.ppl-card.coming-soon .ppl-card-header{background:linear-gradient(135deg,#f0f0f0,#e8e8e8);}
+
+/* Instrumen section */
+.instrumen-header{
+  font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--rose);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;
+}
+.instrumen-header::after{content:'';flex:1;height:1px;background:var(--blush-mid);}
+.instrumen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.instrumen-card{
+  background:var(--petal);border:1.5px solid var(--blush-mid);border-radius:6px;
+  padding:1.1rem 1.25rem;display:flex;align-items:center;gap:0.75rem;
+  text-decoration:none;color:inherit;transition:all 0.2s;cursor:pointer;
+}
+.instrumen-card:hover{border-color:var(--rose);background:white;box-shadow:var(--shadow-sm);}
+.instrumen-icon{font-size:1.4rem;flex-shrink:0;}
+.instrumen-label{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-ghost);margin-bottom:0.15rem;}
+.instrumen-name{font-size:0.82rem;font-weight:600;color:var(--text);line-height:1.3;}
 
 /* ─── REFLEKSI ─── */
 .proses-section{background:linear-gradient(160deg,var(--petal) 0%,var(--blush) 100%);}
@@ -322,18 +352,13 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
 
 /* ─── PENILAIAN ─── */
 .penilaian-section{background:var(--white);}
-.penilaian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.penilaian-card{border:1.5px solid var(--blush-mid);border-radius:4px;padding:1.75rem;transition:all var(--transition);cursor:pointer;background:var(--white);position:relative;overflow:hidden;}
-.penilaian-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--rose-light));opacity:0;transition:opacity var(--transition);}
-.penilaian-card:hover::before{opacity:1;}
-.penilaian-card:hover{border-color:var(--rose);transform:translateY(-4px);box-shadow:var(--shadow-md);}
-.penilaian-icon{font-size:1.8rem;margin-bottom:1rem;}
-.penilaian-label{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose);margin-bottom:0.3rem;}
-.penilaian-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;}
-.penilaian-score{font-family:var(--font-display);font-size:3rem;font-weight:700;color:var(--rose);line-height:1;margin-bottom:0.5rem;}
-.penilaian-desc{font-size:0.77rem;color:var(--text-mid);line-height:1.65;}
-.progress-bar{height:4px;background:var(--blush-mid);border-radius:100px;overflow:hidden;margin-top:1rem;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-light));border-radius:100px;}
+.penilaian-empty{
+  text-align:center;padding:5rem 2rem;
+  border:2px dashed var(--blush-mid);border-radius:8px;
+}
+.penilaian-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:0.5;}
+.penilaian-empty-title{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--text-soft);margin-bottom:0.5rem;}
+.penilaian-empty-desc{font-size:0.85rem;color:var(--text-ghost);line-height:1.7;}
 
 /* ─── MODEL GURU ─── */
 .model-section{background:var(--petal);}
@@ -351,21 +376,16 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
   position:absolute;bottom:0;left:0;width:260px;height:340px;
   pointer-events:none;z-index:0;overflow:hidden;
 }
-.model-photo-wrap img{
-  width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
-}
-/* Fade effect: bottom fades to match section bg, sides fade out */
+.model-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
 .model-photo-wrap::after{
   content:'';position:absolute;inset:0;
-  background:
-    linear-gradient(to bottom, transparent 45%, var(--petal) 88%),
-    linear-gradient(to right, transparent 60%, var(--petal) 100%);
+  background:linear-gradient(to bottom,transparent 45%,var(--petal) 88%),linear-gradient(to right,transparent 60%,var(--petal) 100%);
 }
 .model-section .section-inner{position:relative;}
 
 /* ─── GOOGLE DRIVE ─── */
 .drive-section{background:var(--white);}
-.drive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2.5rem;}
+.drive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem;}
 .drive-card{background:var(--white);border:1.5px solid var(--blush-mid);border-radius:4px;padding:1.4rem;transition:all var(--transition);cursor:pointer;display:flex;flex-direction:column;gap:0.6rem;text-decoration:none;color:inherit;}
 .drive-card:hover{border-color:var(--rose);transform:translateY(-4px);box-shadow:var(--shadow-md);}
 .drive-card-header{display:flex;align-items:center;gap:0.75rem;}
@@ -381,28 +401,16 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
 .drive-card-open{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.73rem;font-weight:600;color:var(--rose);margin-top:0.25rem;}
 .drive-section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--rose);font-weight:700;margin-bottom:1.1rem;margin-top:0.5rem;display:flex;align-items:center;gap:0.75rem;}
 .drive-section-label::after{content:'';flex:1;height:1px;background:var(--blush-mid);}
-
 .drive-add-section{background:var(--petal);border:2px dashed var(--blush-mid);border-radius:8px;padding:2rem;margin-top:2.5rem;}
 .drive-add-section h3{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;}
 .drive-add-section p{font-size:0.8rem;color:var(--text-soft);margin-bottom:1.5rem;line-height:1.6;}
 .drive-add-form{display:grid;grid-template-columns:1fr 1fr auto;gap:0.75rem;align-items:end;}
 .drive-form-group{display:flex;flex-direction:column;gap:0.4rem;}
 .drive-form-group label{font-size:0.72rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.06em;}
-.drive-form-group input,.drive-form-group select{
-  padding:0.6rem 0.9rem;border:1.5px solid var(--blush-mid);border-radius:8px;
-  font-family:var(--font-body);font-size:0.83rem;color:var(--text);
-  background:white;outline:none;transition:border-color 0.2s;
-}
+.drive-form-group input,.drive-form-group select{padding:0.6rem 0.9rem;border:1.5px solid var(--blush-mid);border-radius:8px;font-family:var(--font-body);font-size:0.83rem;color:var(--text);background:white;outline:none;transition:border-color 0.2s;}
 .drive-form-group input:focus,.drive-form-group select:focus{border-color:var(--rose);}
-.drive-add-btn{
-  padding:0.62rem 1.4rem;border-radius:8px;
-  background:linear-gradient(135deg,var(--rose),var(--rose-deep));
-  color:white;font-size:0.82rem;font-weight:600;border:none;cursor:pointer;
-  font-family:var(--font-body);transition:all var(--transition);white-space:nowrap;
-  display:flex;align-items:center;gap:0.5rem;
-}
+.drive-add-btn{padding:0.62rem 1.4rem;border-radius:8px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:white;font-size:0.82rem;font-weight:600;border:none;cursor:pointer;font-family:var(--font-body);transition:all var(--transition);white-space:nowrap;display:flex;align-items:center;gap:0.5rem;}
 .drive-add-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,102,142,0.4);}
-
 .video-embed-wrap{width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#000;margin-top:1rem;}
 .video-embed-wrap iframe{width:100%;height:100%;border:none;}
 
@@ -417,10 +425,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
 .mobile-nav{display:none;position:fixed;inset:0;background:var(--white);z-index:600;flex-direction:column;padding:2rem;overflow-y:auto;}
 .mobile-nav.show{display:flex;}
 .mobile-nav-links{list-style:none;margin-top:3.5rem;display:flex;flex-direction:column;gap:0.5rem;}
-.mobile-nav-links a{
-  display:block;padding:0.9rem 1rem;font-size:1rem;font-weight:500;
-  color:var(--text-mid);text-decoration:none;border-radius:8px;transition:all 0.2s;cursor:pointer;
-}
+.mobile-nav-links a{display:block;padding:0.9rem 1rem;font-size:1rem;font-weight:500;color:var(--text-mid);text-decoration:none;border-radius:8px;transition:all 0.2s;cursor:pointer;}
 .mobile-nav-links a:hover,.mobile-nav-links a.active{background:var(--blush);color:var(--rose);}
 .mobile-nav-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--blush);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;color:var(--rose);font-size:1.2rem;display:flex;align-items:center;justify-content:center;}
 
@@ -458,7 +463,8 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
   .section{padding:5rem 2.5rem;}
   .stats-section{padding:3rem 2.5rem;}
   .model-grid{grid-template-columns:repeat(2,1fr);}
-  .penilaian-grid{grid-template-columns:repeat(2,1fr);}
+  .ppl-grid{grid-template-columns:repeat(2,1fr);}
+  .instrumen-grid{grid-template-columns:repeat(2,1fr);}
   .drive-grid{grid-template-columns:repeat(2,1fr);}
   .drive-add-form{grid-template-columns:1fr 1fr;gap:0.75rem;}
   .drive-add-form>div:last-child{grid-column:1/-1;display:flex;justify-content:flex-start;}
@@ -467,77 +473,47 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
 /* ─── RESPONSIVE MOBILE ─── */
 @media(max-width:768px){
   :root{--nav-h:60px;}
-
   .navbar{padding:0 1rem;}
   .nav-tabs{display:none;}
   .nav-cta{display:none;}
   .nav-search-btn{width:32px;height:32px;}
   .menu-hamburger{display:flex;}
   .nav-logo{font-size:1.2rem;}
-
-  /* Hero mobile */
   .hero{grid-template-columns:1fr;min-height:auto;}
   .hero-right{display:none;}
-  .hero-left{
-    padding:2.5rem 1.25rem 3rem;
-    min-height:calc(100vh - var(--nav-h));
-    justify-content:center;
-  }
+  .hero-left{padding:2.5rem 1.25rem 3rem;min-height:calc(100vh - var(--nav-h));justify-content:center;}
   .hero-left h1{font-size:2.8rem;}
   .hero-eyebrow{font-size:0.65rem;}
   .hero-desc{font-size:0.84rem;}
   .hero-btns{flex-direction:column;gap:0.75rem;}
   .hero-btns .btn{width:100%;justify-content:center;}
-
-  /* Stats */
   .stats-section{padding:2.5rem 1.25rem;}
   .stats-inner{flex-direction:column;gap:1.5rem;}
   .stats-divider{display:none;}
   .stat-item{padding:0;}
   .stats-text h2{font-size:1.5rem;}
-
-  /* Sections */
   .section{padding:3.5rem 1.25rem;}
-
-  /* About */
   .about-grid{grid-template-columns:1fr;gap:2rem;}
   .about-content{padding-right:0;}
   .section-h2{font-size:2rem;}
-
-  /* Profil grid */
   .profil-grid{grid-template-columns:1fr;}
   .info-card.full{grid-column:auto;}
   .info-key{min-width:110px;font-size:0.75rem;}
   .info-val{font-size:0.8rem;}
-
-  /* Artefak */
   .artefak-header{flex-direction:column;gap:1rem;align-items:flex-start;}
-  .artefak-filters{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:0.25rem;}
-  .artefak-grid{grid-template-columns:1fr;}
-
-  /* Refleksi */
+  .ppl-grid{grid-template-columns:1fr;}
+  .instrumen-grid{grid-template-columns:1fr;}
   .proses-grid{grid-template-columns:1fr;gap:2rem;}
   .proses-img{display:none;}
-
-  /* Penilaian */
-  .penilaian-grid{grid-template-columns:1fr;}
-
-  /* Model */
   .model-intro{grid-template-columns:1fr;gap:1rem;}
   .model-grid{grid-template-columns:1fr;}
   .model-photo-wrap{display:none;}
-
-  /* Drive */
   .drive-grid{grid-template-columns:1fr;}
   .drive-add-form{grid-template-columns:1fr;}
   .drive-add-form > div:last-child{display:flex;justify-content:flex-start;}
-
-  /* Footer */
   footer{padding:2.5rem 1.25rem 1.5rem;}
   .footer-inner{grid-template-columns:1fr;gap:2rem;}
   .footer-bottom{flex-direction:column;text-align:center;}
-
-  /* Modals */
   .modal-box{padding:1.75rem 1.25rem;max-height:90vh;}
   #searchOverlay{padding-top:80px;}
 }
@@ -547,7 +523,6 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
   .section-h2{font-size:1.75rem;}
   .btn{padding:0.65rem 1.4rem;font-size:0.8rem;}
   .stat-num{font-size:2.5rem;}
-  .penilaian-score{font-size:2.5rem;}
 }
 </style>
 </head>
@@ -598,12 +573,12 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
 <div class="tab-page active" id="page-beranda" style="padding-top:var(--nav-h)">
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-eyebrow">ePortfolio Mahasiswi PPG PGSD</div>
+      <div class="hero-eyebrow">ePortfolio Mahasiswi PPG PGSD 2026</div>
       <h1>
         Halo, Saya <em>Erika</em>
-        <span>Calon Guru Masa Depan</span>
+        <span>Calon Guru Sekolah Dasar</span>
       </h1>
-      <p class="hero-desc">Mahasiswi PPG PGSD di Universitas Muhammadiyah Malang. Berasal dari Ponorogo — kota Reog. Berkomitmen menjadi pendidik yang adaptif, kreatif, dan terus belajar bersama siswa.</p>
+      <p class="hero-desc">E-portofolio PPG ini mendokumentasikan rekam jejak saya sebagai calon pendidik di tingkat Sekolah Dasar. Di dalamnya tersaji profil diri, kumpulan artefak pembelajaran beserta analisisnya, hingga refleksi yang menjadi bukti nyata transformasi kompetensi saya.</p>
       <div class="hero-quote">"Belajar adalah perjalanan tanpa batas, dan mengajar adalah bagian dari proses itu."</div>
       <div class="hero-btns">
         <button class="btn btn-primary" onclick="switchTab('profil')">Tentang Saya →</button>
@@ -624,8 +599,8 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
             <div class="hero-overlay-sublabel">Kompetensi Guru</div>
           </div>
           <div>
-            <div class="hero-overlay-num" data-count="6">0</div>
-            <div class="hero-overlay-sublabel">Artefak</div>
+            <div class="hero-overlay-num" data-count="3">0</div>
+            <div class="hero-overlay-sublabel">PPL Terbimbing</div>
           </div>
         </div>
       </div>
@@ -640,8 +615,8 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
   <div class="stats-section">
     <div class="stats-inner">
       <div class="stats-text">
-        <h2>Kami Hadir untuk<br>Pendidikan Berkualitas</h2>
-        <p>Calon guru yang berkomitmen menghadirkan<br>pembelajaran bermakna bagi setiap siswa.</p>
+        <h2>Portofolio untuk<br>Pendidikan Bermakna</h2>
+        <p>Dokumen ini berfungsi sebagai instrumen evaluasi mandiri dalam upaya membentuk sosok guru profesional yang mengutamakan kebutuhan peserta didik.</p>
         <button class="stats-learn-btn" onclick="switchTab('profil')">
           Pelajari Lebih Lanjut
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
@@ -649,8 +624,8 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       </div>
       <div class="stats-divider"></div>
       <div class="stat-item">
-        <div class="stat-num" data-count="6">0</div>
-        <div class="stat-label">Artefak Karya</div>
+        <div class="stat-num" data-count="3">0</div>
+        <div class="stat-label">PPL Terbimbing</div>
       </div>
       <div class="stats-divider"></div>
       <div class="stat-item">
@@ -682,25 +657,7 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
           <p class="about-text">Saya adalah mahasiswi PPG PGSD di Universitas Muhammadiyah Malang yang memiliki minat besar dalam dunia pendidikan. Saya berasal dari Ponorogo, sebuah kota yang memiliki ciri khas daerah Reog Ponorogo.</p>
           <p class="about-text">Saya menyukai proses belajar hal-hal baru dan mengembangkan diri, terutama dalam menciptakan pembelajaran yang menarik dan bermakna. Saya percaya bahwa mengajar bukan hanya menyampaikan materi, tetapi juga proses belajar bersama untuk terus berkembang.</p>
           <div class="about-quote">"Belajar adalah perjalanan tanpa batas, dan mengajar adalah bagian dari proses itu."</div>
-          <div class="skill-bars">
-            <div class="skill-bar-item">
-              <div class="skill-bar-top"><span>Pedagogik</span><span>85%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-top"><span>Kepribadian</span><span>92%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-top"><span>Profesional</span><span>80%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-top"><span>Sosial</span><span>88%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
-            </div>
-          </div>
-          <button class="btn btn-primary" onclick="switchTab('penilaian')">Lihat Kompetensi Lengkap →</button>
+          <button class="btn btn-primary" onclick="switchTab('profil')">Lihat Profil Lengkap →</button>
         </div>
       </div>
     </div>
@@ -714,10 +671,10 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       </div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span><span onclick="switchTab('refleksi')">Refleksi</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a><span>Ponorogo, Jawa Timur</span></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a><span>Ponorogo, Jawa Timur</span></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span>
+      <span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span>
       <span style="color:var(--rose-light)">Dibuat dengan 🌸</span>
     </div>
   </footer>
@@ -731,40 +688,67 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
     <div class="section-inner">
       <div style="margin-bottom:2.5rem">
         <div class="section-tag">Profil Calon Guru</div>
-        <h2 class="section-h2">Data Diri &amp; <em>Kompetensi</em></h2>
-        <p style="font-size:0.88rem;color:var(--text-mid);max-width:500px;line-height:1.7">Latar belakang, pendidikan, dan keahlian sebagai calon guru profesional PPG PGSD.</p>
+        <h2 class="section-h2">Data Diri &amp; <em>Latar Belakang</em></h2>
+        <p style="font-size:0.88rem;color:var(--text-mid);max-width:560px;line-height:1.7">Latar belakang, pendidikan, dan keahlian sebagai calon guru profesional PPG PGSD Universitas Muhammadiyah Malang.</p>
       </div>
 
       <div class="profil-grid">
         <!-- Informasi Pribadi -->
         <div class="info-card">
           <div class="info-card-title">Informasi Pribadi</div>
-          <div class="info-row"><span class="info-key">Program Studi</span><span class="info-val">PPG — PGSD</span></div>
+          <div class="info-row"><span class="info-key">Nama Lengkap</span><span class="info-val">Erika Pebri Nurvitasari, S.Pd.</span></div>
+          <div class="info-row"><span class="info-key">Program Studi</span><span class="info-val">PPG Calon Guru — PGSD</span></div>
           <div class="info-row"><span class="info-key">Universitas</span><span class="info-val">Universitas Muhammadiyah Malang</span></div>
           <div class="info-row"><span class="info-key">Angkatan</span><span class="info-val">PPG 2026</span></div>
           <div class="info-row"><span class="info-key">Asal Kota</span><span class="info-val">Ponorogo, Jawa Timur</span></div>
-          <div class="info-row"><span class="info-key">Email</span><span class="info-val" style="color:var(--rose)">elimiaww@gmail.com</span></div>
+          <div class="info-row"><span class="info-key">Email</span><span class="info-val" style="color:var(--rose)">Erikasari699@gmail.com</span></div>
           <div class="info-row"><span class="info-key">WhatsApp</span><span class="info-val" style="color:var(--rose)">+62 851-5616-1155</span></div>
         </div>
 
-        <!-- Kompetensi -->
+        <!-- Tentang & Tujuan -->
         <div class="info-card">
-          <div class="info-card-title">Kompetensi &amp; Keahlian</div>
-          <div class="info-row">
-            <span class="info-key">Desain</span>
-            <span class="info-val"><div class="badge-list"><span class="badge">Tata Ruang</span><span class="badge">Pencahayaan</span><span class="badge">Material</span></div></span>
+          <div class="info-card-title">Tentang &amp; Tujuan Portofolio</div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Tentang Saya</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">Saya memiliki minat besar dalam dunia pendidikan dan berkomitmen menjadi calon guru yang adaptif, kreatif, dan terus belajar dalam menciptakan pembelajaran yang bermakna bagi peserta didik.</span>
           </div>
-          <div class="info-row">
-            <span class="info-key">Mengajar</span>
-            <span class="info-val"><div class="badge-list"><span class="badge">Kreatif</span><span class="badge">Reflektif</span><span class="badge">Bermakna</span></div></span>
-          </div>
-          <div class="info-row">
-            <span class="info-key">Teknologi</span>
-            <span class="info-val"><div class="badge-list"><span class="badge gold">AutoCAD</span><span class="badge gold">SketchUp</span><span class="badge gold">MS Office</span></div></span>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Tujuan Portofolio</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">Portofolio ini hadir sebagai manifestasi perjalanan dalam mengasah kemampuan sebagai calon guru — memuat rekam jejak perkembangan diri dan sarana evaluasi mandiri guna menciptakan pengalaman belajar yang bermakna.</span>
           </div>
           <div class="info-row">
             <span class="info-key">Visi Mengajar</span>
             <span class="info-val" style="font-style:italic;color:var(--text-soft);font-size:0.79rem">"Mengajar bukan hanya menyampaikan materi, tetapi proses belajar bersama untuk terus berkembang."</span>
+          </div>
+        </div>
+
+        <!-- Mahasiswa PPG -->
+        <div class="info-card">
+          <div class="info-card-title">Mahasiswa PPG UMM</div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Program</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">PPG Calon Guru Pendidikan Guru Sekolah Dasar (PGSD) Tahun 2026 di Universitas Muhammadiyah Malang (UMM).</span>
+          </div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Fokus Pengembangan</span>
+            <span class="info-val"><div class="badge-list"><span class="badge">Pedagogik</span><span class="badge">Profesional</span><span class="badge">Sosial</span><span class="badge">Kepribadian</span></div></span>
+          </div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Komitmen</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">Menciptakan pembelajaran yang bermakna, inovatif, dan berpusat pada peserta didik.</span>
+          </div>
+        </div>
+
+        <!-- Lahir & Besar di Ponorogo -->
+        <div class="info-card">
+          <div class="info-card-title">Lahir &amp; Besar di Ponorogo 🎭</div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Kota Kelahiran</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">Ponorogo — kota Reog, tanah legenda di Jawa Timur. Tempat di mana keberanian ksatria dan tradisi Reog Ponorogo bernapas dalam harmoni yang sempurna.</span>
+          </div>
+          <div class="info-row" style="flex-direction:column;gap:0.5rem">
+            <span class="info-key">Identitas Budaya</span>
+            <span class="info-val" style="font-size:0.82rem;line-height:1.75">Tumbuh di antara nilai religius pesantren yang kental dan kearifan lokal yang terjaga murni, membentuk karakter yang tangguh namun penuh kebijaksanaan.</span>
           </div>
         </div>
 
@@ -774,26 +758,17 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
           <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-year">2026 — Sekarang</div>
-              <div class="timeline-text"><strong>Pendidikan Profesi Guru (PPG) — PGSD</strong><br>Universitas Muhammadiyah Malang · Angkatan 2026</div>
+              <div class="timeline-text"><strong>Pendidikan Profesi Guru (PPG) Calon Guru — PGSD</strong><br>Universitas Muhammadiyah Malang · Angkatan 2026</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">2019 — 2023</div>
-              <div class="timeline-text"><strong>S1 Pendidikan Guru Madrasah Ibtida'iyah (PGMI)</strong><br>Universitas Muhammadiyah Ponorogo</div>
+              <div class="timeline-text"><strong>S1 Pendidikan Guru Madrasah Ibtida'iyah (PGMI)</strong><br>Universitas Muhammadiyah Ponorogo · Lulus 2023</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Lulus SMA</div>
               <div class="timeline-text"><strong>SMA N 1 Pulung</strong> — Jurusan MIPA · Ponorogo</div>
             </div>
           </div>
-        </div>
-
-        <!-- Pengalaman Profesional -->
-        <div class="info-card full">
-          <div class="info-card-title">Pengalaman Profesional</div>
-          <div class="info-row"><span class="info-key">Terkini</span><span class="info-val">Desainer Interior — Larana, Inc. (Jan 2017 – Mar 2025)</span></div>
-          <div class="info-row"><span class="info-key">Sebelumnya</span><span class="info-val">Desainer Interior — Ingoude Company (Jan 2014 – Mar 2016)</span></div>
-          <div class="info-row"><span class="info-key">Bidang Kerja</span><span class="info-val">Perumahan, ruang komersial, tempat umum, konsultasi desain</span></div>
-          <div class="info-row"><span class="info-key">Pengalaman</span><span class="info-val">± 9 tahun di industri desain interior profesional</span></div>
         </div>
       </div>
     </div>
@@ -804,9 +779,9 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
@@ -820,40 +795,120 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
         <div>
           <div class="section-tag">Karya &amp; Dokumentasi</div>
           <h2 class="section-h2">Koleksi <em>Artefak</em></h2>
-        </div>
-        <div class="artefak-filters">
-          <button class="filter-pill active" onclick="filterArtefak('semua',this)">Semua</button>
-          <button class="filter-pill" onclick="filterArtefak('desain',this)">Desain</button>
-          <button class="filter-pill" onclick="filterArtefak('rpp',this)">RPP &amp; Pembelajaran</button>
-          <button class="filter-pill" onclick="filterArtefak('riset',this)">Riset</button>
+          <p style="font-size:0.85rem;color:var(--text-soft);max-width:480px;line-height:1.7;margin-top:0.5rem">Artefak ini sebagai bukti nyata dari proses perencanaan, pelaksanaan, dan evaluasi pembelajaran yang telah dilakukan, serta refleksi diri untuk melakukan perbaikan berkelanjutan.</p>
         </div>
       </div>
-      <div class="artefak-grid" id="artefakGrid">
-        <a href="#" class="artefak-card" data-cat="desain" onclick="event.preventDefault();openArtefakModal('Desain Apartemen Minimalis Modern')">
-          <div class="artefak-thumb">🏙️</div>
-          <div class="artefak-body"><span class="artefak-tag">Desain</span><div class="artefak-title">Desain Apartemen Minimalis Modern</div><div class="artefak-desc">Konsep minimalis mewah dengan furnitur multifungsi dan palet warna netral.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
-        <a href="#" class="artefak-card" data-cat="desain" onclick="event.preventDefault();openArtefakModal('Desain Rumah Keluarga Modern')">
-          <div class="artefak-thumb">🏡</div>
-          <div class="artefak-body"><span class="artefak-tag">Desain</span><div class="artefak-title">Desain Rumah Keluarga Modern</div><div class="artefak-desc">Rumah modern dengan material batu alam dan kayu, pencahayaan alami.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
-        <a href="#" class="artefak-card" data-cat="desain" onclick="event.preventDefault();openArtefakModal('Desain Salon Kecantikan Mewah')">
-          <div class="artefak-thumb">💅</div>
-          <div class="artefak-body"><span class="artefak-tag">Desain</span><div class="artefak-title">Desain Salon Kecantikan Mewah</div><div class="artefak-desc">Salon modern elegan dengan area perawatan dan ruang tunggu nyaman.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
-        <a href="#" class="artefak-card" data-cat="rpp" onclick="event.preventDefault();openArtefakModal('RPP Tematik SD')">
-          <div class="artefak-thumb">📋</div>
-          <div class="artefak-body"><span class="artefak-tag">RPP</span><div class="artefak-title">RPP Tematik SD — Pendekatan Scientific</div><div class="artefak-desc">Rencana pembelajaran tematik integratif dengan discovery learning dan asesmen autentik.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
-        <a href="#" class="artefak-card" data-cat="rpp" onclick="event.preventDefault();openArtefakModal('Media Pembelajaran Interaktif')">
-          <div class="artefak-thumb">🎮</div>
-          <div class="artefak-body"><span class="artefak-tag">Media</span><div class="artefak-title">Media Pembelajaran Interaktif</div><div class="artefak-desc">Media berbasis PowerPoint dengan animasi untuk matematika dasar SD.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
-        <a href="#" class="artefak-card" data-cat="riset" onclick="event.preventDefault();openArtefakModal('Kajian Pembelajaran Bermakna')">
-          <div class="artefak-thumb">🔬</div>
-          <div class="artefak-body"><span class="artefak-tag">Riset</span><div class="artefak-title">Kajian: Pembelajaran Bermakna di SD</div><div class="artefak-desc">Kajian teoritis konstruktivisme dan implementasi di sekolah dasar.</div><div class="artefak-arrow">Lihat Detail →</div></div>
-        </a>
+
+      <!-- PPL TERBIMBING -->
+      <div class="instrumen-header" style="margin-bottom:1.5rem">📚 PPL Terbimbing</div>
+      <div class="ppl-grid" id="pplGrid">
+
+        <!-- PPL 1 -->
+        <div class="ppl-card">
+          <div class="ppl-card-header">
+            <div class="ppl-card-num">PPL Terbimbing · 01</div>
+            <div class="ppl-card-title">PPL Terbimbing 1</div>
+            <div class="ppl-card-subtitle">Siklus 1 · 17 April 2026 · SDN Pandanwangi 3 · Kelas 4A</div>
+            <div class="ppl-card-emoji">🏫</div>
+          </div>
+          <div class="ppl-card-body">
+            <p class="ppl-card-desc">Pembelajaran dilakukan di SDN Pandanwangi 3. Klik dokumen di bawah untuk membuka masing-masing artefak.</p>
+            <div class="ppl-sub-links">
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'modul-ajar-1')">
+                <span class="sub-icon">📄</span>
+                <span>Modul Ajar</span>
+                <span class="sub-arrow">↗</span>
+              </a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'media-1')">
+                <span class="sub-icon">📊</span>
+                <span>Media Pembelajaran (PPT)</span>
+                <span class="sub-arrow">↗</span>
+              </a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'lkpd-1')">
+                <span class="sub-icon">📋</span>
+                <span>LKPD</span>
+                <span class="sub-arrow">↗</span>
+              </a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'video-1')">
+                <span class="sub-icon">🎬</span>
+                <span>Video Pembelajaran</span>
+                <span class="sub-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="ppl-card-footer">
+            <span>📍</span> SDN Pandanwangi 3, Malang · Kelas 4A
+          </div>
+        </div>
+
+        <!-- PPL 2 -->
+        <div class="ppl-card coming-soon">
+          <div class="ppl-card-header">
+            <div class="ppl-card-num">PPL Terbimbing · 02</div>
+            <div class="ppl-card-title">PPL Terbimbing 2</div>
+            <div class="ppl-card-subtitle">Segera hadir</div>
+            <div class="ppl-card-emoji">⏳</div>
+          </div>
+          <div class="ppl-card-body">
+            <p class="ppl-card-desc">Artefak PPL Terbimbing 2 akan ditambahkan setelah pelaksanaan.</p>
+            <div class="ppl-sub-links">
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📄</span><span>Modul Ajar</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📋</span><span>LKPD</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span></div>
+            </div>
+          </div>
+          <div class="ppl-card-footer"><span>🔒</span> Belum tersedia</div>
+        </div>
+
+        <!-- PPL 3 -->
+        <div class="ppl-card coming-soon">
+          <div class="ppl-card-header">
+            <div class="ppl-card-num">PPL Terbimbing · 03</div>
+            <div class="ppl-card-title">PPL Terbimbing 3</div>
+            <div class="ppl-card-subtitle">Segera hadir</div>
+            <div class="ppl-card-emoji">⏳</div>
+          </div>
+          <div class="ppl-card-body">
+            <p class="ppl-card-desc">Artefak PPL Terbimbing 3 akan ditambahkan setelah pelaksanaan.</p>
+            <div class="ppl-sub-links">
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📄</span><span>Modul Ajar</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📋</span><span>LKPD</span></div>
+              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span></div>
+            </div>
+          </div>
+          <div class="ppl-card-footer"><span>🔒</span> Belum tersedia</div>
+        </div>
+
       </div>
+
+      <!-- INSTRUMEN PENILAIAN -->
+      <div class="instrumen-header">📊 Instrumen Penilaian</div>
+      <div class="instrumen-grid">
+        <a href="#" class="instrumen-card" onclick="event.preventDefault();openDriveLink(this,'instrumen-1')">
+          <div class="instrumen-icon">📁</div>
+          <div>
+            <div class="instrumen-label">PPL Terbimbing 1</div>
+            <div class="instrumen-name">Instrumen Penilaian</div>
+          </div>
+        </a>
+        <div class="instrumen-card" style="opacity:0.4;cursor:default">
+          <div class="instrumen-icon">📁</div>
+          <div>
+            <div class="instrumen-label">PPL Terbimbing 2</div>
+            <div class="instrumen-name">Belum tersedia</div>
+          </div>
+        </div>
+        <div class="instrumen-card" style="opacity:0.4;cursor:default">
+          <div class="instrumen-icon">📁</div>
+          <div>
+            <div class="instrumen-label">PPL Terbimbing 3</div>
+            <div class="instrumen-name">Belum tersedia</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
   <footer>
@@ -861,9 +916,9 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
@@ -878,10 +933,34 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
           <div class="section-tag">Jurnal Refleksi</div>
           <h2 class="section-h2" style="margin-bottom:2rem">Proses <em>Belajar</em><br>yang Bermakna</h2>
           <div class="proses-list">
-            <div class="proses-item" onclick="openRefleksiModal('ppg')"><div class="proses-num">01</div><div><div class="proses-item-title">Memulai Perjalanan PPG</div><div class="proses-item-desc">Mengajar adalah seni belajar bersama. PPG membuka mata saya tentang makna mendidik yang sesungguhnya.</div></div></div>
-            <div class="proses-item" onclick="openRefleksiModal('transisi')"><div class="proses-num">02</div><div><div class="proses-item-title">Dari Desainer ke Pendidik</div><div class="proses-item-desc">Kreativitas yang bertransformasi — pengalaman desain menjadi kekuatan dalam menciptakan pembelajaran menarik.</div></div></div>
-            <div class="proses-item" onclick="openRefleksiModal('s1')"><div class="proses-num">03</div><div><div class="proses-item-title">Fondasi S1 PGMI di Ponorogo</div><div class="proses-item-desc">Pendidikan di Universitas Muhammadiyah Ponorogo membangun fondasi pedagogis yang kuat dan bermakna.</div></div></div>
-            <div class="proses-item" onclick="openRefleksiModal('filosofi')"><div class="proses-num">04</div><div><div class="proses-item-title">Filosofi Mengajar Saya</div><div class="proses-item-desc">Guru yang baik adalah guru yang tidak pernah berhenti menjadi murid. Setiap interaksi mengajarkan sesuatu baru.</div></div></div>
+            <div class="proses-item" onclick="openRefleksiModal('ppg')">
+              <div class="proses-num">01</div>
+              <div>
+                <div class="proses-item-title">Memulai Perjalanan PPG</div>
+                <div class="proses-item-desc">Mengajar adalah seni belajar bersama. PPG membuka mata saya tentang makna mendidik yang sesungguhnya di tingkat Sekolah Dasar.</div>
+              </div>
+            </div>
+            <div class="proses-item" onclick="openRefleksiModal('ponorogo')">
+              <div class="proses-num">02</div>
+              <div>
+                <div class="proses-item-title">Berasal dari Kota Reog</div>
+                <div class="proses-item-desc">Tumbuh di Ponorogo mengajarkan nilai keberanian, kearifan lokal, dan semangat Warok — semua menjadi bekal menjadi pendidik berkarakter.</div>
+              </div>
+            </div>
+            <div class="proses-item" onclick="openRefleksiModal('s1')">
+              <div class="proses-num">03</div>
+              <div>
+                <div class="proses-item-title">Fondasi S1 PGMI di Ponorogo</div>
+                <div class="proses-item-desc">Pendidikan di Universitas Muhammadiyah Ponorogo membangun fondasi pedagogis yang kuat dan bermakna sebagai calon pendidik.</div>
+              </div>
+            </div>
+            <div class="proses-item" onclick="openRefleksiModal('filosofi')">
+              <div class="proses-num">04</div>
+              <div>
+                <div class="proses-item-title">Filosofi Mengajar Saya</div>
+                <div class="proses-item-desc">Guru yang baik adalah guru yang tidak pernah berhenti menjadi murid. Setiap interaksi mengajarkan sesuatu baru.</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="proses-img">📖</div>
@@ -893,32 +972,54 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
 <!-- ══════════════════════════════════════
-     TAB: PENILAIAN
+     TAB: PENILAIAN (KOSONG)
 ══════════════════════════════════════ -->
 <div class="tab-page" id="page-penilaian">
   <section class="section penilaian-section" style="padding-top:calc(var(--nav-h) + 4rem)">
     <div class="section-inner">
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem;flex-wrap:wrap;">
-        <div>
-          <div class="section-tag">Evaluasi &amp; Capaian</div>
-          <h2 class="section-h2">Rekap <em>Kompetensi</em></h2>
-        </div>
-        <p style="font-size:0.85rem;color:var(--text-soft);max-width:320px;line-height:1.7;text-align:right">Capaian kompetensi sebagai calon guru profesional dalam program PPG PGSD UMM.</p>
+      <div style="margin-bottom:3rem">
+        <div class="section-tag">Evaluasi &amp; Capaian</div>
+        <h2 class="section-h2">Rekap <em>Penilaian</em></h2>
+        <p style="font-size:0.85rem;color:var(--text-soft);max-width:480px;line-height:1.7">Penilaian dari Guru Pamong dan Dosen Pembimbing Lapangan akan ditampilkan di sini.</p>
       </div>
-      <div class="penilaian-grid">
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">📝</div><div class="penilaian-label">Kompetensi Pedagogik</div><div class="penilaian-title">Merancang Pembelajaran Bermakna</div><div class="penilaian-score">A</div><div class="penilaian-desc">Mampu merancang RPP tematik yang inovatif dan sesuai kebutuhan siswa SD.</div><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div></div>
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">🌸</div><div class="penilaian-label">Kompetensi Kepribadian</div><div class="penilaian-title">Adaptif, Kreatif &amp; Berintegritas</div><div class="penilaian-score">A</div><div class="penilaian-desc">Menunjukkan komitmen kuat menjadi calon guru yang adaptif dan terus belajar.</div><div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div></div>
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">🤝</div><div class="penilaian-label">Kompetensi Sosial</div><div class="penilaian-title">Kolaborasi &amp; Komunikasi</div><div class="penilaian-score">B+</div><div class="penilaian-desc">Aktif berkolaborasi dan berkomunikasi efektif dengan berbagai pihak.</div><div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div></div>
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">💡</div><div class="penilaian-label">Kompetensi Profesional</div><div class="penilaian-title">Penguasaan Materi &amp; Inovasi</div><div class="penilaian-score">A-</div><div class="penilaian-desc">Latar belakang S1 PGMI memperkuat kemampuan berpikir sistematis dan inovatif.</div><div class="progress-bar"><div class="progress-fill" style="width:87%"></div></div></div>
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">📚</div><div class="penilaian-label">Akademik S1</div><div class="penilaian-title">PGMI — Univ. Muhammadiyah Ponorogo</div><div class="penilaian-score">S1</div><div class="penilaian-desc">Lulus S1 Pendidikan Guru Madrasah Ibtida'iyah tahun 2023.</div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
-        <div class="penilaian-card" onclick="openPenilaianModal(this)"><div class="penilaian-icon">🎯</div><div class="penilaian-label">PPG PGSD 2026</div><div class="penilaian-title">Program Profesi Guru — UMM</div><div class="penilaian-score">⭐</div><div class="penilaian-desc">Aktif mengikuti program PPG PGSD angkatan 2026 di Universitas Muhammadiyah Malang.</div><div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div></div>
+
+      <!-- Analisis Artefak -->
+      <div class="instrumen-header" style="margin-bottom:1.5rem">🔍 Analisis Artefak — Penilaian Guru Pamong &amp; DPL</div>
+      <div class="instrumen-grid" style="margin-bottom:3rem">
+        <a href="#" class="instrumen-card" onclick="event.preventDefault();openDriveLink(this,'penilaian-perangkat-1')">
+          <div class="instrumen-icon">📋</div>
+          <div>
+            <div class="instrumen-label">Lampiran 7</div>
+            <div class="instrumen-name">Penilaian Penyusunan Perangkat Pembelajaran oleh Guru Pamong</div>
+          </div>
+        </a>
+        <a href="#" class="instrumen-card" onclick="event.preventDefault();openDriveLink(this,'penilaian-praktik-1')">
+          <div class="instrumen-icon">📊</div>
+          <div>
+            <div class="instrumen-label">Lampiran 8</div>
+            <div class="instrumen-name">Penilaian Praktik Mengajar oleh Guru Pamong</div>
+          </div>
+        </a>
+        <div class="instrumen-card" style="opacity:0.4;cursor:default">
+          <div class="instrumen-icon">⏳</div>
+          <div>
+            <div class="instrumen-label">Penilaian Lanjutan</div>
+            <div class="instrumen-name">Akan ditambahkan segera</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="penilaian-empty">
+        <div class="penilaian-empty-icon">📊</div>
+        <div class="penilaian-empty-title">Data Penilaian Sedang Disiapkan</div>
+        <div class="penilaian-empty-desc">Rekap kompetensi dan capaian nilai PPL akan ditampilkan di sini setelah proses evaluasi selesai.<br>Silakan kembali lagi nanti. 🌸</div>
       </div>
     </div>
   </section>
@@ -927,9 +1028,9 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
@@ -939,29 +1040,50 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
 <div class="tab-page" id="page-model">
   <section class="section model-section" style="padding-top:calc(var(--nav-h) + 4rem)">
     <div class="section-inner">
-      <!-- Foto di pojok kiri belakang dengan efek fade -->
       <div class="model-photo-wrap">
-        <img src=""
-             alt="Foto Model Guru"
-             onerror="this.parentElement.style.display='none'">
+        <img src="" alt="" onerror="this.parentElement.style.display='none'">
       </div>
 
       <div class="model-intro">
         <div>
           <div class="section-tag">Visi &amp; Nilai</div>
-          <h2 class="section-h2">Sosok Guru<br><em>Ideal</em> yang Saya Yakini</h2>
+          <h2 class="section-h2">Model Guru yang<br><em>Dituju</em></h2>
         </div>
         <div class="model-intro-right">
-          Nilai-nilai dan prinsip yang menjadi landasan dalam perjalanan menjadi pendidik profesional. Seorang guru bukan sekadar pengajar, melainkan pembentuk karakter dan penggerak perubahan.
+          Sebagai calon guru, saya memiliki model guru yang dituju yaitu menjadi pendidik yang profesional, adaptif, dan berorientasi pada peserta didik. Saya ingin menjadi guru yang tidak hanya menyampaikan materi, tetapi juga mampu membimbing, menginspirasi, serta menciptakan pembelajaran yang bermakna.
         </div>
       </div>
       <div class="model-grid">
-        <div class="model-card"><div class="model-num">Model 01</div><div class="model-title">Guru yang Inspiratif &amp; Empatik</div><div class="model-desc">Mampu memahami kondisi setiap siswa, menciptakan suasana kelas yang aman, hangat, dan mendukung tumbuhnya rasa percaya diri.</div></div>
-        <div class="model-card"><div class="model-num">Model 02</div><div class="model-title">Guru yang Kreatif &amp; Inovatif</div><div class="model-desc">Mengintegrasikan kreativitas dan teknologi dalam pembelajaran. Latar belakang desain menjadi kekuatan untuk media belajar yang menarik.</div></div>
-        <div class="model-card"><div class="model-num">Model 03</div><div class="model-title">Guru yang Reflektif &amp; Terus Belajar</div><div class="model-desc">Tidak pernah berhenti belajar dan selalu merefleksikan praktik mengajar. Terbuka terhadap masukan dan terus meningkatkan kompetensi.</div></div>
-        <div class="model-card"><div class="model-num">Model 04</div><div class="model-title">Guru yang Adaptif &amp; Berkarakter</div><div class="model-desc">Menjadi teladan dalam sikap, ucapan, dan tindakan. Beradaptasi dengan zaman tanpa kehilangan nilai integritas.</div></div>
-        <div class="model-card"><div class="model-num">Model 05</div><div class="model-title">Guru yang Kolaboratif &amp; Inklusif</div><div class="model-desc">Membangun kemitraan dengan orang tua dan komunitas. Menciptakan lingkungan belajar yang inklusif dan menghargai keberagaman.</div></div>
-        <div class="model-card"><div class="model-num">Model 06</div><div class="model-title">Guru Penggerak Perubahan</div><div class="model-desc">Bukan sekadar mengajar di kelas, tetapi menjadi agen perubahan positif di sekolah dan masyarakat.</div></div>
+        <div class="model-card">
+          <div class="model-num">Filosofi Mengajar</div>
+          <div class="model-title">Berpusat pada Peserta Didik</div>
+          <div class="model-desc">Setiap peserta didik memiliki potensi yang unik. Pembelajaran harus dirancang secara kontekstual, aktif, dan berpusat pada peserta didik agar dapat berkembang melalui pengalaman belajar yang tepat.</div>
+        </div>
+        <div class="model-card">
+          <div class="model-num">Growth Mindset</div>
+          <div class="model-title">Tantangan sebagai Peluang</div>
+          <div class="model-desc">Menerapkan growth mindset dalam setiap proses pembelajaran — setiap tantangan dipandang sebagai peluang untuk berkembang, baik bagi peserta didik maupun bagi saya sebagai guru.</div>
+        </div>
+        <div class="model-card">
+          <div class="model-num">Kekuatan</div>
+          <div class="model-title">Perancang Pembelajaran Sistematis</div>
+          <div class="model-desc">Kemampuan dalam merancang perangkat pembelajaran yang sistematis, mengaitkan materi dengan kehidupan sehari-hari, dan menciptakan suasana kelas yang kondusif untuk diskusi aktif.</div>
+        </div>
+        <div class="model-card">
+          <div class="model-num">Kelemahan & Tantangan</div>
+          <div class="model-title">Area Pengembangan Diri</div>
+          <div class="model-desc">Transisi antar kegiatan pembelajaran dan pelaksanaan evaluasi masih perlu ditingkatkan agar dapat mengukur ketercapaian tujuan pembelajaran secara lebih maksimal.</div>
+        </div>
+        <div class="model-card">
+          <div class="model-num">Rencana Tindak Lanjut</div>
+          <div class="model-title">Inovasi Berkelanjutan</div>
+          <div class="model-desc">Mengembangkan variasi strategi dan model pembelajaran yang lebih inovatif, memperkuat penggunaan asesmen yang sesuai tujuan, serta terus melakukan refleksi dan membuka diri terhadap masukan.</div>
+        </div>
+        <div class="model-card">
+          <div class="model-num">Komitmen</div>
+          <div class="model-title">Guru Profesional yang Terus Tumbuh</div>
+          <div class="model-desc">Menjadi guru profesional adalah proses yang terus berkembang. Saya akan terus belajar, beradaptasi, dan berinovasi agar dapat memberikan pembelajaran yang bermakna dan berdampak positif.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -970,9 +1092,9 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
@@ -1003,7 +1125,7 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
             <select id="inp-cat">
               <option value="folder">📂 Folder Utama</option>
               <option value="rpp">📄 RPP &amp; Pembelajaran</option>
-              <option value="desain">🏗️ Portofolio Desain</option>
+              <option value="ppl">🏫 Artefak PPL</option>
               <option value="video">🎬 Video</option>
               <option value="lainnya">📌 Lainnya</option>
             </select>
@@ -1034,9 +1156,9 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
       <div class="footer-col"><h4>Navigasi</h4><span onclick="switchTab('beranda')">Beranda</span><span onclick="switchTab('profil')">Profil</span><span onclick="switchTab('artefak')">Artefak</span></div>
       <div class="footer-col"><h4>Konten</h4><span onclick="switchTab('penilaian')">Penilaian</span><span onclick="switchTab('model')">Model Guru</span><span onclick="switchTab('drive')">Google Drive</span></div>
-      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:elimiaww@gmail.com">elimiaww@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
+      <div class="footer-col"><h4>Hubungi</h4><a href="mailto:Erikasari699@gmail.com">Erikasari699@gmail.com</a><a href="https://wa.me/6285156161155">+62 851-5616-1155</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
+    <div class="footer-bottom"><span>© 2026 Erika Pebri Nurvitasari · S.Pd. — PPG PGSD UMM</span><span style="color:var(--rose-light)">Dibuat dengan 🌸</span></div>
   </footer>
 </div>
 
@@ -1045,6 +1167,14 @@ footer{background:var(--text);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6)
   <div class="modal-box" onclick="event.stopPropagation()" style="max-width:580px">
     <button class="modal-close" onclick="closeModal()">×</button>
     <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ─── LINK PLACEHOLDER MODAL ─── -->
+<div class="modal-overlay" id="linkModal" onclick="closeLinkModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()" style="max-width:480px">
+    <button class="modal-close" onclick="closeLinkModal()">×</button>
+    <div id="linkModalContent"></div>
   </div>
 </div>
 
@@ -1091,14 +1221,10 @@ animateSakura();
 window.addEventListener('resize',resizeCanvas);
 
 /* ─── TAB SWITCHING ─── */
-const tabIds = ['beranda','profil','artefak','refleksi','penilaian','model','drive'];
-
 function switchTab(name){
   document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tabs a').forEach(a=>a.classList.remove('active'));
-  // mobile nav active
   document.querySelectorAll('.mobile-nav-links a').forEach(a=>a.classList.remove('active'));
-
   const page=document.getElementById('page-'+name);
   const tab=document.getElementById('tab-'+name);
   const mobTab=document.getElementById('mob-'+name);
@@ -1111,7 +1237,6 @@ function switchTab(name){
 
 function triggerAnimations(container){
   if(!container) return;
-  container.querySelectorAll('.skill-bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});
   container.querySelectorAll('[data-count]').forEach(el=>{
     if(el._counted) return; el._counted=true;
     const target=parseInt(el.dataset.count);let cur=0;
@@ -1130,26 +1255,63 @@ window.addEventListener('scroll',()=>{
 function toggleMobileNav(){
   const nav=document.getElementById('mobileNav');
   nav.classList.toggle('show');
-  // Prevent body scroll when menu open
   document.body.style.overflow=nav.classList.contains('show')?'hidden':'';
 }
-// Close mobile nav on outside click
 document.addEventListener('click',function(e){
   const nav=document.getElementById('mobileNav');
   const btn=document.getElementById('hamburgerBtn');
-  if(nav.classList.contains('show') && !nav.contains(e.target) && !btn.contains(e.target)){
+  if(nav.classList.contains('show')&&!nav.contains(e.target)&&!btn.contains(e.target)){
     nav.classList.remove('show');
     document.body.style.overflow='';
   }
 });
 
-/* ─── ARTEFAK FILTER ─── */
-function filterArtefak(cat,el){
-  document.querySelectorAll('.filter-pill').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('#artefakGrid .artefak-card').forEach(card=>{
-    card.style.display=(cat==='semua'||card.dataset.cat===cat)?'':'none';
-  });
+/* ─── DRIVE LINK OPENER (placeholder until real links added) ─── */
+// Map of link keys to actual Google Drive URLs
+// Update these with your real Google Drive links!
+const driveLinks = {
+  'modul-ajar-1': '#',
+  'media-1': '#',
+  'lkpd-1': '#',
+  'video-1': '#',
+  'instrumen-1': '#',
+  'penilaian-perangkat-1': '#',
+  'penilaian-praktik-1': '#',
+};
+
+function openDriveLink(el, key) {
+  const url = driveLinks[key];
+  if (url && url !== '#') {
+    window.open(url, '_blank');
+    return;
+  }
+  // Show placeholder modal
+  const labels = {
+    'modul-ajar-1': 'Modul Ajar — PPL Terbimbing 1',
+    'media-1': 'Media Pembelajaran (PPT) — PPL Terbimbing 1',
+    'lkpd-1': 'LKPD — PPL Terbimbing 1',
+    'video-1': 'Video Pembelajaran — PPL Terbimbing 1',
+    'instrumen-1': 'Instrumen Penilaian — PPL Terbimbing 1',
+    'penilaian-perangkat-1': 'Penilaian Penyusunan Perangkat (Lampiran 7)',
+    'penilaian-praktik-1': 'Penilaian Praktik Mengajar (Lampiran 8)',
+  };
+  const name = labels[key] || key;
+  document.getElementById('linkModalContent').innerHTML = `
+    <div style="text-align:center;margin-bottom:1rem">
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">🔗</div>
+      <span style="font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose)">Link Google Drive</span>
+    </div>
+    <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.75rem;text-align:center;line-height:1.35">${name}</h3>
+    <p style="font-size:0.83rem;color:var(--text-mid);line-height:1.75;text-align:center">Link Google Drive untuk dokumen ini belum ditambahkan.<br>Perbarui variabel <code style="background:var(--blush);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:0.78rem">driveLinks['${key}']</code> di bagian script HTML.</p>
+    <div style="margin-top:1.5rem;text-align:center"><button onclick="closeLinkModal()" class="btn btn-outline" style="font-size:0.8rem;padding:0.5rem 1.2rem">Tutup</button></div>`;
+  document.getElementById('linkModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeLinkModal(e){
+  if(!e||e.target===document.getElementById('linkModal')){
+    document.getElementById('linkModal').classList.remove('show');
+    document.body.style.overflow='';
+  }
 }
 
 /* ─── MODALS ─── */
@@ -1165,34 +1327,11 @@ function closeModal(e){
   }
 }
 
-function openArtefakModal(title){
-  const data={
-    'Desain Apartemen Minimalis Modern':{emoji:'🏙️',tag:'Desain Interior',desc:'Konsep minimalis mewah untuk unit apartemen 65m². Furnitur multifungsi, palet warna netral, dan pencahayaan tersembunyi menciptakan kesan luas dan elegan.'},
-    'Desain Rumah Keluarga Modern':{emoji:'🏡',tag:'Desain Interior',desc:'Rumah keluarga 2 lantai dengan material batu alam dan kayu pilihan. Pencahayaan alami dimaksimalkan melalui bukaan jendela besar.'},
-    'Desain Salon Kecantikan Mewah':{emoji:'💅',tag:'Desain Komersial',desc:'Salon modern elegan dengan area perawatan rambut dan kulit terpisah, ruang tunggu nyaman, dan sistem pencahayaan tematik.'},
-    'RPP Tematik SD':{emoji:'📋',tag:'RPP & Pembelajaran',desc:'Rencana Pelaksanaan Pembelajaran tematik integratif untuk kelas IV SD dengan pendekatan scientific dan model discovery learning.'},
-    'Media Pembelajaran Interaktif':{emoji:'🎮',tag:'Media Pendidikan',desc:'Media berbasis PowerPoint interaktif dengan animasi dan kuis terintegrasi untuk pembelajaran matematika dasar kelas III SD.'},
-    'Kajian Pembelajaran Bermakna':{emoji:'🔬',tag:'Riset & Kajian',desc:'Kajian teoritis mendalam tentang penerapan teori konstruktivisme Vygotsky dan Ausubel dalam pembelajaran bermakna di tingkat sekolah dasar.'},
-  };
-  const d=data[title]||{emoji:'📄',tag:'Dokumen',desc:'Detail dokumen ini.'};
-  showModal(`
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:3rem;margin-bottom:0.65rem">${d.emoji}</div>
-      <span style="font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose);background:rgba(212,102,142,0.1);padding:3px 12px;border-radius:100px">${d.tag}</span>
-    </div>
-    <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:0.85rem;text-align:center;line-height:1.3">${title}</h3>
-    <p style="font-size:0.85rem;color:var(--text-mid);line-height:1.8;text-align:center">${d.desc}</p>
-    <div style="margin-top:1.75rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-      <button onclick="switchTab('drive');closeModal()" class="btn btn-primary" style="font-size:0.8rem;padding:0.55rem 1.25rem">Lihat di Drive →</button>
-      <button onclick="closeModal()" class="btn btn-outline" style="font-size:0.8rem;padding:0.55rem 1.25rem">Tutup</button>
-    </div>`);
-}
-
 const refleksiData={
-  ppg:{tahun:'2026',kategori:'PPG PGSD',title:'Memulai Perjalanan PPG: Mengajar Adalah Seni Belajar Bersama',text:'Memasuki program PPG PGSD di Universitas Muhammadiyah Malang membuka mata saya bahwa mendidik jauh lebih dari sekadar menyampaikan ilmu. Saya mulai memahami bahwa setiap siswa membawa dunianya sendiri ke dalam kelas.'},
-  transisi:{tahun:'2023',kategori:'Transisi Karir',title:'Dari Desainer ke Pendidik: Kreativitas yang Bertransformasi',text:'Selama hampir satu dekade berkarir di dunia desain interior, saya belajar bahwa kreativitas bukan hanya soal estetika tetapi soal memahami kebutuhan manusia. Pelajaran itulah yang kini saya bawa ke dunia pendidikan.'},
-  s1:{tahun:'2019–2023',kategori:'S1 PGMI',title:'Belajar Mendidik di Madrasah: Fondasi yang Kuat',text:'Studi S1 Pendidikan Guru Madrasah Ibtida\'iyah di Universitas Muhammadiyah Ponorogo membangun fondasi pedagogis saya. Saya belajar bahwa pendidikan yang baik harus menyentuh aspek kognitif, afektif, dan spiritual anak.'},
-  filosofi:{tahun:'Renungan',kategori:'Filosofi Mengajar',title:'Mengajar Bukan Hanya Menyampaikan — Ini Perjalanan Bersama',text:'Saya percaya bahwa guru yang baik adalah guru yang tidak pernah berhenti menjadi murid. Setiap interaksi dengan siswa mengajarkan sesuatu yang baru.'},
+  ppg:{tahun:'2026',kategori:'PPG PGSD',title:'Memulai Perjalanan PPG: Mengajar Adalah Seni Belajar Bersama',text:'Memasuki program PPG PGSD di Universitas Muhammadiyah Malang membuka mata saya bahwa mendidik jauh lebih dari sekadar menyampaikan ilmu. Saya mulai memahami bahwa setiap siswa membawa dunianya sendiri ke dalam kelas, dan tugas saya adalah hadir sepenuhnya untuk menemani perjalanan belajar mereka.'},
+  ponorogo:{tahun:'Asal Daerah',kategori:'Identitas & Karakter',title:'Lahir dari Kota Reog: Warisan Budaya yang Membentuk Karakter',text:'Ponorogo bukan sekadar titik koordinat di peta Jawa Timur, melainkan sebuah tanah legenda. Tumbuh di kota ini berarti mewarisi semangat para Warok yang tangguh namun penuh kebijaksanaan. Nilai-nilai itu — keberanian, integritas, dan kearifan lokal — menjadi fondasi karakter yang saya bawa dalam perjalanan menjadi pendidik.'},
+  s1:{tahun:'2019–2023',kategori:'S1 PGMI',title:'Belajar Mendidik di Madrasah: Fondasi yang Kuat',text:'Studi S1 Pendidikan Guru Madrasah Ibtida\'iyah di Universitas Muhammadiyah Ponorogo membangun fondasi pedagogis saya. Saya belajar bahwa pendidikan yang baik harus menyentuh aspek kognitif, afektif, dan spiritual anak. Pengalaman ini menjadi bekal berharga saat melanjutkan studi ke jenjang PPG.'},
+  filosofi:{tahun:'Renungan',kategori:'Filosofi Mengajar',title:'Mengajar Bukan Hanya Menyampaikan — Ini Perjalanan Bersama',text:'Saya percaya bahwa setiap peserta didik memiliki potensi yang unik dan dapat berkembang melalui pengalaman belajar yang tepat. Pembelajaran harus dirancang secara kontekstual, aktif, dan berpusat pada peserta didik. Guru yang baik adalah guru yang tidak pernah berhenti menjadi murid — setiap interaksi mengajarkan sesuatu yang baru.'},
 };
 function openRefleksiModal(key){
   const d=refleksiData[key];
@@ -1203,36 +1342,19 @@ function openRefleksiModal(key){
     <div style="margin-top:1.5rem;text-align:right"><button onclick="closeModal()" class="btn btn-outline" style="font-size:0.8rem;padding:0.5rem 1.2rem">Tutup</button></div>`);
 }
 
-function openPenilaianModal(card){
-  const label=card.querySelector('.penilaian-label').textContent;
-  const title=card.querySelector('.penilaian-title').textContent;
-  const score=card.querySelector('.penilaian-score').textContent;
-  const desc=card.querySelector('.penilaian-desc').textContent;
-  const icon=card.querySelector('.penilaian-icon').textContent;
-  showModal(`
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:2.5rem;margin-bottom:0.5rem">${icon}</div>
-      <span style="font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose)">${label}</span>
-    </div>
-    <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;text-align:center">${title}</h3>
-    <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:var(--rose);text-align:center;line-height:1;margin:0.5rem 0">${score}</div>
-    <p style="font-size:0.85rem;color:var(--text-mid);line-height:1.75;text-align:center;margin-top:0.75rem">${desc}</p>
-    <div style="margin-top:1.5rem;text-align:center"><button onclick="closeModal()" class="btn btn-outline" style="font-size:0.8rem;padding:0.5rem 1.2rem">Tutup</button></div>`);
-}
-
 /* ══════════════════════════
    GOOGLE DRIVE DINAMIS
 ══════════════════════════ */
 const driveItems=[
   {name:'Folder PPG PGSD 2026',desc:'Semua dokumen PPG — silabus, modul, tugas, dan materi perkuliahan.',link:'#',cat:'folder',type:'folder'},
-  {name:'Folder Artefak & Karya',desc:'Koleksi lengkap artefak, proyek desain, RPP, dan media pembelajaran.',link:'#',cat:'folder',type:'folder'},
-  {name:'RPP Tematik SD — Pendekatan Scientific',desc:'RPP dengan discovery learning dan asesmen autentik.',link:'#',cat:'rpp',type:'doc'},
-  {name:'Media Pembelajaran Interaktif Matematika SD',desc:'Presentasi interaktif dengan animasi untuk matematika dasar.',link:'#',cat:'rpp',type:'slide'},
-  {name:'Kajian: Pembelajaran Bermakna di SD',desc:'Kajian teoritis konstruktivisme dan implementasinya di sekolah dasar.',link:'#',cat:'rpp',type:'pdf'},
-  {name:'Portofolio Desain Interior Lengkap',desc:'Kumpulan proyek desain interior 2014–2025 — apartemen, rumah, dan salon.',link:'#',cat:'desain',type:'slide'},
-  {name:'Sertifikat & Dokumen Pendukung',desc:'Ijazah, transkrip, sertifikat pelatihan, dan dokumen pendukung lainnya.',link:'#',cat:'desain',type:'other'},
+  {name:'Folder Artefak & Karya PPL',desc:'Koleksi lengkap artefak, modul ajar, RPP, LKPD, dan media pembelajaran.',link:'#',cat:'folder',type:'folder'},
+  {name:'Modul Ajar — PPL Terbimbing 1',desc:'Modul ajar Siklus 1, SDN Pandanwangi 3, Kelas 4A, 17 April 2026.',link:'#',cat:'ppl',type:'doc'},
+  {name:'Media Pembelajaran (PPT) — PPL 1',desc:'PowerPoint media pembelajaran interaktif untuk PPL Terbimbing 1.',link:'#',cat:'ppl',type:'slide'},
+  {name:'LKPD — PPL Terbimbing 1',desc:'Lembar Kerja Peserta Didik untuk PPL Terbimbing 1.',link:'#',cat:'ppl',type:'pdf'},
+  {name:'Video Pembelajaran — PPL 1',desc:'Dokumentasi video pelaksanaan pembelajaran PPL Terbimbing 1.',link:'#',cat:'video',type:'video'},
+  {name:'Sertifikat & Dokumen Pendukung',desc:'Ijazah, transkrip, sertifikat pelatihan, dan dokumen pendukung lainnya.',link:'#',cat:'lainnya',type:'other'},
 ];
-const catConfig={folder:{label:'📂 Folder Utama'},rpp:{label:'📄 RPP & Pembelajaran'},desain:{label:'🏗️ Portofolio Desain'},video:{label:'🎬 Video'},lainnya:{label:'📌 Lainnya'}};
+const catConfig={folder:{label:'📂 Folder Utama'},rpp:{label:'📄 RPP & Pembelajaran'},ppl:{label:'🏫 Artefak PPL'},video:{label:'🎬 Video'},lainnya:{label:'📌 Lainnya'}};
 const typeConfig={folder:{icon:'📁',cls:'folder',label:'Folder'},doc:{icon:'📝',cls:'doc',label:'Google Docs'},slide:{icon:'📊',cls:'slide',label:'Google Slides'},pdf:{icon:'📕',cls:'pdf',label:'PDF'},video:{icon:'🎬',cls:'video',label:'Video'},other:{icon:'📄',cls:'doc',label:'Dokumen'}};
 
 function isGDriveVideo(url){return /drive\.google\.com\/(file\/d\/|open\?id=)/.test(url)||/drive\.google\.com\/.*\/(view|preview)/.test(url);}
@@ -1244,7 +1366,7 @@ function renderDrive(){
   const groups={};
   driveItems.forEach(item=>{const c=item.cat||'lainnya';if(!groups[c])groups[c]=[];groups[c].push(item);});
   let html='';
-  ['folder','rpp','desain','video','lainnya'].forEach(cat=>{
+  ['folder','ppl','rpp','video','lainnya'].forEach(cat=>{
     if(!groups[cat]||!groups[cat].length)return;
     const cfg=catConfig[cat]||{label:'📌 Lainnya'};
     html+=`<div class="drive-section-label">${cfg.label}</div><div class="drive-grid" style="margin-bottom:2rem">`;
@@ -1289,25 +1411,20 @@ function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').
 
 /* ─── SEARCH ─── */
 const allContent=[
-  {type:'Artefak',title:'Desain Apartemen Minimalis Modern',tab:'artefak'},
-  {type:'Artefak',title:'Desain Rumah Keluarga Modern',tab:'artefak'},
-  {type:'Artefak',title:'Desain Salon Kecantikan Mewah',tab:'artefak'},
-  {type:'Artefak',title:'RPP Tematik SD — Pendekatan Scientific',tab:'artefak'},
-  {type:'Artefak',title:'Media Pembelajaran Interaktif',tab:'artefak'},
-  {type:'Artefak',title:'Kajian: Pembelajaran Bermakna di SD',tab:'artefak'},
+  {type:'PPL',title:'PPL Terbimbing 1 — SDN Pandanwangi 3',tab:'artefak'},
+  {type:'PPL',title:'PPL Terbimbing 2',tab:'artefak'},
+  {type:'PPL',title:'PPL Terbimbing 3',tab:'artefak'},
+  {type:'Penilaian',title:'Instrumen Penilaian PPL',tab:'penilaian'},
   {type:'Refleksi',title:'Memulai Perjalanan PPG',tab:'refleksi'},
-  {type:'Refleksi',title:'Dari Desainer ke Pendidik',tab:'refleksi'},
-  {type:'Refleksi',title:'Fondasi S1 PGMI',tab:'refleksi'},
+  {type:'Refleksi',title:'Lahir dari Kota Reog — Ponorogo',tab:'refleksi'},
+  {type:'Refleksi',title:'Fondasi S1 PGMI di Ponorogo',tab:'refleksi'},
   {type:'Refleksi',title:'Filosofi Mengajar Saya',tab:'refleksi'},
-  {type:'Profil',title:'Erika Pebri Nurvitasari — PPG PGSD UMM',tab:'profil'},
-  {type:'Profil',title:'Riwayat Pendidikan & Pengalaman Profesional',tab:'profil'},
-  {type:'Penilaian',title:'Kompetensi Pedagogik',tab:'penilaian'},
-  {type:'Penilaian',title:'Kompetensi Kepribadian',tab:'penilaian'},
-  {type:'Penilaian',title:'Kompetensi Sosial',tab:'penilaian'},
-  {type:'Model Guru',title:'Guru Inspiratif & Empatik',tab:'model'},
-  {type:'Model Guru',title:'Guru Kreatif & Inovatif',tab:'model'},
+  {type:'Profil',title:'Erika Pebri Nurvitasari, S.Pd. — PPG PGSD UMM',tab:'profil'},
+  {type:'Profil',title:'Riwayat Pendidikan & Latar Belakang',tab:'profil'},
+  {type:'Model Guru',title:'Filosofi Mengajar & Berpusat pada Peserta Didik',tab:'model'},
+  {type:'Model Guru',title:'Kekuatan & Rencana Tindak Lanjut',tab:'model'},
   {type:'Drive',title:'Folder PPG PGSD 2026',tab:'drive'},
-  {type:'Drive',title:'RPP & Media Pembelajaran',tab:'drive'},
+  {type:'Drive',title:'Artefak PPL & Modul Ajar',tab:'drive'},
 ];
 function openSearch(){
   document.getElementById('searchOverlay').classList.add('show');
