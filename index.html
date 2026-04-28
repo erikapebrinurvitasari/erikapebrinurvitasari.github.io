@@ -648,7 +648,7 @@ footer{background:url('https://drive.google.com/thumbnail?id=1uJA0wzn3_RwRow3coU
 .footer-col h4{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(220,255,235,0.95);margin-bottom:1rem;}
 .footer-col a,.footer-col span{display:block;font-size:0.8rem;color:rgba(180,230,200,0.7);text-decoration:none;margin-bottom:0.5rem;transition:color 0.2s;cursor:pointer;}
 .footer-col a:hover,.footer-col span:hover{color:#a8e6c0;}
-footer::before{content:'';position:absolute;inset:0;background:rgba(15,35,25,0.20);z-index:0;}
+footer::before{content:'';position:absolute;inset:0;background:rgba(15,35,25,0.10);z-index:0;}
 footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 .footer-bottom{border-top:1px solid rgba(100,180,130,0.2);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:0.5rem;}
 
@@ -1035,9 +1035,10 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
               <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'media-1')">
                 <span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span><span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">▶ Lihat</span>
               </a>
-              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'lkpd-1')">
-                <span class="sub-icon">📋</span><span>LKPD</span><span class="sub-arrow">↗</span>
-              </a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openPdfViewer('lkpd-1')">
+  <span class="sub-icon">📋</span><span>LKPD</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
+</a>
               <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openFotoViewer()">
                 <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
               </a>
@@ -1461,6 +1462,11 @@ const pdfSources = {
     fileId: '1RqUEZ1WLZsfQYqdNB4M4lmWdBPWaO9qs',
     title: 'Modul Ajar',
     driveUrl: 'https://drive.google.com/file/d/1RqUEZ1WLZsfQYqdNB4M4lmWdBPWaO9qs/view?usp=drive_link'
+  },
+  'lkpd-1': {
+    fileId: '10Ooe7QSCI84Um2ie-uGMF1hZPCNn7DKN',
+    title: 'LKPD — PPL Terbimbing 1',
+    driveUrl: 'https://drive.google.com/file/d/10Ooe7QSCI84Um2ie-uGMF1hZPCNn7DKN/view?usp=drive_link'
   },
   'penilaian-perangkat-1': {
   fileId: '1wad8_6UgSZo7WvTY-1LRvlDHZneOci96',
