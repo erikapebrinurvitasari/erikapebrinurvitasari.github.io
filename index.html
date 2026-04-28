@@ -911,8 +911,6 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
         <!-- Baris 2: Kartu UMM + MAP (full width) -->
         <div class="info-card full" style="padding:0;overflow:hidden;">
           <div style="display:grid;grid-template-columns:1fr 1fr;">
-
-            <!-- Kiri: info UMM -->
             <div style="padding:1.75rem;border-right:1px solid var(--border-soft);">
               <div class="info-card-title">Mahasiswa PPG UMM</div>
               <div class="info-row" style="flex-direction:column;gap:0.5rem">
@@ -932,10 +930,7 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
                 <span class="info-val" style="font-size:0.82rem;line-height:1.75">Jl. Raya Tlogomas No. 246, Malang, Jawa Timur</span>
               </div>
             </div>
-
-            <!-- Kanan: map -->
             <div style="position:relative;min-height:280px;">
-              <!-- header map -->
               <div style="display:flex;align-items:center;justify-content:space-between;padding:0.65rem 1rem;background:var(--petal);border-bottom:1px solid var(--border-soft);">
                 <div style="display:flex;align-items:center;gap:0.45rem;">
                   <span style="font-size:0.85rem;">📍</span>
@@ -944,13 +939,11 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
                 </div>
                 <a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Malang+(UMM+III)/@-7.9215116,112.59479,17z" target="_blank" style="font-size:0.65rem;font-weight:600;color:var(--rose);text-decoration:none;">Buka ↗</a>
               </div>
-              <!-- skeleton -->
               <div id="mapSkel" style="position:absolute;top:36px;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--petal),var(--blush-mid));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;transition:opacity 0.5s;pointer-events:none;z-index:1;">
                 <span style="font-size:1.8rem;animation:skPulse 1.5s ease-in-out infinite;">🗺️</span>
                 <span style="font-size:0.7rem;color:var(--text-soft);">Memuat peta…</span>
                 <div style="width:100px;height:3px;border-radius:100px;background:var(--blush-mid);overflow:hidden;position:relative;"><div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--rose-light),transparent);animation:shimmer 1.6s ease-in-out infinite;"></div></div>
               </div>
-              <!-- iframe -->
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.4!2d112.5947900!3d-7.9215116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881f5405daac1%3A0xb39e4847109109e4!2sUniversitas%20Muhammadiyah%20Malang%20(UMM%20III)!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
                 style="width:100%;height:calc(100% - 36px);border:none;display:block;opacity:0;transition:opacity 0.8s;position:absolute;top:36px;left:0;"
@@ -958,22 +951,69 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
                 onload="this.style.opacity='1';document.getElementById('mapSkel').style.opacity='0';">
               </iframe>
             </div>
-
           </div>
         </div>
 
-        <!-- Baris 3: Ponorogo -->
-        <div class="info-card full">
-          <div class="info-card-title">Lahir &amp; Besar di Ponorogo 🎭</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-            <div class="info-row" style="flex-direction:column;gap:0.5rem;border-bottom:none;">
-              <span class="info-key">Kota Kelahiran</span>
-              <span class="info-val" style="font-size:0.82rem;line-height:1.75">Ponorogo — kota Reog, tanah legenda di Jawa Timur. Tempat di mana keberanian ksatria dan tradisi Reog Ponorogo bernapas dalam harmoni yang sempurna.</span>
+        <!-- Baris 3: Ponorogo — WITH PHOTO -->
+        <div class="info-card full" style="padding:0;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;">
+
+            <!-- Kiri: teks Ponorogo -->
+            <div style="padding:1.75rem;border-right:1px solid var(--border-soft);">
+              <div class="info-card-title">Lahir &amp; Besar di Ponorogo 🎭</div>
+              <div class="info-row" style="flex-direction:column;gap:0.5rem;">
+                <span class="info-key">Kota Kelahiran</span>
+                <span class="info-val" style="font-size:0.82rem;line-height:1.75">Ponorogo — kota Reog, tanah legenda di Jawa Timur. Tempat di mana keberanian ksatria dan tradisi Reog Ponorogo bernapas dalam harmoni yang sempurna.</span>
+              </div>
+              <div class="info-row" style="flex-direction:column;gap:0.5rem;border-bottom:none;">
+                <span class="info-key">Identitas Budaya</span>
+                <span class="info-val" style="font-size:0.82rem;line-height:1.75">Tumbuh di antara nilai religius pesantren yang kental dan kearifan lokal yang terjaga murni, membentuk karakter yang tangguh namun penuh kebijaksanaan.</span>
+              </div>
             </div>
-            <div class="info-row" style="flex-direction:column;gap:0.5rem;border-bottom:none;">
-              <span class="info-key">Identitas Budaya</span>
-              <span class="info-val" style="font-size:0.82rem;line-height:1.75">Tumbuh di antara nilai religius pesantren yang kental dan kearifan lokal yang terjaga murni, membentuk karakter yang tangguh namun penuh kebijaksanaan.</span>
+
+            <!-- Kanan: foto Ponorogo -->
+            <div style="position:relative;min-height:280px;overflow:hidden;background:linear-gradient(135deg,var(--blush),var(--blush-mid));">
+              <!-- shimmer loading -->
+              <div id="ponorogoSkel" style="position:absolute;inset:0;background:linear-gradient(135deg,var(--blush),var(--blush-mid));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;transition:opacity 0.6s;z-index:1;">
+                <span style="font-size:2rem;animation:skPulse 1.5s ease-in-out infinite;">🎭</span>
+                <span style="font-size:0.7rem;color:var(--text-soft);">Memuat foto…</span>
+              </div>
+              <!-- foto dengan parallax hover -->
+              <div style="position:absolute;inset:0;overflow:hidden;" id="ponorogoWrap">
+                <img
+                  src="https://drive.google.com/thumbnail?id=1iiBngrK3YQYWdcTcLpvjtu7QmSlwrmRg&sz=w900"
+                  alt="Ponorogo"
+                  id="ponorogoImg"
+                  style="width:100%;height:110%;object-fit:cover;object-position:center;display:block;transform:scale(1.08);transition:transform 0.6s cubic-bezier(0.4,0,0.2,1),opacity 0.8s;opacity:0;"
+                  onload="
+                    this.style.opacity='1';
+                    document.getElementById('ponorogoSkel').style.opacity='0';
+                    setTimeout(()=>document.getElementById('ponorogoSkel').style.display='none',600);
+                  "
+                  onerror="this.parentElement.parentElement.style.background='linear-gradient(135deg,var(--blush-mid),var(--rose-light))';this.style.display='none';">
+              </div>
+              <!-- gradient overlay -->
+              <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,20,32,0.45) 0%,transparent 40%,transparent 55%,rgba(45,20,32,0.72) 100%);z-index:2;pointer-events:none;"></div>
+              <!-- badge atas -->
+              <div style="position:absolute;top:1rem;left:1rem;z-index:3;display:flex;align-items:center;gap:0.5rem;">
+                <div style="background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:0.3rem 0.75rem;display:flex;align-items:center;gap:0.4rem;">
+                  <span style="font-size:0.75rem;">🎭</span>
+                  <span style="font-size:0.65rem;font-weight:700;color:white;letter-spacing:0.06em;text-transform:uppercase;">Ponorogo</span>
+                </div>
+                <div style="background:rgba(212,102,142,0.7);backdrop-filter:blur(8px);border-radius:100px;padding:0.3rem 0.75rem;">
+                  <span style="font-size:0.63rem;font-weight:700;color:white;">Jawa Timur</span>
+                </div>
+              </div>
+              <!-- teks bawah -->
+              <div style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.25rem 1rem;z-index:3;">
+                <div style="font-family:var(--font-display);font-style:italic;font-size:1rem;color:white;line-height:1.45;text-shadow:0 2px 12px rgba(0,0,0,0.4);margin-bottom:0.4rem;">"Bumi Reog yang melahirkan semangat dan karakter."</div>
+                <div style="display:flex;align-items:center;gap:0.4rem;">
+                  <div style="width:20px;height:1.5px;background:var(--rose-light);"></div>
+                  <span style="font-size:0.62rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">Kota Kelahiran</span>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
 
@@ -1744,6 +1784,20 @@ function closeFotoModal(e){
     document.getElementById('fotoModal').classList.remove('show');
     document.body.style.overflow='';
   }
+}
+/* ─── PONOROGO PARALLAX ─── */
+const ponorogoWrap = document.getElementById('ponorogoWrap');
+const ponorogoImg  = document.getElementById('ponorogoImg');
+if(ponorogoWrap && ponorogoImg){
+  ponorogoWrap.addEventListener('mousemove', e => {
+    const r = ponorogoWrap.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    ponorogoImg.style.transform = `scale(1.08) translate(${x*12}px, ${y*8}px)`;
+  });
+  ponorogoWrap.addEventListener('mouseleave', () => {
+    ponorogoImg.style.transform = 'scale(1.08) translate(0,0)';
+  });
 }
 </script>
 </body>
