@@ -1092,25 +1092,35 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
           <div class="ppl-card-footer"><span>📍</span> SDN Pandanwangi 3, Malang · Kelas 4A</div>
         </div>
 
-        <!-- PPL 2 — coming soon -->
-        <div class="ppl-card coming-soon">
-          <div class="ppl-card-header">
-            <div class="ppl-card-num">PPL Terbimbing · 02</div>
-            <div class="ppl-card-title">PPL Terbimbing 2</div>
-            <div class="ppl-card-subtitle">Segera hadir</div>
-            <div class="ppl-card-emoji">⏳</div>
-          </div>
-          <div class="ppl-card-body">
-            <p class="ppl-card-desc">Artefak PPL Terbimbing 2 akan ditambahkan setelah pelaksanaan.</p>
-            <div class="ppl-sub-links">
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📄</span><span>Modul Ajar</span></div>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span></div>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📋</span><span>LKPD</span></div>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span></div>
-            </div>
-          </div>
-          <div class="ppl-card-footer"><span>🔒</span> Belum tersedia</div>
-        </div>
+        <!-- PPL 2 — AKTIF -->
+<div class="ppl-card">
+  <div class="ppl-card-header">
+    <div class="ppl-card-num">PPL Terbimbing · 02</div>
+    <div class="ppl-card-title">PPL Terbimbing 2</div>
+    <div class="ppl-card-subtitle">Siklus 2 · SDN Pandanwangi 3</div>
+    <div class="ppl-card-emoji">🏫</div>
+  </div>
+  <div class="ppl-card-body">
+    <p class="ppl-card-desc">Pembelajaran dilakukan di SDN Pandanwangi 3. Klik dokumen di bawah untuk membuka masing-masing artefak.</p>
+    <div class="ppl-sub-links">
+      <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openPdfViewer('modul-ajar-2')">
+        <span class="sub-icon">📄</span><span>Modul Ajar</span>
+        <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
+      </a>
+      <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'media-2')">
+  <span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">▶ Lihat</span>
+</a>
+      <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openPdfViewer('lkpd-2')">
+  <span class="sub-icon">📋</span><span>LKPD</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
+</a>
+      <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📸</span><span>Dokumentasi</span><span style="margin-left:auto;font-size:0.68rem;color:var(--text-ghost)">Segera hadir</span></div>
+      <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span><span style="margin-left:auto;font-size:0.68rem;color:var(--text-ghost)">Segera hadir</span></div>
+    </div>
+  </div>
+  <div class="ppl-card-footer"><span>📍</span> SDN Pandanwangi 3, Malang</div>
+</div>
 
         <!-- PPL 3 — coming soon -->
         <div class="ppl-card coming-soon">
@@ -1518,6 +1528,16 @@ const pdfSources = {
   title: 'Penilaian Praktik Mengajar — Lampiran 8',
   driveUrl: 'https://drive.google.com/file/d/1dJuihPBIwvk9uQP3gnKo6z47dA98jYdU/view?usp=drive_link'
 },
+'modul-ajar-2': {
+  fileId: '12G46CjwDSTxKo5RRr2xzXOkcT7xn9sYk',
+  title: 'Modul Ajar — PPL Terbimbing 2',
+  driveUrl: 'https://drive.google.com/file/d/12G46CjwDSTxKo5RRr2xzXOkcT7xn9sYk/view?usp=drive_link'
+},
+'lkpd-2': {
+  fileId: '1EUUoOqGfZi1pNCPuGusk-WD5jCyD1prW',
+  title: 'LKPD — PPL Terbimbing 2',
+  driveUrl: 'https://drive.google.com/file/d/1EUUoOqGfZi1pNCPuGusk-WD5jCyD1prW/view?usp=drive_link'
+},
 };
 
 function openPdfViewer(key) {
@@ -1640,6 +1660,7 @@ document.addEventListener('keydown', e => {
 /* ─── DRIVE LINK OPENER (for non-PDF/video docs) ─── */
 const driveLinks = {
   'media-1': 'https://docs.google.com/presentation/d/15Om6E6yWvI2y6QLq7l0K2mYCb2lqw4JH/embed?start=false&loop=false&delayms=3000',
+  'media-2': 'https://drive.google.com/file/d/1ZrUqiWtFd1ynQGu8qi7LgGTT3O7eV5Y2/preview',
   'lkpd-1': 'https://docs.google.com/document/d/1PrW0c7zvMyretiSbNzdnIFqhpYqI5do2/preview',
   'instrumen-1': '#',
   'penilaian-perangkat-1': 'https://drive.google.com/file/d/1wad8_6UgSZo7WvTY-1LRvlDHZneOci96/preview',
@@ -1649,7 +1670,7 @@ function openDriveLink(el, key) {
   const url = driveLinks[key];
   
   // Cek apakah link Google Slides → tampilkan embed
-  if (url && url !== '#' && url.includes('presentation')) {
+  if (url && url !== '#' && (url.includes('presentation') || url.includes('preview'))) {
     document.getElementById('videoModalTitle').textContent = 'Media Pembelajaran — PPT';
     document.getElementById('videoOpenNewTab').href = url.replace('/preview','');
     const frame = document.getElementById('videoFrame');
