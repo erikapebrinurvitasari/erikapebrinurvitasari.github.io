@@ -6,6 +6,25 @@
 <title>ePortfolio — Erika Pebri Nurvitasari · PPG PGSD</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ─── SLIDESHOW MODAL ─── */
+#slideshowModal, #slideshowModal1{display:none;position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
+#slideshowModal.show, #slideshowModal1.show{display:flex;}
+.slideshow-wrap{width:100%;max-width:860px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(212,102,142,0.2);}
+.slideshow-header{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;background:linear-gradient(135deg,#1a0810,#2a1020);border-bottom:1px solid rgba(212,102,142,0.2);gap:1rem;}
+.slideshow-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:rgba(255,255,255,0.92);}
+.slideshow-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.slideshow-close:hover{background:rgba(212,102,142,0.35);border-color:var(--rose);color:white;}
+.slideshow-body{position:relative;background:#000;width:100%;aspect-ratio:16/9;overflow:hidden;}
+.slideshow-img, .slideshow-img1{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 0.5s ease;background:#0e050b;}
+.slideshow-img.active, .slideshow-img1.active{opacity:1;}
+.slideshow-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:white;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:2;}
+.slideshow-btn:hover{background:rgba(212,102,142,0.5);border-color:var(--rose);}
+.slideshow-prev{left:0.85rem;}
+.slideshow-next{right:0.85rem;}
+.slideshow-footer{display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem;background:#0e050b;border-top:1px solid rgba(255,255,255,0.06);}
+.slideshow-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;cursor:pointer;transition:all 0.2s;padding:0;}
+.slideshow-dot.active{background:var(--rose);transform:scale(1.3);}
+.slideshow-counter{font-size:0.68rem;color:rgba(255,255,255,0.35);font-family:var(--font-mono);margin-left:0.75rem;}
 :root {
   --rose:#d4668e;--rose-deep:#b94a73;--rose-light:#e8a0bf;
   --blush:#f9e4ec;--blush-mid:#f5c6d8;--petal:#fdf0f5;
@@ -1079,9 +1098,9 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
   <span class="sub-icon">📋</span><span>LKPD</span>
   <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
 </a>
-              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openFotoViewer()">
-                <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
-              </a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openSlideshowModal1()">
+  <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
+</a>
               <!-- VIDEO → VIDEO PLAYER -->
               <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openVideoViewer('video-1')">
                 <span class="sub-icon">🎬</span><span>Video Pembelajaran</span>
@@ -1115,7 +1134,9 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
   <span class="sub-icon">📋</span><span>LKPD</span>
   <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
 </a>
-      <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📸</span><span>Dokumentasi</span><span style="margin-left:auto;font-size:0.68rem;color:var(--text-ghost)">Segera hadir</span></div>
+      <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openSlideshowModal()">
+  <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
+</a>
       <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span><span style="margin-left:auto;font-size:0.68rem;color:var(--text-ghost)">Segera hadir</span></div>
     </div>
   </div>
@@ -1784,28 +1805,7 @@ function doSearch(q){
 /* ─── INIT ─── */
 setTimeout(()=>triggerAnimations(document.getElementById('page-beranda')),600);
 </script>
-<div class="modal-overlay" id="fotoModal" onclick="closeFotoModal(event)">
-  <div class="modal-box" onclick="event.stopPropagation()" style="max-width:700px;padding:1.5rem;">
-    <button class="modal-close" onclick="closeFotoModal()">×</button>
-    <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--rose);margin-bottom:1rem;">📸 Dokumentasi — PPL Terbimbing 1</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
-      <img src="https://drive.google.com/thumbnail?id=1pZKa_wUWGi3kUBa5EXIRr0lylaGWrOp5&sz=w600" style="width:100%;border-radius:6px;object-fit:cover;aspect-ratio:4/3;">
-      <img src="https://drive.google.com/thumbnail?id=1cMC6xv5_r-o8aqtA43ZI-FvZqKFCstr9&sz=w600" style="width:100%;border-radius:6px;object-fit:cover;aspect-ratio:4/3;">
-    </div>
-  </div>
-</div>
-
 <script>
-function openFotoViewer(){
-  document.getElementById('fotoModal').classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeFotoModal(e){
-  if(!e||e.target===document.getElementById('fotoModal')){
-    document.getElementById('fotoModal').classList.remove('show');
-    document.body.style.overflow='';
-  }
-}
 /* ─── PONOROGO PARALLAX ─── */
 const ponorogoWrap = document.getElementById('ponorogoWrap');
 const ponorogoImg  = document.getElementById('ponorogoImg');
@@ -1821,5 +1821,122 @@ if(ponorogoWrap && ponorogoImg){
   });
 }
 </script>
+<!-- ─── MODAL: SLIDESHOW FOTO PPL 1 ─── -->
+<div id="slideshowModal1" onclick="closeSlideshowModal1(event)">
+  <div class="slideshow-wrap" onclick="event.stopPropagation()">
+    <div class="slideshow-header">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</div>
+        <div>
+          <div class="slideshow-title">Dokumentasi — PPL Terbimbing 1</div>
+          <div style="font-size:0.63rem;color:rgba(255,255,255,0.4);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;">SDN Pandanwangi 3 · Kelas 4A</div>
+        </div>
+      </div>
+      <button class="slideshow-close" onclick="closeSlideshowModal1()">×</button>
+    </div>
+    <div class="slideshow-body">
+      <img class="slideshow-img1 active" src="https://drive.google.com/thumbnail?id=1pZKa_wUWGi3kUBa5EXIRr0lylaGWrOp5&sz=w1200" alt="Foto 1">
+      <img class="slideshow-img1" src="https://drive.google.com/thumbnail?id=1cMC6xv5_r-o8aqtA43ZI-FvZqKFCstr9&sz=w1200" alt="Foto 2">
+      <button class="slideshow-btn slideshow-prev" onclick="slideMove1(-1)">‹</button>
+      <button class="slideshow-btn slideshow-next" onclick="slideMove1(1)">›</button>
+    </div>
+    <div class="slideshow-footer">
+      <button class="slideshow-dot1 active" onclick="goToSlide1(0)"></button>
+      <button class="slideshow-dot1" onclick="goToSlide1(1)"></button>
+      <span class="slideshow-counter" id="slideCounter1">1 / 2</span>
+    </div>
+  </div>
+</div>
+<!-- ─── MODAL: SLIDESHOW FOTO PPL 2 ─── -->
+<div id="slideshowModal" onclick="closeSlideshowModal(event)">
+  <div class="slideshow-wrap" onclick="event.stopPropagation()">
+    <div class="slideshow-header">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</div>
+        <div>
+          <div class="slideshow-title">Dokumentasi — PPL Terbimbing 2</div>
+          <div style="font-size:0.63rem;color:rgba(255,255,255,0.4);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;">SDN Pandanwangi 3</div>
+        </div>
+      </div>
+      <button class="slideshow-close" onclick="closeSlideshowModal()">×</button>
+    </div>
+    <div class="slideshow-body">
+      <img class="slideshow-img active" src="https://drive.google.com/thumbnail?id=1F3_09fA_W2dRx1taZ1-h4aTrMCsaUDC6&sz=w1200" alt="Foto 1">
+      <img class="slideshow-img" src="https://drive.google.com/thumbnail?id=14ILGsm280JGLtKP7v05KUPEoB8BfesDl&sz=w1200" alt="Foto 2">
+      <img class="slideshow-img" src="https://drive.google.com/thumbnail?id=1M3WI-cCAdQQvJGzzoq9AjCp3gjRepnyP&sz=w1200" alt="Foto 3">
+      <img class="slideshow-img" src="https://drive.google.com/thumbnail?id=1gaeXSzkdkDOCMutXX2IKEhu6DfqZTrPc&sz=w1200" alt="Foto 4">
+      <img class="slideshow-img" src="https://drive.google.com/thumbnail?id=1Xh2e3-j8e3j6vAD7UpfHd8Pg4-7Rxw2Q&sz=w1200" alt="Foto 5">
+      <img class="slideshow-img" src="https://drive.google.com/thumbnail?id=1nPzlfa9FKqZ-Y5krOkro4ptV9J608mw7&sz=w1200" alt="Foto 6">
+      <button class="slideshow-btn slideshow-prev" onclick="slideMove(-1)">‹</button>
+      <button class="slideshow-btn slideshow-next" onclick="slideMove(1)">›</button>
+    </div>
+    <div class="slideshow-footer">
+      <button class="slideshow-dot active" onclick="goToSlide(0)"></button>
+      <button class="slideshow-dot" onclick="goToSlide(1)"></button>
+      <button class="slideshow-dot" onclick="goToSlide(2)"></button>
+      <button class="slideshow-dot" onclick="goToSlide(3)"></button>
+      <button class="slideshow-dot" onclick="goToSlide(4)"></button>
+      <button class="slideshow-dot" onclick="goToSlide(5)"></button>
+      <span class="slideshow-counter" id="slideCounter">1 / 6</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── SLIDESHOW PPL 2 ─── */
+let slideIdx = 0;
+const slideImgs = () => document.querySelectorAll('.slideshow-img');
+const slideDots = () => document.querySelectorAll('.slideshow-dot');
+
+function goToSlide(n) {
+  slideImgs().forEach(img => img.classList.remove('active'));
+  slideDots().forEach(dot => dot.classList.remove('active'));
+  slideIdx = (n + slideImgs().length) % slideImgs().length;
+  slideImgs()[slideIdx].classList.add('active');
+  slideDots()[slideIdx].classList.add('active');
+  document.getElementById('slideCounter').textContent = (slideIdx + 1) + ' / ' + slideImgs().length;
+}
+function slideMove(dir) { goToSlide(slideIdx + dir); }
+
+function openSlideshowModal() {
+  goToSlide(0);
+  document.getElementById('slideshowModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSlideshowModal(e) {
+  if (!e || e.target === document.getElementById('slideshowModal')) {
+    document.getElementById('slideshowModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ─── SLIDESHOW PPL 1 ─── */
+let slideIdx1 = 0;
+const slideImgs1 = () => document.querySelectorAll('.slideshow-img1');
+const slideDots1 = () => document.querySelectorAll('.slideshow-dot1');
+
+function goToSlide1(n) {
+  slideImgs1().forEach(img => img.classList.remove('active'));
+  slideDots1().forEach(dot => dot.classList.remove('active'));
+  slideIdx1 = (n + slideImgs1().length) % slideImgs1().length;
+  slideImgs1()[slideIdx1].classList.add('active');
+  slideDots1()[slideIdx1].classList.add('active');
+  document.getElementById('slideCounter1').textContent = (slideIdx1 + 1) + ' / ' + slideImgs1().length;
+}
+function slideMove1(dir) { goToSlide1(slideIdx1 + dir); }
+
+function openSlideshowModal1() {
+  goToSlide1(0);
+  document.getElementById('slideshowModal1').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSlideshowModal1(e) {
+  if (!e || e.target === document.getElementById('slideshowModal1')) {
+    document.getElementById('slideshowModal1').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+</script>
+
 </body>
 </html>
