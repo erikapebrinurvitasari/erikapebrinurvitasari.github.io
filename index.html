@@ -7,7 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ─── SLIDESHOW MODAL ─── */
-#slideshowModal, #slideshowModal1{display:none;position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
+#slideshowModal, #slideshowModal1, #slideshowModal3{display:none;position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
+#slideshowModal.show, #slideshowModal1.show, #slideshowModal3.show{display:flex;}position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
 #slideshowModal.show, #slideshowModal1.show{display:flex;}
 .slideshow-wrap{width:100%;max-width:860px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(212,102,142,0.2);}
 .slideshow-header{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;background:linear-gradient(135deg,#1a0810,#2a1020);border-bottom:1px solid rgba(212,102,142,0.2);gap:1rem;}
@@ -17,6 +18,10 @@
 .slideshow-body{position:relative;background:#000;width:100%;aspect-ratio:16/9;overflow:hidden;}
 .slideshow-img, .slideshow-img1{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 0.5s ease;background:#0e050b;}
 .slideshow-img.active, .slideshow-img1.active{opacity:1;}
+.slideshow-img3{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 0.5s ease;background:#0e050b;}
+.slideshow-img3.active{opacity:1;}
+.slideshow-dot3{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;cursor:pointer;transition:all 0.2s;padding:0;}
+.slideshow-dot3.active{background:var(--rose);transform:scale(1.3);}
 .slideshow-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:white;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:2;}
 .slideshow-btn:hover{background:rgba(212,102,142,0.5);border-color:var(--rose);}
 .slideshow-prev{left:0.85rem;}
@@ -1147,23 +1152,34 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 </div>
 
         <!-- PPL 3 — coming soon -->
-        <div class="ppl-card coming-soon">
+        <div class="ppl-card">
           <div class="ppl-card-header">
             <div class="ppl-card-num">PPL Terbimbing · 03</div>
             <div class="ppl-card-title">PPL Terbimbing 3</div>
-            <div class="ppl-card-subtitle">Segera hadir</div>
-            <div class="ppl-card-emoji">⏳</div>
+            <div class="ppl-card-subtitle">Siklus 3 · SDN Pandanwangi 3</div>
+            <div class="ppl-card-emoji">🏫</div>
           </div>
           <div class="ppl-card-body">
-            <p class="ppl-card-desc">Artefak PPL Terbimbing 3 akan ditambahkan setelah pelaksanaan.</p>
+            <p class="ppl-card-desc">Pembelajaran dilakukan di SDN Pandanwangi 3. Klik dokumen di bawah untuk membuka masing-masing artefak.</p>
             <div class="ppl-sub-links">
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📄</span><span>Modul Ajar</span></div>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span></div>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">📋</span><span>LKPD</span></div>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openPdfViewer('modul-ajar-3')">
+  <span class="sub-icon">📄</span><span>Modul Ajar</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
+</a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openDriveLink(this,'media-3')">
+  <span class="sub-icon">📊</span><span>Media Pembelajaran (PPT)</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">▶ Lihat</span>
+</a>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openPdfViewer('lkpd-3')">
+  <span class="sub-icon">📋</span><span>LKPD</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">PDF</span>
+</a><a href="#" class="ppl-sub-link" onclick="event.preventDefault();openSlideshowModal3()">
+  <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
+</a>
               <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span></div>
             </div>
           </div>
-          <div class="ppl-card-footer"><span>🔒</span> Belum tersedia</div>
+          <div class="ppl-card-footer"><span>📍</span> SDN Pandanwangi 3, Malang</div>
         </div>
 
       </div>
@@ -1276,8 +1292,8 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
           <div class="ppl-card-footer"><span>📍</span> SDN Pandanwangi 3, Malang · Guru Pamong</div>
         </div>
 
-        <!-- PPL 3 — coming soon -->
-        <div class="ppl-card coming-soon">
+        <!-- PPL 3  -->
+        <div class="ppl-card">
           <div class="ppl-card-header">
             <div class="ppl-card-num">Penilaian · PPL 03</div>
             <div class="ppl-card-title">PPL Terbimbing 3</div>
@@ -1568,6 +1584,16 @@ const pdfSources = {
   title: 'LKPD — PPL Terbimbing 2',
   driveUrl: 'https://drive.google.com/file/d/1EUUoOqGfZi1pNCPuGusk-WD5jCyD1prW/view?usp=drive_link'
 },
+'lkpd-3': {
+  fileId: '1hJtS_GunRsQtajjiMRsVxtzSQ6_yEzpF',
+  title: 'LKPD — PPL Terbimbing 3',
+  driveUrl: 'https://drive.google.com/file/d/1hJtS_GunRsQtajjiMRsVxtzSQ6_yEzpF/view?usp=drive_link'
+},
+'modul-ajar-3': {
+  fileId: '1lVzAfsm4AXP6zeiRi8wRJ--BYhlCPu83',
+  title: 'Modul Ajar — PPL Terbimbing 3',
+  driveUrl: 'https://drive.google.com/file/d/1lVzAfsm4AXP6zeiRi8wRJ--BYhlCPu83/view?usp=drive_link'
+},
 'penilaian-perangkat-2': {
   fileId: '1a_q2CdkkCFyQrcxgmjm1tJx3guSlSI9F',
   title: 'Penilaian Penyusunan Perangkat — Lampiran 7 PPL 2',
@@ -1706,6 +1732,7 @@ document.addEventListener('keydown', e => {
 const driveLinks = {
   'media-1': 'https://docs.google.com/presentation/d/15Om6E6yWvI2y6QLq7l0K2mYCb2lqw4JH/embed?start=false&loop=false&delayms=3000',
   'media-2': 'https://drive.google.com/file/d/1ZrUqiWtFd1ynQGu8qi7LgGTT3O7eV5Y2/preview',
+  'media-3': 'https://docs.google.com/presentation/d/1Tz2wcth3VlmwnKCrl-_ExxQjabaaCa2Q/embed?start=false&loop=false&delayms=3000',
   'lkpd-1': 'https://docs.google.com/document/d/1PrW0c7zvMyretiSbNzdnIFqhpYqI5do2/preview',
   'instrumen-1': '#',
   'penilaian-perangkat-1': 'https://drive.google.com/file/d/1wad8_6UgSZo7WvTY-1LRvlDHZneOci96/preview',
@@ -1871,6 +1898,40 @@ if(ponorogoWrap && ponorogoImg){
     </div>
   </div>
 </div>
+<!-- ─── MODAL: SLIDESHOW FOTO PPL 3 ─── -->
+<div id="slideshowModal3" onclick="closeSlideshowModal3(event)">
+  <div class="slideshow-wrap" onclick="event.stopPropagation()">
+    <div class="slideshow-header">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</div>
+        <div>
+          <div class="slideshow-title">Dokumentasi — PPL Terbimbing 3</div>
+          <div style="font-size:0.63rem;color:rgba(255,255,255,0.4);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;">SDN Pandanwangi 3</div>
+        </div>
+      </div>
+      <button class="slideshow-close" onclick="closeSlideshowModal3()">×</button>
+    </div>
+    <div class="slideshow-body">
+      <img class="slideshow-img3 active" src="https://drive.google.com/thumbnail?id=1WcTTtANeF6csgORDAME91y5UlyGoElCX&sz=w1200" alt="Foto 1">
+      <img class="slideshow-img3" src="https://drive.google.com/thumbnail?id=1VMmt9-aJ05CdLJFoUgFV-YRjyNoRUuY_&sz=w1200" alt="Foto 2">
+      <img class="slideshow-img3" src="https://drive.google.com/thumbnail?id=12-nICZ8laaPbC0b4fyLKrxGmdRdv7CnO&sz=w1200" alt="Foto 3">
+      <img class="slideshow-img3" src="https://drive.google.com/thumbnail?id=18Mzjpl58rLJxR6wlZtpcEUQ1TPkV-_5M&sz=w1200" alt="Foto 4">
+      <img class="slideshow-img3" src="https://drive.google.com/thumbnail?id=1p8Kjyg6juHi9g2wrE-z6uuykkNh4LsHG&sz=w1200" alt="Foto 5">
+      <img class="slideshow-img3" src="https://drive.google.com/thumbnail?id=1VdbUYBW6fCW4bLiCMQ_oLFHaNYo3JfTC&sz=w1200" alt="Foto 6">
+      <button class="slideshow-btn slideshow-prev" onclick="slideMove3(-1)">‹</button>
+      <button class="slideshow-btn slideshow-next" onclick="slideMove3(1)">›</button>
+    </div>
+    <div class="slideshow-footer">
+      <button class="slideshow-dot3 active" onclick="goToSlide3(0)"></button>
+      <button class="slideshow-dot3" onclick="goToSlide3(1)"></button>
+      <button class="slideshow-dot3" onclick="goToSlide3(2)"></button>
+      <button class="slideshow-dot3" onclick="goToSlide3(3)"></button>
+      <button class="slideshow-dot3" onclick="goToSlide3(4)"></button>
+      <button class="slideshow-dot3" onclick="goToSlide3(5)"></button>
+      <span class="slideshow-counter" id="slideCounter3">1 / 6</span>
+    </div>
+  </div>
+</div>
 <!-- ─── MODAL: SLIDESHOW FOTO PPL 2 ─── -->
 <div id="slideshowModal" onclick="closeSlideshowModal(event)">
   <div class="slideshow-wrap" onclick="event.stopPropagation()">
@@ -1933,7 +1994,32 @@ function closeSlideshowModal(e) {
     document.body.style.overflow = '';
   }
 }
+/* ─── SLIDESHOW PPL 3 ─── */
+let slideIdx3 = 0;
+const slideImgs3 = () => document.querySelectorAll('.slideshow-img3');
+const slideDots3 = () => document.querySelectorAll('.slideshow-dot3');
 
+function goToSlide3(n) {
+  slideImgs3().forEach(img => img.classList.remove('active'));
+  slideDots3().forEach(dot => dot.classList.remove('active'));
+  slideIdx3 = (n + slideImgs3().length) % slideImgs3().length;
+  slideImgs3()[slideIdx3].classList.add('active');
+  slideDots3()[slideIdx3].classList.add('active');
+  document.getElementById('slideCounter3').textContent = (slideIdx3 + 1) + ' / ' + slideImgs3().length;
+}
+function slideMove3(dir) { goToSlide3(slideIdx3 + dir); }
+
+function openSlideshowModal3() {
+  goToSlide3(0);
+  document.getElementById('slideshowModal3').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSlideshowModal3(e) {
+  if (!e || e.target === document.getElementById('slideshowModal3')) {
+    document.getElementById('slideshowModal3').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
 /* ─── SLIDESHOW PPL 1 ─── */
 let slideIdx1 = 0;
 const slideImgs1 = () => document.querySelectorAll('.slideshow-img1');
