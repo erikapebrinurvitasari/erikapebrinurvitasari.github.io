@@ -1176,7 +1176,10 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 </a><a href="#" class="ppl-sub-link" onclick="event.preventDefault();openSlideshowModal3()">
   <span class="sub-icon">📸</span><span>Dokumentasi</span><span class="sub-arrow">↗</span>
 </a>
-              <div class="ppl-sub-link" style="opacity:0.4;cursor:default"><span class="sub-icon">🎬</span><span>Video Pembelajaran</span></div>
+              <a href="#" class="ppl-sub-link" onclick="event.preventDefault();openVideoViewer('video-3')">
+  <span class="sub-icon">🎬</span><span>Video Pembelajaran</span>
+  <span style="margin-left:auto;font-size:0.68rem;background:rgba(212,102,142,0.12);color:var(--rose);padding:2px 8px;border-radius:100px;font-weight:600">▶ Play</span>
+</a>
             </div>
           </div>
           <div class="ppl-card-footer"><span>📍</span> SDN Pandanwangi 3, Malang</div>
@@ -1666,6 +1669,11 @@ const videoSources = {
     fileId: '193FeLDYukVLeCcNtpX-3kFBGN4_K54vV',
     title: 'Video Pembelajaran — PPL Terbimbing 2',
     driveUrl: 'https://drive.google.com/file/d/193FeLDYukVLeCcNtpX-3kFBGN4_K54vV/view?usp=drive_link'
+  },
+  'video-3': {
+    fileId: '1qm2DWm7dd4aHTCWCMwUupfoyJlqm7Idh',
+    title: 'Video Pembelajaran — PPL Terbimbing 3',
+    driveUrl: 'https://drive.google.com/file/d/1qm2DWm7dd4aHTCWCMwUupfoyJlqm7Idh/view?usp=drive_link'
   }
 };
 
