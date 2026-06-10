@@ -759,6 +759,54 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
   #pdfViewerOverlay { padding: 0.5rem; }
   #videoViewerOverlay { padding: 0.5rem; }
 }
+/* ─── SEKOLAH SECTION ─── */
+.sekolah-section{background:var(--white);padding:5rem 4rem;}
+.sekolah-inner{max-width:1100px;margin:0 auto;}
+.sekolah-hero{position:relative;width:100%;height:480px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(212,102,142,0.25);margin-bottom:3rem;}
+.sekolah-hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.04);transition:transform 6s ease;}
+.sekolah-hero:hover img{transform:scale(1.00);}
+.sekolah-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,20,32,0.2) 0%,transparent 35%,transparent 50%,rgba(45,20,32,0.75) 100%);z-index:1;}
+.sekolah-hero-badge{position:absolute;top:1.5rem;left:1.5rem;z-index:2;display:flex;gap:0.5rem;flex-wrap:wrap;}
+.sekolah-hero-tag{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:100px;padding:0.35rem 0.9rem;font-size:0.67rem;font-weight:700;color:white;letter-spacing:0.08em;text-transform:uppercase;}
+.sekolah-hero-tag.rose{background:rgba(212,102,142,0.6);border-color:rgba(212,102,142,0.8);}
+.sekolah-hero-caption{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:2rem 2.5rem 2rem;}
+.sekolah-hero-name{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:white;line-height:1.2;margin-bottom:0.4rem;text-shadow:0 2px 16px rgba(0,0,0,0.4);}
+.sekolah-hero-addr{font-size:0.78rem;color:rgba(255,255,255,0.72);display:flex;align-items:center;gap:0.4rem;}
+.sekolah-hero-stats{position:absolute;bottom:2rem;right:2.5rem;z-index:2;display:flex;gap:2px;}
+.sekolah-stat{background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);padding:0.65rem 1rem;text-align:center;}
+.sekolah-stat:first-child{border-radius:8px 0 0 8px;}
+.sekolah-stat:last-child{border-radius:0 8px 8px 0;}
+.sekolah-stat-num{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:white;line-height:1;}
+.sekolah-stat-lbl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-top:0.2rem;white-space:nowrap;}
+.sekolah-desc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:3.5rem;}
+.sekolah-desc-left{}
+.sekolah-desc-title{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:1.25rem;}
+.sekolah-desc-title em{font-style:italic;color:var(--rose);}
+.sekolah-desc-text{font-size:0.85rem;color:var(--text-mid);line-height:1.95;margin-bottom:1rem;}
+.sekolah-desc-right{display:flex;flex-direction:column;gap:1rem;padding-top:0.5rem;}
+.sekolah-info-pill{display:flex;align-items:center;gap:0.85rem;padding:0.9rem 1.1rem;background:var(--petal);border:1.5px solid var(--blush-mid);border-radius:10px;transition:all 0.2s;}
+.sekolah-info-pill:hover{border-color:var(--rose);background:white;box-shadow:var(--shadow-sm);}
+.sekolah-info-pill-icon{font-size:1.3rem;flex-shrink:0;}
+.sekolah-info-pill-label{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-ghost);margin-bottom:0.1rem;}
+.sekolah-info-pill-val{font-size:0.82rem;font-weight:600;color:var(--text);}
+.sekolah-docs-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--rose);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;}
+.sekolah-docs-label::after{content:'';flex:1;height:1px;background:var(--blush-mid);}
+.sekolah-foto-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+.sekolah-foto-card{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);aspect-ratio:16/9;group:true;}
+.sekolah-foto-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+.sekolah-foto-card:hover img{transform:scale(1.04);}
+.sekolah-foto-card-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(45,20,32,0.65) 100%);z-index:1;pointer-events:none;}
+.sekolah-foto-card-label{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:1rem 1.25rem;display:flex;align-items:center;gap:0.6rem;}
+.sekolah-foto-card-label span{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.9);}
+.sekolah-foto-card-label .dot{width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;}
+@media(max-width:768px){
+  .sekolah-section{padding:3.5rem 1.25rem;}
+  .sekolah-hero{height:280px;}
+  .sekolah-hero-name{font-size:1.2rem;}
+  .sekolah-hero-stats{display:none;}
+  .sekolah-hero-caption{padding:1.25rem 1.25rem 1rem;}
+  .sekolah-desc-wrap{grid-template-columns:1fr;gap:2rem;}
+}
 @keyframes liveDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
 @keyframes skPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
 @keyframes shimmer{from{transform:translateX(-100%);}to{transform:translateX(100%);}}
@@ -890,7 +938,67 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
       </div>
     </div>
   </section>
+<!-- ─── SECTION: SEKOLAH LOKASI PPL ─── -->
+<section class="sekolah-section">
+  <div class="sekolah-inner">
+    <div class="section-tag" style="margin-bottom:0.75rem">Lokasi PPL</div>
+    <h2 class="section-h2" style="margin-bottom:2.5rem">Tempat Belajar <em>Mengajar</em></h2>
 
+    <!-- FOTO HERO SEKOLAH -->
+    <div class="sekolah-hero">
+      <img src="https://drive.google.com/thumbnail?id=1tDYofX7Ckvtdgx9LHeW8dgt1eCuXJ2_I&sz=w1600" alt="SDN Pandanwangi 3 Malang">
+      <div class="sekolah-hero-overlay"></div>
+      <div class="sekolah-hero-badge">
+        <span class="sekolah-hero-tag">📍 Malang, Jawa Timur</span>
+        <span class="sekolah-hero-tag rose">Akreditasi A</span>
+        <span class="sekolah-hero-tag">Berdiri 1978</span>
+      </div>
+      <div class="sekolah-hero-caption">
+        <div class="sekolah-hero-name">SDN Pandanwangi 3 Malang</div>
+        <div class="sekolah-hero-addr">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jl. Simpang Teluk Grajakan No. 32, Pandanwangi, Blimbing, Kota Malang
+        </div>
+      </div>
+      <div class="sekolah-hero-stats">
+        <div class="sekolah-stat"><div class="sekolah-stat-num">1978</div><div class="sekolah-stat-lbl">Berdiri</div></div>
+        <div class="sekolah-stat"><div class="sekolah-stat-num">A</div><div class="sekolah-stat-lbl">Akreditasi</div></div>
+        <div class="sekolah-stat"><div class="sekolah-stat-num">3×</div><div class="sekolah-stat-lbl">Siklus PPL</div></div>
+      </div>
+    </div>
+
+    <!-- DESKRIPSI + INFO PILL -->
+    <div class="sekolah-desc-wrap">
+      <div class="sekolah-desc-left">
+        <h3 class="sekolah-desc-title">Sekolah yang Menjadi <em>Ruang Tumbuh</em></h3>
+        <p class="sekolah-desc-text">SDN Pandanwangi 3 Malang merupakan sekolah dasar negeri yang berlokasi di Jalan Simpang Teluk Grajakan No. 32, Kelurahan Pandanwangi, Kecamatan Blimbing, Kota Malang. Sekolah ini telah berdiri sejak tahun 1978 dan memiliki akreditasi A, yang menunjukkan komitmennya dalam memberikan layanan pendidikan yang berkualitas. Lingkungan sekolah yang asri, bersih, dan nyaman menjadi pendukung terciptanya suasana belajar yang kondusif bagi peserta didik. Selain berfokus pada pengembangan akademik, SDN Pandanwangi 3 Malang juga menanamkan nilai-nilai karakter, kedisiplinan, dan budi pekerti kepada seluruh warga sekolah.</p>
+        <p class="sekolah-desc-text">Sebagai lokasi Praktik Pengalaman Lapangan (PPL), SDN Pandanwangi 3 Malang memberikan pengalaman berharga bagi mahasiswa calon guru dalam mengembangkan kompetensi pedagogik, profesional, sosial, dan kepribadian. Melalui berbagai kegiatan pembelajaran, observasi, serta interaksi langsung dengan guru dan peserta didik, mahasiswa memperoleh kesempatan untuk menerapkan teori yang telah dipelajari di perkuliahan ke dalam praktik nyata di lingkungan sekolah. Pengalaman ini menjadi sarana penting untuk membentuk calon pendidik yang adaptif, kreatif, dan siap menghadapi tantangan dunia pendidikan.</p>
+      </div>
+      <div class="sekolah-desc-right">
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">🏫</div><div><div class="sekolah-info-pill-label">Nama Sekolah</div><div class="sekolah-info-pill-val">SDN Pandanwangi 3 Malang</div></div></div>
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">📍</div><div><div class="sekolah-info-pill-label">Alamat</div><div class="sekolah-info-pill-val">Jl. Simpang Teluk Grajakan No. 32</div></div></div>
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">🎖️</div><div><div class="sekolah-info-pill-label">Akreditasi</div><div class="sekolah-info-pill-val">A — Sangat Baik</div></div></div>
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">📅</div><div><div class="sekolah-info-pill-label">Tahun Berdiri</div><div class="sekolah-info-pill-val">1978</div></div></div>
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">🎓</div><div><div class="sekolah-info-pill-label">Lokasi PPL</div><div class="sekolah-info-pill-val">3 Siklus · Kelas 4A</div></div></div>
+        <div class="sekolah-info-pill"><div class="sekolah-info-pill-icon">🌿</div><div><div class="sekolah-info-pill-label">Lingkungan</div><div class="sekolah-info-pill-val">Asri, Bersih &amp; Kondusif</div></div></div>
+      </div>
+    </div>
+
+    <!-- FOTO DOKUMENTASI -->
+    <div class="sekolah-docs-label">📸 Dokumentasi Singkat</div>
+    <div class="sekolah-foto-grid">
+      <div class="sekolah-foto-card">
+        <img src="https://drive.google.com/thumbnail?id=19DJoBZOnUH1eHpJaUeTZuFRNNYhNwZxO&sz=w1600" alt="Dokumentasi PPL SDN Pandanwangi 3">
+        <div class="sekolah-foto-card-overlay"></div>
+        <div class="sekolah-foto-card-label">
+          <div class="dot"></div>
+          <span>Dokumentasi Kegiatan PPL — SDN Pandanwangi 3 Malang · 2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
   <footer>
     <div class="footer-inner">
       <div class="footer-brand"><a href="#" class="nav-logo" onclick="event.preventDefault();switchTab('beranda')"><em>e</em>Portfolio</a><p>ePortfolio Mahasiswi PPG PGSD Universitas Muhammadiyah Malang.</p></div>
