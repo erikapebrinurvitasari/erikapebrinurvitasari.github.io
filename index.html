@@ -8,8 +8,7 @@
 <style>
   /* ─── SLIDESHOW MODAL ─── */
 #slideshowModal, #slideshowModal1, #slideshowModal3{display:none;position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
-#slideshowModal.show, #slideshowModal1.show, #slideshowModal3.show{display:flex;}position:fixed;inset:0;z-index:900;background:rgba(10,4,8,0.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;}
-#slideshowModal.show, #slideshowModal1.show{display:flex;}
+#slideshowModal.show, #slideshowModal1.show, #slideshowModal3.show{display:flex;}
 .slideshow-wrap{width:100%;max-width:860px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(212,102,142,0.2);}
 .slideshow-header{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;background:linear-gradient(135deg,#1a0810,#2a1020);border-bottom:1px solid rgba(212,102,142,0.2);gap:1rem;}
 .slideshow-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:rgba(255,255,255,0.92);}
@@ -255,10 +254,35 @@ body{font-family:var(--font-body);background:var(--white);color:var(--text);over
 .model-num{font-family:var(--font-mono);font-size:0.67rem;color:var(--text-ghost);font-weight:500;margin-bottom:0.75rem;}
 .model-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.6rem;}
 .model-desc{font-size:0.8rem;color:var(--text-mid);line-height:1.7;}
-.model-photo-wrap{position:absolute;bottom:0;left:0;width:260px;height:340px;pointer-events:none;z-index:0;overflow:hidden;}
-.model-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
-.model-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,var(--petal) 88%),linear-gradient(to right,transparent 60%,var(--petal) 100%);}
-.model-section .section-inner{position:relative;}
+.model-photo-wrap{display:none;}
+
+/* ─── MODEL GURU HERO FOTO ─── */
+.model-hero{position:relative;width:100%;height:520px;border-radius:20px;overflow:hidden;margin-bottom:3.5rem;box-shadow:0 30px 80px rgba(212,102,142,0.28);}
+.model-hero img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:scale(1.06);transition:transform 8s ease;}
+.model-hero:hover img{transform:scale(1.00);}
+.model-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,20,32,0.15) 0%,transparent 30%,transparent 45%,rgba(45,20,32,0.80) 100%),linear-gradient(to right,rgba(45,20,32,0.55) 0%,transparent 55%);}
+.model-hero-left{position:absolute;bottom:0;left:0;padding:2.5rem 3rem;z-index:2;max-width:520px;}
+.model-hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(212,102,142,0.55);backdrop-filter:blur(8px);border:1px solid rgba(212,102,142,0.7);border-radius:100px;padding:0.32rem 0.9rem;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:white;margin-bottom:1rem;}
+.model-hero-title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.5rem);font-weight:700;color:white;line-height:1.15;margin-bottom:0.75rem;text-shadow:0 2px 20px rgba(0,0,0,0.3);}
+.model-hero-title em{font-style:italic;color:var(--rose-light);}
+.model-hero-quote{font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:rgba(255,255,255,0.78);line-height:1.65;border-left:2px solid var(--rose-light);padding-left:1rem;}
+.model-hero-right{position:absolute;top:2rem;right:2.5rem;z-index:2;display:flex;flex-direction:column;gap:0.6rem;}
+.model-hero-chip{background:rgba(30,10,20,0.55);backdrop-filter:blur(10px);border:1px solid rgba(212,102,142,0.6);border-radius:100px;padding:0.38rem 0.95rem;font-size:0.67rem;font-weight:600;color:white;letter-spacing:0.05em;text-align:center;transition:all 0.25s;}
+.model-hero-chip:hover{background:rgba(212,102,142,0.45);border-color:rgba(212,102,142,0.7);}
+.model-hero-stats{position:absolute;bottom:2.5rem;right:2.5rem;z-index:2;display:flex;gap:2px;}
+.model-hero-stat{background:rgba(255,255,255,0.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);padding:0.65rem 1rem;text-align:center;}
+.model-hero-stat:first-child{border-radius:8px 0 0 8px;}
+.model-hero-stat:last-child{border-radius:0 8px 8px 0;}
+.model-hero-stat-num{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:white;line-height:1;}
+.model-hero-stat-lbl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-top:0.2rem;white-space:nowrap;}
+@media(max-width:768px){
+  .model-hero{height:360px;border-radius:12px;}
+  .model-hero-left{padding:1.5rem 1.25rem;}
+  .model-hero-stats{display:none;}
+  .model-hero-badge{display:none;}
+  .model-grid{grid-template-columns:1fr;}
+  .model-intro{grid-template-columns:1fr;gap:1rem;}
+}
 
 /* ─── MODAL BASE ─── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(30,10,20,0.5);backdrop-filter:blur(6px);z-index:800;align-items:center;justify-content:center;}
@@ -1741,7 +1765,39 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 <div class="tab-page" id="page-model">
   <section class="section model-section" style="padding-top:calc(var(--nav-h) + 4rem)">
     <div class="section-inner">
-      <div class="model-photo-wrap"><img src="" alt="" onerror="this.parentElement.style.display='none'"></div>
+
+      <!-- HERO FOTO MODEL GURU -->
+      <div class="model-hero" id="modelHero">
+        <img
+          id="modelHeroImg"
+          src="https://drive.google.com/thumbnail?id=1xQqeM0L31rJjcCM-QM4HE6bM977HkiyL&sz=w1400"
+          alt="Erika Pebri Nurvitasari — Model Guru"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,var(--rose-deep),var(--rose))';this.style.display='none'">
+        <div class="model-hero-overlay"></div>
+
+        <!-- KIRI BAWAH: judul + quote -->
+        <div class="model-hero-left">
+          <div class="model-hero-tag">🌸 PPG PGSD UMM · 2026</div>
+          <h2 class="model-hero-title">Model Guru yang<br><em>Saya Tuju</em></h2>
+          <p class="model-hero-quote">"Mengajar bukan hanya menyampaikan materi, tetapi proses belajar bersama untuk terus berkembang."</p>
+        </div>
+
+        <!-- KANAN ATAS: chip-chip nilai -->
+        <div class="model-hero-right">
+          <div class="model-hero-chip">🎯 Student-Centered</div>
+          <div class="model-hero-chip">💡 Growth Mindset</div>
+          <div class="model-hero-chip">🔍 Reflektif</div>
+          <div class="model-hero-chip">✨ Inovatif</div>
+        </div>
+
+        <!-- KANAN BAWAH: stat mini -->
+        <div class="model-hero-stats">
+          <div class="model-hero-stat"><div class="model-hero-stat-num">3</div><div class="model-hero-stat-lbl">Siklus PPL</div></div>
+          <div class="model-hero-stat"><div class="model-hero-stat-num">6</div><div class="model-hero-stat-lbl">Nilai Inti</div></div>
+          <div class="model-hero-stat"><div class="model-hero-stat-num">∞</div><div class="model-hero-stat-lbl">Komitmen</div></div>
+        </div>
+      </div>
+
       <div class="model-intro">
         <div>
           <div class="section-tag">Visi &amp; Nilai</div>
@@ -2470,6 +2526,26 @@ function switchAnalisis(idx) {
     b.classList.toggle('active', i === idx);
   });
   window.scrollTo({top: document.querySelector('.analisis-section').offsetTop - 80, behavior:'smooth'});
+}
+</script>
+<script>
+/* ─── MODEL GURU HERO PARALLAX ─── */
+const modelHero = document.getElementById('modelHero');
+const modelHeroImg = document.getElementById('modelHeroImg');
+if(modelHero && modelHeroImg){
+  modelHero.addEventListener('mousemove', e => {
+    const r = modelHero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    modelHeroImg.style.transform = `scale(1.06) translate(${x*10}px, ${y*6}px)`;
+  });
+  modelHero.addEventListener('mouseleave', () => {
+    modelHeroImg.style.transform = 'scale(1.06) translate(0,0)';
+    modelHeroImg.style.transition = 'transform 1s ease';
+  });
+  modelHero.addEventListener('mouseenter', () => {
+    modelHeroImg.style.transition = 'transform 0.15s ease';
+  });
 }
 </script>
 <script>
