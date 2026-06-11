@@ -48,7 +48,44 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-body);background:var(--white);color:var(--text);overflow-x:hidden;}
-
+/* ─── LOADING SCREEN ─── */
+#loadingScreen{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#fdf0f5 0%,#fce8f3 50%,#f5d6e8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:opacity 0.8s ease,visibility 0.8s ease;}
+#loadingScreen.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-wrap{position:relative;width:320px;height:220px;}
+/* GROUND */
+.loader-ground{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:260px;height:14px;background:linear-gradient(90deg,transparent,rgba(212,102,142,0.15),rgba(212,102,142,0.28),rgba(212,102,142,0.15),transparent);border-radius:100px;filter:blur(3px);}
+.loader-ground-line{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:220px;height:2px;background:linear-gradient(90deg,transparent,var(--rose-light),transparent);border-radius:100px;}
+/* SAKURA FALLING */
+.loader-sakura{position:absolute;font-size:1.1rem;animation:loaderSakuraFall linear infinite;opacity:0;}
+@keyframes loaderSakuraFall{0%{opacity:0;transform:translateY(-30px) rotate(0deg);}10%{opacity:1;}80%{opacity:0.7;}100%{opacity:0;transform:translateY(190px) rotate(360deg) translateX(20px);}}
+/* RABBIT */
+.loader-rabbit{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);width:80px;height:80px;animation:rabbitHop 0.55s cubic-bezier(0.4,0,0.2,1) infinite;}
+@keyframes rabbitHop{0%{transform:translateX(-50%) translateY(0) scaleY(1);}20%{transform:translateX(-50%) translateY(-42px) scaleY(1.08);}50%{transform:translateX(-50%) translateY(-52px) scaleY(1.05);}80%{transform:translateX(-50%) translateY(-10px) scaleY(0.92);}100%{transform:translateX(-50%) translateY(0) scaleY(1);}}
+/* SHADOW */
+.loader-shadow{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:48px;height:10px;background:rgba(212,102,142,0.22);border-radius:50%;filter:blur(4px);animation:rabbitShadow 0.55s cubic-bezier(0.4,0,0.2,1) infinite;}
+@keyframes rabbitShadow{0%,100%{width:48px;opacity:0.5;}20%{width:28px;opacity:0.15;}50%{width:24px;opacity:0.1;}80%{width:44px;opacity:0.4;}}
+/* STARS/SPARKLES around rabbit */
+.loader-sparkle{position:absolute;font-size:0.85rem;animation:sparkleFloat 1.2s ease-in-out infinite;}
+@keyframes sparkleFloat{0%,100%{opacity:0;transform:scale(0.5) rotate(0deg);}50%{opacity:1;transform:scale(1.2) rotate(180deg);}}
+/* TEXT */
+.loader-title{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--rose-deep);letter-spacing:-0.01em;margin-top:0.5rem;text-align:center;}
+.loader-title em{font-style:italic;color:var(--rose);}
+.loader-sub{font-size:0.78rem;color:var(--text-soft);letter-spacing:0.06em;text-transform:uppercase;font-weight:600;margin-top:0.35rem;text-align:center;}
+/* DOTS */
+.loader-dots{display:flex;gap:0.4rem;margin-top:1rem;}
+.loader-dot{width:7px;height:7px;border-radius:50%;background:var(--rose-light);animation:loaderDotBounce 0.8s ease-in-out infinite;}
+.loader-dot:nth-child(2){animation-delay:0.15s;}
+.loader-dot:nth-child(3){animation-delay:0.3s;}
+@keyframes loaderDotBounce{0%,100%{transform:translateY(0);background:var(--rose-light);}50%{transform:translateY(-8px);background:var(--rose);}}
+/* PROGRESS BAR */
+.loader-progress-wrap{width:200px;height:4px;background:rgba(212,102,142,0.15);border-radius:100px;overflow:hidden;margin-top:1.25rem;}
+.loader-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--rose-light),var(--rose),var(--rose-deep));border-radius:100px;animation:loaderProgress 2s cubic-bezier(0.4,0,0.2,1) forwards;}
+@keyframes loaderProgress{0%{width:0%;}60%{width:75%;}85%{width:90%;}100%{width:100%;}}
+/* CLICK RIPPLE */
+.loader-click-hint{font-size:0.65rem;color:var(--text-ghost);margin-top:0.75rem;letter-spacing:0.08em;text-transform:uppercase;animation:fadeInHint 1s 1.5s ease forwards;opacity:0;}
+@keyframes fadeInHint{to{opacity:1;}}
+.ripple-burst{position:absolute;border-radius:50%;border:2px solid var(--rose);animation:rippleBurst 0.6s ease-out forwards;pointer-events:none;}
+@keyframes rippleBurst{0%{width:0;height:0;opacity:1;transform:translate(-50%,-50%);}100%{width:120px;height:120px;opacity:0;transform:translate(-50%,-50%);}}
 #sakuraCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.7;}
 
 /* ─── NAVBAR ─── */
@@ -964,7 +1001,90 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 </style>
 </head>
 <body>
+<!-- ─── LOADING SCREEN ─── -->
+<div id="loadingScreen">
+  <div class="loader-wrap" id="loaderWrap">
+    <!-- Sakura falling -->
+    <span class="loader-sakura" style="left:18%;animation-duration:2.2s;animation-delay:0s;font-size:1rem;">🌸</span>
+    <span class="loader-sakura" style="left:38%;animation-duration:1.9s;animation-delay:0.4s;font-size:0.8rem;">🌸</span>
+    <span class="loader-sakura" style="left:60%;animation-duration:2.4s;animation-delay:0.8s;font-size:1.1rem;">🌸</span>
+    <span class="loader-sakura" style="left:78%;animation-duration:2.0s;animation-delay:0.2s;font-size:0.75rem;">🌸</span>
+    <span class="loader-sakura" style="left:8%;animation-duration:2.6s;animation-delay:1.1s;font-size:0.9rem;">🌸</span>
+    <span class="loader-sakura" style="left:88%;animation-duration:2.1s;animation-delay:0.6s;font-size:0.85rem;">🌸</span>
 
+    <!-- Sparkles -->
+    <span class="loader-sparkle" style="top:20px;left:38px;animation-delay:0s;">✨</span>
+    <span class="loader-sparkle" style="top:14px;right:30px;animation-delay:0.4s;">⭐</span>
+    <span class="loader-sparkle" style="top:55px;left:18px;animation-delay:0.7s;font-size:0.7rem;">✦</span>
+    <span class="loader-sparkle" style="top:50px;right:15px;animation-delay:0.3s;font-size:0.7rem;">✦</span>
+    <span class="loader-sparkle" style="bottom:60px;left:25px;animation-delay:0.9s;font-size:0.65rem;">🌟</span>
+    <span class="loader-sparkle" style="bottom:55px;right:22px;animation-delay:0.5s;font-size:0.65rem;">🌟</span>
+
+    <!-- Shadow -->
+    <div class="loader-shadow"></div>
+
+    <!-- Ground -->
+    <div class="loader-ground"></div>
+    <div class="loader-ground-line"></div>
+
+    <!-- RABBIT SVG -->
+    <div class="loader-rabbit" id="loaderRabbit">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <!-- Left ear -->
+        <ellipse cx="26" cy="20" rx="7" ry="17" fill="#fce8f3" stroke="#e8a0bf" stroke-width="1.5"/>
+        <ellipse cx="26" cy="20" rx="4" ry="12" fill="#f9c6d8"/>
+        <!-- Right ear -->
+        <ellipse cx="54" cy="20" rx="7" ry="17" fill="#fce8f3" stroke="#e8a0bf" stroke-width="1.5"/>
+        <ellipse cx="54" cy="20" rx="4" ry="12" fill="#f9c6d8"/>
+        <!-- Body -->
+        <ellipse cx="40" cy="56" rx="22" ry="18" fill="#fdf0f5" stroke="#e8a0bf" stroke-width="1.5"/>
+        <!-- Head -->
+        <circle cx="40" cy="36" r="18" fill="#fdf0f5" stroke="#e8a0bf" stroke-width="1.5"/>
+        <!-- Cheeks -->
+        <ellipse cx="30" cy="39" rx="5" ry="3.5" fill="rgba(212,102,142,0.25)"/>
+        <ellipse cx="50" cy="39" rx="5" ry="3.5" fill="rgba(212,102,142,0.25)"/>
+        <!-- Eyes -->
+        <circle cx="34" cy="33" r="3.5" fill="#2d1420"/>
+        <circle cx="46" cy="33" r="3.5" fill="#2d1420"/>
+        <circle cx="35.2" cy="31.8" r="1.2" fill="white"/>
+        <circle cx="47.2" cy="31.8" r="1.2" fill="white"/>
+        <!-- Nose -->
+        <ellipse cx="40" cy="39" rx="2.5" ry="1.8" fill="#d4668e"/>
+        <!-- Mouth -->
+        <path d="M37.5 41 Q40 43.5 42.5 41" stroke="#b94a73" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- Whiskers left -->
+        <line x1="20" y1="38" x2="33" y2="40" stroke="#d4a0b8" stroke-width="0.8" stroke-linecap="round"/>
+        <line x1="20" y1="41" x2="33" y2="41" stroke="#d4a0b8" stroke-width="0.8" stroke-linecap="round"/>
+        <!-- Whiskers right -->
+        <line x1="60" y1="38" x2="47" y2="40" stroke="#d4a0b8" stroke-width="0.8" stroke-linecap="round"/>
+        <line x1="60" y1="41" x2="47" y2="41" stroke="#d4a0b8" stroke-width="0.8" stroke-linecap="round"/>
+        <!-- Tail -->
+        <circle cx="62" cy="58" r="6" fill="white" stroke="#e8a0bf" stroke-width="1"/>
+        <!-- Front paws -->
+        <ellipse cx="28" cy="70" rx="7" ry="5" fill="#fce8f3" stroke="#e8a0bf" stroke-width="1.2"/>
+        <ellipse cx="52" cy="70" rx="7" ry="5" fill="#fce8f3" stroke="#e8a0bf" stroke-width="1.2"/>
+        <!-- Tummy -->
+        <ellipse cx="40" cy="58" rx="12" ry="10" fill="rgba(255,255,255,0.6)"/>
+        <!-- Bow tie -->
+        <path d="M35 50 L38 53 L35 56 Z" fill="#d4668e"/>
+        <path d="M45 50 L42 53 L45 56 Z" fill="#d4668e"/>
+        <circle cx="40" cy="53" r="2.5" fill="#b94a73"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="loader-title"><em>e</em>Portfolio</div>
+  <div class="loader-sub">Erika Pebri Nurvitasari · PPG PGSD 2026</div>
+  <div class="loader-dots">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
+  <div class="loader-progress-wrap">
+    <div class="loader-progress-fill" id="loaderProgress"></div>
+  </div>
+  <div class="loader-click-hint">✦ Klik untuk melompat! ✦</div>
+</div>
 <canvas id="sakuraCanvas"></canvas>
 
 <!-- ─── NAVBAR ─── -->
@@ -1687,7 +1807,6 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
   </div>
 </div>
           <p style="font-size:0.85rem;color:var(--text-soft);max-width:480px;line-height:1.7;margin-top:0.5rem">Penilaian dari Guru Pamong sebagai bukti capaian kompetensi mengajar selama PPL Terbimbing.</p>
-      </div>
 
       <div class="instrumen-header" style="margin-bottom:1.5rem">📊 Penilaian PPL Terbimbing</div>
       <div class="ppl-grid">
@@ -2125,6 +2244,50 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 </div>
 
 <script>
+  /* ─── LOADING SCREEN ─── */
+(function(){
+  const screen = document.getElementById('loadingScreen');
+  const rabbit = document.getElementById('loaderRabbit');
+  const wrap   = document.getElementById('loaderWrap');
+
+  // Click on rabbit → extra hop + ripple
+  wrap.addEventListener('click', function(e){
+    // Extra hop
+    rabbit.style.animation = 'none';
+    rabbit.offsetHeight; // reflow
+    rabbit.style.animation = 'rabbitHop 0.35s cubic-bezier(0.4,0,0.2,1) 3';
+    setTimeout(()=>{ rabbit.style.animation = 'rabbitHop 0.55s cubic-bezier(0.4,0,0.2,1) infinite'; }, 1100);
+
+    // Ripple effect
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple-burst';
+    ripple.style.cssText = `position:absolute;left:${e.clientX - wrap.getBoundingClientRect().left}px;top:${e.clientY - wrap.getBoundingClientRect().top}px;border:2px solid var(--rose);border-radius:50%;animation:rippleBurst 0.6s ease-out forwards;pointer-events:none;z-index:10;`;
+    wrap.appendChild(ripple);
+    setTimeout(()=> ripple.remove(), 700);
+
+    // Spawn a sparkle emoji
+    const spark = document.createElement('span');
+    spark.textContent = ['🌸','✨','⭐','💕','🌟'][Math.floor(Math.random()*5)];
+    spark.style.cssText = `position:absolute;left:${e.clientX - wrap.getBoundingClientRect().left - 10}px;top:${e.clientY - wrap.getBoundingClientRect().top - 20}px;font-size:1.2rem;pointer-events:none;animation:sparkleFloat 0.8s ease forwards;z-index:10;`;
+    wrap.appendChild(spark);
+    setTimeout(()=> spark.remove(), 900);
+  });
+
+  // Hide loading screen after page loads
+  function hideLoader(){
+    screen.classList.add('hidden');
+    setTimeout(()=>{ screen.style.display='none'; }, 900);
+  }
+
+  if(document.readyState === 'complete'){
+    setTimeout(hideLoader, 1800);
+  } else {
+    window.addEventListener('load', ()=> setTimeout(hideLoader, 1800));
+  }
+
+  // Fallback — max 4 detik
+  setTimeout(hideLoader, 4000);
+})();
 /* ─── SAKURA ─── */
 const canvas=document.getElementById('sakuraCanvas');
 const ctx=canvas.getContext('2d');
