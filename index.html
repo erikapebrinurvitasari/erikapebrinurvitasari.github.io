@@ -921,6 +921,36 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
   .analisis-tabs{gap:0.4rem;}
   .analisis-tab-btn{font-size:0.73rem;padding:0.48rem 1rem;}
 }
+/* ─── REFLEKSI AKHIR — HERO FOTO ─── */
+.rakhir-foto-hero{position:relative;width:100%;height:500px;border-radius:20px;overflow:hidden;margin-bottom:3rem;box-shadow:0 32px 80px rgba(212,102,142,0.30);}
+.rakhir-foto-hero img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:scale(1.06);transition:transform 8s ease;}
+.rakhir-foto-hero:hover img{transform:scale(1.00);}
+.rakhir-foto-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,20,32,0.20) 0%,transparent 35%,transparent 50%,rgba(45,20,32,0.82) 100%),linear-gradient(to right,rgba(45,20,32,0.50) 0%,transparent 55%);}
+.rakhir-foto-top{position:absolute;top:1.5rem;left:1.5rem;z-index:2;display:flex;gap:0.5rem;flex-wrap:wrap;}
+.rakhir-foto-tag{background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:0.35rem 0.9rem;font-size:0.67rem;font-weight:700;color:white;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.25s;cursor:default;}
+.rakhir-foto-tag:hover{background:rgba(212,102,142,0.5);border-color:rgba(212,102,142,0.8);}
+.rakhir-foto-tag.rose{background:rgba(212,102,142,0.55);border-color:rgba(212,102,142,0.75);}
+.rakhir-foto-ornament{position:absolute;top:1.5rem;right:2rem;z-index:2;width:72px;height:72px;border:1.5px solid rgba(212,102,142,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(212,102,142,0.12);backdrop-filter:blur(6px);}
+.rakhir-foto-ornament::before{content:'';position:absolute;inset:6px;border:1px solid rgba(212,102,142,0.25);border-radius:50%;}
+.rakhir-foto-ornament span{font-size:0.52rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.75);text-align:center;line-height:1.5;font-weight:700;position:relative;z-index:1;}
+.rakhir-foto-bottom{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:2.5rem 3rem 2rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;}
+.rakhir-foto-left{}
+.rakhir-foto-eyebrow{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--rose-light);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;}
+.rakhir-foto-eyebrow::before{content:'';display:block;width:22px;height:1.5px;background:var(--rose-light);}
+.rakhir-foto-title{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;color:white;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,0.35);}
+.rakhir-foto-title em{font-style:italic;color:var(--rose-light);}
+.rakhir-foto-right{display:flex;gap:2px;flex-shrink:0;}
+.rakhir-foto-stat{background:rgba(255,255,255,0.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);padding:0.65rem 1rem;text-align:center;}
+.rakhir-foto-stat:first-child{border-radius:8px 0 0 8px;}
+.rakhir-foto-stat:last-child{border-radius:0 8px 8px 0;}
+.rakhir-foto-stat-num{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:white;line-height:1;}
+.rakhir-foto-stat-lbl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-top:0.2rem;white-space:nowrap;}
+@media(max-width:768px){
+  .rakhir-foto-hero{height:320px;border-radius:12px;}
+  .rakhir-foto-bottom{padding:1.5rem 1.25rem 1.25rem;flex-direction:column;gap:1rem;align-items:flex-start;}
+  .rakhir-foto-right{display:none;}
+  .rakhir-foto-ornament{display:none;}
+}
 /* ─── REFLEKSI AKHIR PPL ─── */
 .rakhir-section{background:linear-gradient(145deg,#fdf0f5 0%,#fce8f3 40%,#f5e6f0 100%);min-height:100vh;padding:6rem 4rem;}
 .rakhir-inner{max-width:1100px;margin:0 auto;}
@@ -1973,7 +2003,40 @@ footer .footer-inner,footer .footer-bottom{position:relative;z-index:1;}
 <div class="tab-page" id="page-refleksiakhir">
   <section class="rakhir-section" style="padding-top:calc(var(--nav-h) + 4rem)">
     <div class="rakhir-inner">
+<!-- FOTO HERO REFLEKSI AKHIR -->
+      <div class="rakhir-foto-hero" id="rakhirFotoHero">
+        <img
+          id="rakhirFotoImg"
+          src="https://drive.google.com/thumbnail?id=1SALth3DQQMAuueTs4Hy3AmfRiuxymPho&sz=w1400"
+          alt="Refleksi Akhir PPL — Erika Pebri Nurvitasari"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,var(--rose-deep),var(--rose))';this.style.display='none'">
+        <div class="rakhir-foto-overlay"></div>
 
+        <!-- TAG ATAS KIRI -->
+        <div class="rakhir-foto-top">
+          <span class="rakhir-foto-tag rose">🌸 Refleksi Akhir PPL</span>
+          <span class="rakhir-foto-tag">PPG PGSD UMM · 2026</span>
+          <span class="rakhir-foto-tag">SDN Pandanwangi 3</span>
+        </div>
+
+        <!-- ORNAMEN BULAT ATAS KANAN -->
+        <div class="rakhir-foto-ornament">
+          <span>PPL<br>2026</span>
+        </div>
+
+        <!-- KONTEN BAWAH -->
+        <div class="rakhir-foto-bottom">
+          <div class="rakhir-foto-left">
+            <div class="rakhir-foto-eyebrow">Perjalanan Tiga Siklus</div>
+            <div class="rakhir-foto-title">Menjadi <em>Pendidik</em><br>yang Terus Bertumbuh</div>
+          </div>
+          <div class="rakhir-foto-right">
+            <div class="rakhir-foto-stat"><div class="rakhir-foto-stat-num">3</div><div class="rakhir-foto-stat-lbl">Siklus PPL</div></div>
+            <div class="rakhir-foto-stat"><div class="rakhir-foto-stat-num">4A</div><div class="rakhir-foto-stat-lbl">Kelas</div></div>
+            <div class="rakhir-foto-stat"><div class="rakhir-foto-stat-num">∞</div><div class="rakhir-foto-stat-lbl">Semangat</div></div>
+          </div>
+        </div>
+      </div>
       <!-- HERO BANNER -->
       <div class="rakhir-hero">
         <div class="rakhir-hero-tag">🌸 PPG PGSD UMM · 2026</div>
@@ -2733,6 +2796,26 @@ if(modelHero && modelHeroImg){
   });
   modelHero.addEventListener('mouseenter', () => {
     modelHeroImg.style.transition = 'transform 0.15s ease';
+  });
+}
+</script>
+<script>
+/* ─── REFLEKSI AKHIR — FOTO PARALLAX ─── */
+const rakhirFotoHero = document.getElementById('rakhirFotoHero');
+const rakhirFotoImg  = document.getElementById('rakhirFotoImg');
+if(rakhirFotoHero && rakhirFotoImg){
+  rakhirFotoHero.addEventListener('mousemove', e => {
+    const r = rakhirFotoHero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    rakhirFotoImg.style.transform = `scale(1.06) translate(${x*10}px, ${y*6}px)`;
+  });
+  rakhirFotoHero.addEventListener('mouseleave', () => {
+    rakhirFotoImg.style.transform = 'scale(1.06) translate(0,0)';
+    rakhirFotoImg.style.transition = 'transform 1s ease';
+  });
+  rakhirFotoHero.addEventListener('mouseenter', () => {
+    rakhirFotoImg.style.transition = 'transform 0.15s ease';
   });
 }
 </script>
