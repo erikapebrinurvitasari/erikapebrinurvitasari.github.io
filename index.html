@@ -723,15 +723,77 @@
   /* VIDEO */
   .video-panel{ padding:0 1.4rem 1.4rem; display:grid; grid-template-columns:repeat(2,1fr); gap:0.9rem; }
   @media (max-width:560px){ .video-panel{ grid-template-columns:1fr; } }
-  .video-card{ border-radius:10px; overflow:hidden; border:1px solid var(--cream-line); background:var(--cream); transition:transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+  .video-card{ width:100%; padding:0; border-radius:10px; overflow:hidden; border:1px solid var(--cream-line); background:var(--cream); color:inherit; font:inherit; text-align:left; cursor:pointer; appearance:none; transition:transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color .35s ease; }
   .video-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-md); }
-  .video-thumb{ aspect-ratio:16/9; position:relative; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--green-deep),var(--green)); }
-  .video-thumb .play{ width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.92); display:flex; align-items:center; justify-content:center; transition:transform 0.3s var(--ease); }
-  .video-card:hover .play{ transform:scale(1.1); }
+  .video-card:focus-visible{ outline:2px solid var(--green-deep); outline-offset:4px; }
+  .video-card.video-card-featured{ grid-column:1/-1; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr); min-height:310px; border-radius:22px; background:var(--white); box-shadow:0 16px 42px rgba(36,48,42,.1); }
+  .video-card.video-card-featured:hover{ transform:translateY(-7px); border-color:rgba(63,106,78,.35); box-shadow:0 26px 58px rgba(36,48,42,.16); }
+  .video-thumb{ aspect-ratio:16/9; position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center; overflow:hidden; background:linear-gradient(135deg,var(--green-deep),var(--green)); }
+  .video-card-featured .video-thumb{ min-height:100%; aspect-ratio:auto; }
+  .video-thumb-image{ position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.015); transition:transform .9s var(--ease),filter .6s ease; }
+  .video-thumb.has-image::after{ content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(135deg,rgba(20,42,28,.18),rgba(20,42,28,.02) 45%,rgba(20,42,28,.58)),linear-gradient(0deg,rgba(20,42,28,.42),transparent 52%); }
+  .video-card:hover .video-thumb-image{ transform:scale(1.065); filter:saturate(1.08); }
+  .video-thumb .play{ position:relative; z-index:2; width:66px; height:66px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; box-shadow:0 18px 38px rgba(18,38,25,.24),0 0 0 9px rgba(255,255,255,.12); transition:transform .42s var(--ease),box-shadow .42s ease; }
+  .video-thumb .play::before{ content:""; position:absolute; inset:-12px; border:1px solid rgba(255,255,255,.5); border-radius:50%; animation:videoPlayPulse 2.5s ease-out infinite; }
+  .video-card:hover .play{ transform:scale(1.1) rotate(-2deg); box-shadow:0 22px 45px rgba(18,38,25,.3),0 0 0 13px rgba(255,255,255,.14); }
   .video-thumb .play svg{ width:18px; height:18px; fill:var(--green-deep); margin-left:2px; }
+  .video-thumb-badge{ position:absolute; z-index:2; top:1rem; left:1rem; padding:.46rem .68rem; border:1px solid rgba(255,255,255,.34); border-radius:999px; background:rgba(31,57,40,.5); color:#fff; font-family:var(--font-mono); font-size:.54rem; letter-spacing:.1em; text-transform:uppercase; backdrop-filter:blur(10px); }
+  .video-thumb-caption{ position:absolute; z-index:2; right:1rem; bottom:.85rem; color:rgba(255,255,255,.88); font-family:var(--font-mono); font-size:.54rem; letter-spacing:.09em; text-transform:uppercase; }
   .video-body{ padding:0.8rem 1rem 1rem; }
+  .video-card-featured .video-body{ position:relative; display:flex; flex-direction:column; justify-content:center; padding:clamp(1.5rem,4vw,2.8rem); overflow:hidden; }
+  .video-card-featured .video-body::after{ content:"01"; position:absolute; right:.12em; bottom:-.22em; color:rgba(63,106,78,.055); font-family:var(--font-display); font-size:8rem; font-style:italic; line-height:1; pointer-events:none; }
   .video-body .v-tag{ font-family:var(--font-mono); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--green-deep); }
-  .video-body h4{ font-family:var(--font-display); font-size:0.98rem; font-weight:500; margin:0.35rem 0 0; color:var(--ink); }
+  .video-body h4,.video-card-title{ position:relative; z-index:1; display:block; font-family:var(--font-display); font-size:0.98rem; font-weight:500; margin:0.35rem 0 0; color:var(--ink); }
+  .video-card-featured .video-body h4,.video-card-featured .video-card-title{ max-width:330px; margin-top:.7rem; font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.05; }
+  .video-body-copy{ position:relative; z-index:1; max-width:330px; margin:.8rem 0 0; color:var(--ink-soft); font-size:.78rem; line-height:1.7; }
+  .video-open-hint{ position:relative; z-index:1; display:flex; align-items:center; gap:.55rem; margin-top:1.25rem; color:var(--green-deep); font-family:var(--font-mono); font-size:.58rem; font-weight:500; letter-spacing:.07em; text-transform:uppercase; }
+  .video-open-hint::before{ content:""; width:28px; height:1px; background:var(--green); transition:width .4s var(--ease); }
+  .video-card:hover .video-open-hint::before{ width:42px; }
+  @keyframes videoPlayPulse{ 0%{ opacity:.72; transform:scale(.82); } 72%,100%{ opacity:0; transform:scale(1.42); } }
+
+  /* VIDEO POP-UP PLAYER */
+  body.video-modal-open{ overflow:hidden; }
+  .video-modal{ position:fixed; z-index:300; inset:0; display:grid; place-items:center; padding:clamp(.75rem,3vw,2rem); visibility:hidden; opacity:0; transition:opacity .38s ease,visibility 0s linear .42s; }
+  .video-modal.is-open{ visibility:visible; opacity:1; transition-delay:0s; }
+  .video-modal-backdrop{ position:absolute; inset:0; background:radial-gradient(circle at 50% 42%,rgba(80,121,90,.28),transparent 42%),rgba(11,27,17,.78); backdrop-filter:blur(14px) saturate(.9); }
+  .video-modal-backdrop::before,.video-modal-backdrop::after{ content:""; position:absolute; width:34vw; height:34vw; min-width:260px; min-height:260px; border:1px solid rgba(220,232,221,.12); border-radius:50%; animation:videoModalOrbit 14s linear infinite; }
+  .video-modal-backdrop::before{ left:-14vw; top:-17vw; box-shadow:0 0 0 46px rgba(220,232,221,.025),0 0 0 92px rgba(220,232,221,.016); }
+  .video-modal-backdrop::after{ right:-15vw; bottom:-18vw; animation-direction:reverse; }
+  .video-modal-dialog{ position:relative; isolation:isolate; width:min(1050px,100%); max-height:calc(100svh - clamp(1.5rem,6vw,4rem)); overflow:auto; border:1px solid rgba(255,255,255,.16); border-radius:30px; background:linear-gradient(145deg,#294a36,#1d3527); color:var(--cream); box-shadow:0 42px 110px rgba(4,15,8,.52); opacity:0; filter:blur(10px); transform:translateY(34px) scale(.94); transition:opacity .44s ease,filter .55s ease,transform .58s var(--ease); }
+  .video-modal.is-open .video-modal-dialog{ opacity:1; filter:blur(0); transform:translateY(0) scale(1); }
+  .video-modal-dialog::before{ content:""; position:absolute; z-index:-1; width:330px; height:330px; right:-175px; top:-195px; border:1px solid rgba(251,247,238,.1); border-radius:50%; box-shadow:0 0 0 42px rgba(251,247,238,.024),0 0 0 86px rgba(251,247,238,.016); }
+  .video-modal-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem; padding:1.5rem 1.6rem 1.2rem; }
+  .video-modal-kicker{ display:flex; align-items:center; gap:.6rem; margin:0 0 .5rem; color:rgba(220,232,221,.68); font-family:var(--font-mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; }
+  .video-modal-kicker::before{ content:""; width:24px; height:1px; background:#9fc0a5; }
+  .video-modal-title{ margin:0; color:#fff; font-family:var(--font-display); font-size:clamp(1.35rem,3vw,2.15rem); font-weight:500; line-height:1.08; }
+  .video-modal-close{ flex:0 0 auto; width:46px; height:46px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.18); border-radius:50%; background:rgba(255,255,255,.07); color:#fff; transition:transform .35s var(--ease),background .3s ease,border-color .3s ease; }
+  .video-modal-close:hover{ transform:rotate(90deg) scale(1.06); border-color:rgba(255,255,255,.38); background:rgba(255,255,255,.13); }
+  .video-modal-close svg{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
+  .video-modal-player-shell{ position:relative; margin:0 1.6rem; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:20px; background:#0a100c; box-shadow:0 22px 55px rgba(4,14,8,.32); }
+  .video-modal-player{ position:relative; aspect-ratio:16/9; }
+  .video-modal-player::before{ content:"Memuat video…"; position:absolute; inset:0; display:grid; place-items:center; color:rgba(251,247,238,.55); font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; animation:videoLoadingBlink 1.5s ease-in-out infinite; }
+  .video-modal-player iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; opacity:0; transition:opacity .45s ease; }
+  .video-modal.is-loaded .video-modal-player iframe{ opacity:1; }
+  .video-modal-foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.05rem 1.7rem 1.3rem; color:rgba(251,247,238,.58); font-family:var(--font-mono); font-size:.56rem; letter-spacing:.06em; text-transform:uppercase; }
+  .video-modal-foot span{ display:flex; align-items:center; gap:.5rem; }
+  .video-modal-foot span::before{ content:""; width:5px; height:5px; border-radius:50%; background:#9fc0a5; box-shadow:0 0 0 4px rgba(159,192,165,.1); }
+  @keyframes videoModalOrbit{ to{ transform:rotate(360deg); } }
+  @keyframes videoLoadingBlink{ 0%,100%{ opacity:.38; } 50%{ opacity:.8; } }
+  @media (max-width:720px){
+    .video-card.video-card-featured{ grid-template-columns:1fr; min-height:0; border-radius:18px; }
+    .video-card-featured .video-thumb{ min-height:0; aspect-ratio:16/9; }
+    .video-card-featured .video-body{ padding:1.25rem 1.15rem 1.4rem; }
+    .video-card-featured .video-body h4,.video-card-featured .video-card-title{ font-size:1.55rem; }
+    .video-body-copy{ font-size:.75rem; }
+    .video-modal{ padding:.62rem; }
+    .video-modal-dialog{ max-height:calc(100svh - 1.24rem); border-radius:23px; }
+    .video-modal-head{ gap:.8rem; padding:1.1rem 1rem .9rem; }
+    .video-modal-title{ font-size:1.35rem; }
+    .video-modal-close{ width:40px; height:40px; }
+    .video-modal-player-shell{ margin:0 .65rem; border-radius:14px; }
+    .video-modal-foot{ padding:.85rem .9rem 1rem; font-size:.49rem; }
+    .video-modal-foot span:last-child{ display:none; }
+  }
 
   /* NON MENGAJAR */
   .activity-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.6rem; margin-top:2.4rem; }
@@ -1926,21 +1988,34 @@
   </div>
 </section>
 
-<!-- 6. ANALISIS VIDEO PRAKTIK MENGAJAR MANDIRI -->
+<!-- 6. ANALISIS VIDEO PRAKTIK MENGAJAR -->
 <section class="section-pad page-view" id="video" data-page-title="Video Praktik Mengajar" data-nav-group="dokumentasi" tabindex="-1" style="background:var(--white);" hidden>
   <div class="wrap">
     <nav class="breadcrumb reveal" aria-label="Lokasi halaman"><a href="#dokumentasi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Dokumentasi PPL</a><span class="breadcrumb-sep">/</span><span>Video Praktik Mengajar</span></nav>
     <div class="reveal">
       <p class="eyebrow">Dokumentasi 04</p>
-      <h2 class="section-title">Analisis Video Praktik Mengajar Mandiri</h2>
-      <p class="section-sub">Rekaman video praktik mengajar pada setiap tahap. Klik thumbnail untuk membuka video.</p>
+      <h2 class="section-title">Analisis Video Praktik Mengajar</h2>
+      <p class="section-sub">Rekaman video praktik mengajar pada setiap tahap. Klik kartu video untuk menonton langsung tanpa meninggalkan e-portofolio.</p>
     </div>
     <div class="accordion-group" data-accordion>
       <div class="accordion-item active">
         <button class="accordion-header"><span class="ah-left"><span class="accordion-num">01</span><h3>Mengajar Terbimbing</h3></span><span class="accordion-icon"></span></button>
         <div class="accordion-panel-wrap"><div class="accordion-panel-inner">
           <div class="video-panel">
-            <a href="#" target="_blank" class="video-card"><div class="video-thumb"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="video-body"><span class="v-tag">Video</span><h4>Praktik Mengajar Terbimbing</h4></div></a>
+            <button type="button" class="video-card video-card-featured" data-video-id="E0L4qngDLv0" data-video-title="Praktik Mengajar Terbimbing" aria-haspopup="dialog" aria-controls="videoModal">
+              <span class="video-thumb has-image">
+                <img class="video-thumb-image" src="https://i.ytimg.com/vi/E0L4qngDLv0/hqdefault.jpg" alt="" loading="lazy">
+                <span class="video-thumb-badge">YouTube · Mengajar Terbimbing</span>
+                <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <span class="video-thumb-caption">Putar di halaman ini</span>
+              </span>
+              <span class="video-body">
+                <span class="v-tag">Video Pembelajaran · PPL</span>
+                <span role="heading" aria-level="4" class="video-card-title">Praktik Mengajar Terbimbing</span>
+                <span class="video-body-copy">Dokumentasi proses pembelajaran terbimbing sebagai bagian dari pengembangan kompetensi pedagogik calon guru.</span>
+                <span class="video-open-hint">Tonton video</span>
+              </span>
+            </button>
           </div>
         </div></div>
       </div>
@@ -2190,6 +2265,30 @@
   <div>© 2026 <strong>Erika Pebri Nurvitasari, S.Pd.</strong>. Portofolio PPL — SDN Pandanwangi 3 Malang.</div>
 </footer>
 
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal-backdrop" data-video-close aria-hidden="true"></div>
+  <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle" aria-describedby="videoModalDescription" tabindex="-1">
+    <div class="video-modal-head">
+      <div>
+        <p class="video-modal-kicker">Dokumentasi PPL · Video Pembelajaran</p>
+        <h2 class="video-modal-title" id="videoModalTitle">Praktik Mengajar Terbimbing</h2>
+      </div>
+      <button type="button" class="video-modal-close" data-video-close aria-label="Tutup video">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="video-modal-player-shell">
+      <div class="video-modal-player">
+        <iframe id="videoModalFrame" title="Video Praktik Mengajar Terbimbing" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="video-modal-foot" id="videoModalDescription">
+      <span>Tekan Esc atau klik area luar untuk menutup</span>
+      <span>PPG Calon Guru · PGSD</span>
+    </div>
+  </div>
+</div>
+
 <button class="back-top" id="backTop" aria-label="Kembali ke atas">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
 </button>
@@ -2316,6 +2415,7 @@
   }
 
   function showPage(requestedId, updateHistory = true){
+    if(videoModal?.classList.contains('is-open')) closeVideoModal(false);
     const pageId = pageIds.has(requestedId) ? requestedId : 'beranda';
     const activePage = document.getElementById(pageId);
 
@@ -2394,6 +2494,85 @@
     btn.addEventListener('click', () => {
       btn.closest('.accordion-item').classList.toggle('active');
     });
+  });
+
+  const videoModal = document.getElementById('videoModal');
+  const videoModalDialog = videoModal?.querySelector('.video-modal-dialog');
+  const videoModalFrame = document.getElementById('videoModalFrame');
+  const videoModalTitle = document.getElementById('videoModalTitle');
+  const videoModalCloseButton = videoModal?.querySelector('.video-modal-close');
+  const videoTriggers = [...document.querySelectorAll('[data-video-id]')];
+  let lastVideoTrigger = null;
+  let videoCloseTimer = null;
+
+  function createYouTubeEmbedUrl(videoId){
+    if(!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return '';
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  }
+
+  function openVideoModal(trigger){
+    if(!videoModal || !videoModalFrame || !trigger) return;
+    const videoId = trigger.dataset.videoId || '';
+    const embedUrl = createYouTubeEmbedUrl(videoId);
+    if(!embedUrl) return;
+
+    if(videoCloseTimer) window.clearTimeout(videoCloseTimer);
+    lastVideoTrigger = trigger;
+    const title = trigger.dataset.videoTitle || 'Video Praktik Mengajar';
+    if(videoModalTitle) videoModalTitle.textContent = title;
+    videoModalFrame.title = `Video ${title}`;
+    videoModal.classList.remove('is-loaded');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('video-modal-open');
+    videoModalFrame.src = embedUrl;
+    window.requestAnimationFrame(() => videoModal.classList.add('is-open'));
+    window.setTimeout(() => videoModalCloseButton?.focus({ preventScroll:true }), reducedMotion ? 0 : 260);
+  }
+
+  function closeVideoModal(restoreFocus = true){
+    if(!videoModal || !videoModal.classList.contains('is-open')) return;
+    videoModal.classList.remove('is-open', 'is-loaded');
+    videoModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('video-modal-open');
+    videoCloseTimer = window.setTimeout(() => {
+      if(videoModalFrame) videoModalFrame.src = 'about:blank';
+      if(restoreFocus) lastVideoTrigger?.focus({ preventScroll:true });
+    }, reducedMotion ? 0 : 430);
+  }
+
+  videoTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => openVideoModal(trigger));
+  });
+
+  videoModal?.querySelectorAll('[data-video-close]').forEach(control => {
+    control.addEventListener('click', () => closeVideoModal());
+  });
+
+  videoModalFrame?.addEventListener('load', () => {
+    if(videoModal?.classList.contains('is-open') && videoModalFrame.src.includes('/embed/')){
+      videoModal.classList.add('is-loaded');
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    if(!videoModal?.classList.contains('is-open')) return;
+    if(event.key === 'Escape'){
+      event.preventDefault();
+      closeVideoModal();
+      return;
+    }
+    if(event.key !== 'Tab' || !videoModalDialog) return;
+    const focusable = [...videoModalDialog.querySelectorAll('button:not([disabled]),iframe,[href],[tabindex]:not([tabindex="-1"])')];
+    if(!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if(event.shiftKey && document.activeElement === first){
+      event.preventDefault();
+      last.focus();
+    }else if(!event.shiftKey && document.activeElement === last){
+      event.preventDefault();
+      first.focus();
+    }
   });
 
   const initialPage = pageIds.has(location.hash.slice(1)) ? location.hash.slice(1) : 'beranda';
