@@ -413,7 +413,19 @@
   .profile-dossier-data{ position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; padding:clamp(2.4rem,5vw,4.2rem); background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(238,243,238,.74)); }
   .profile-data-head{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--cream-line); }
   .profile-data-head span{ color:var(--green-deep); font-family:var(--font-mono); font-size:.64rem; letter-spacing:.15em; text-transform:uppercase; }
-  .profile-monogram{ width:46px; height:46px; display:grid; place-items:center; border:1px solid var(--green-soft); border-radius:50%; background:var(--cream); color:var(--green-deep); font-family:var(--font-display); font-size:1rem; font-style:italic; box-shadow:0 0 0 7px rgba(63,106,78,.045); animation:profileMonogramFloat 4.6s ease-in-out infinite; }
+  .profile-atom{ position:relative; isolation:isolate; flex:0 0 auto; width:54px; height:54px; display:grid; place-items:center; border:1px solid rgba(63,106,78,.25); border-radius:50%; background:radial-gradient(circle at 38% 32%,#fff 0%,var(--cream) 56%,#e4ece4 100%); box-shadow:0 0 0 7px rgba(63,106,78,.045),0 12px 26px rgba(43,74,55,.13); animation:profileAtomFloat 5.2s ease-in-out infinite; }
+  .profile-atom::before{ content:""; position:absolute; z-index:-1; inset:5px; border:1px solid rgba(63,106,78,.16); border-radius:50%; animation:profileAtomRing 3.2s ease-in-out infinite; }
+  .profile-atom::after{ content:""; position:absolute; z-index:-2; inset:-6px; border-radius:50%; background:radial-gradient(circle,rgba(94,139,104,.13),transparent 68%); opacity:.65; animation:profileAtomGlow 3.2s ease-in-out infinite; }
+  .profile-atom svg{ position:relative; z-index:1; width:44px; height:44px; overflow:visible; }
+  .profile-atom-orbit{ transform-box:view-box; transform-origin:32px 32px; }
+  .profile-atom-orbit ellipse{ fill:none; stroke:var(--green); stroke-width:1.35; opacity:.74; vector-effect:non-scaling-stroke; }
+  .profile-atom-electron{ fill:#315b41; stroke:#f8fbf7; stroke-width:1; filter:drop-shadow(0 1px 2px rgba(43,74,55,.35)); }
+  .profile-atom-orbit-a{ transform:rotate(0deg); animation:profileAtomOrbitA 6.8s linear infinite; }
+  .profile-atom-orbit-b{ transform:rotate(60deg); animation:profileAtomOrbitB 8.4s linear infinite; }
+  .profile-atom-orbit-c{ transform:rotate(120deg); animation:profileAtomOrbitC 5.9s linear infinite; }
+  .profile-atom-core-halo{ fill:rgba(87,132,98,.18); transform-box:view-box; transform-origin:32px 32px; animation:profileAtomCore 2.7s ease-in-out infinite; }
+  .profile-atom-core{ fill:var(--green-deep); filter:drop-shadow(0 2px 3px rgba(43,74,55,.3)); }
+  .profile-atom-core-dot{ fill:#dce8dd; opacity:.92; }
   .profile-facts{ display:flex; flex-direction:column; }
   .profile-fact{ display:grid; grid-template-columns:118px minmax(0,1fr); gap:1rem; align-items:start; padding:.88rem 0; border-bottom:1px solid rgba(227,216,190,.72); }
   .profile-fact:last-child{ border-bottom:0; }
@@ -513,7 +525,13 @@
   @keyframes profileOrbit{ to{ transform:rotate(360deg); } }
   @keyframes profileRuleGlow{ 0%,100%{ opacity:.35; transform:scaleX(.35); } 50%{ opacity:1; transform:scaleX(1); } }
   @keyframes profileStatusPulse{ 0%,100%{ transform:scale(.82); opacity:.66; } 50%{ transform:scale(1.12); opacity:1; } }
-  @keyframes profileMonogramFloat{ 0%,100%{ transform:translateY(0) rotate(-2deg); } 50%{ transform:translateY(-5px) rotate(2deg); } }
+  @keyframes profileAtomFloat{ 0%,100%{ transform:translateY(0) rotate(-1deg); } 50%{ transform:translateY(-5px) rotate(1deg); } }
+  @keyframes profileAtomRing{ 0%,100%{ opacity:.34; transform:scale(.9); } 50%{ opacity:.82; transform:scale(1.05); } }
+  @keyframes profileAtomGlow{ 0%,100%{ opacity:.35; transform:scale(.9); } 50%{ opacity:.75; transform:scale(1.08); } }
+  @keyframes profileAtomOrbitA{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+  @keyframes profileAtomOrbitB{ from{ transform:rotate(60deg); } to{ transform:rotate(-300deg); } }
+  @keyframes profileAtomOrbitC{ from{ transform:rotate(120deg); } to{ transform:rotate(480deg); } }
+  @keyframes profileAtomCore{ 0%,100%{ opacity:.45; transform:scale(.78); } 50%{ opacity:.9; transform:scale(1.18); } }
   @keyframes mapLivePulse{ 0%,100%{ transform:scale(.86); opacity:.62; } 50%{ transform:scale(1.08); opacity:1; } }
   @keyframes mapPinFloat{ 0%,100%{ transform:translateY(0) rotate(-45deg); } 50%{ transform:translateY(-8px) rotate(-45deg); } }
   @keyframes reogPhotoDrift{ from{ transform:scale(1.075) translate3d(-.6%,-.4%,0); } to{ transform:scale(1.025) translate3d(.5%,.35%,0); } }
@@ -554,7 +572,7 @@
     .timeline-item::before{ left:-1.85rem; top:1.6rem; }
   }
   @media (prefers-reduced-motion:reduce){
-    .profile-dossier-intro::before,.profile-dossier-intro::after,.profile-status::before,.profile-monogram,.profile-place img,.profile-place::before,.campus-map-frame::after,.campus-map-status::before,.campus-map-skeleton::before{ animation:none !important; }
+    .profile-dossier-intro::before,.profile-dossier-intro::after,.profile-status::before,.profile-atom,.profile-atom::before,.profile-atom::after,.profile-atom-orbit,.profile-atom-core-halo,.profile-place img,.profile-place::before,.campus-map-frame::after,.campus-map-status::before,.campus-map-skeleton::before{ animation:none !important; }
   }
 
   /* MODEL GURU — EDITORIAL MANIFESTO */
@@ -1304,7 +1322,8 @@
     .profile-contact-link{ flex:0 0 auto; max-width:none; min-height:40px; font-size:.58rem; }
     .profile-dossier-data{ padding:1.35rem; }
     .profile-data-head{ margin-bottom:.65rem; padding-bottom:.85rem; }
-    .profile-monogram{ width:42px; height:42px; }
+    .profile-atom{ width:46px; height:46px; }
+    .profile-atom svg{ width:38px; height:38px; }
     .profile-fact{ grid-template-columns:92px minmax(0,1fr); gap:.7rem; padding:.75rem 0; }
     .profile-fact dt{ font-family:var(--font-mono); font-size:.59rem; line-height:1.55; }
     .profile-fact dd{ font-size:.78rem; line-height:1.58; }
@@ -1798,7 +1817,28 @@
         </div>
       </div>
       <div class="profile-dossier-data">
-        <div class="profile-data-head"><span>Identity Record</span><strong class="profile-monogram" aria-hidden="true">EP</strong></div>
+        <div class="profile-data-head">
+          <span>Identity Record</span>
+          <strong class="profile-atom" role="img" aria-label="Animasi atom sebagai simbol pembelajaran dan perkembangan">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <g class="profile-atom-orbit profile-atom-orbit-a">
+                <ellipse cx="32" cy="32" rx="23" ry="8.5"/>
+                <circle class="profile-atom-electron" cx="55" cy="32" r="2.8"/>
+              </g>
+              <g class="profile-atom-orbit profile-atom-orbit-b">
+                <ellipse cx="32" cy="32" rx="23" ry="8.5"/>
+                <circle class="profile-atom-electron" cx="9" cy="32" r="2.55"/>
+              </g>
+              <g class="profile-atom-orbit profile-atom-orbit-c">
+                <ellipse cx="32" cy="32" rx="23" ry="8.5"/>
+                <circle class="profile-atom-electron" cx="55" cy="32" r="2.35"/>
+              </g>
+              <circle class="profile-atom-core-halo" cx="32" cy="32" r="7"/>
+              <circle class="profile-atom-core" cx="32" cy="32" r="4.8"/>
+              <circle class="profile-atom-core-dot" cx="30.5" cy="30.4" r="1.25"/>
+            </svg>
+          </strong>
+        </div>
         <dl class="profile-facts">
           <div class="profile-fact"><dt>Nama Lengkap</dt><dd>Erika Pebri Nurvitasari, S.Pd.</dd></div>
           <div class="profile-fact"><dt>Program Studi</dt><dd>PPG Calon Guru — PGSD</dd></div>
