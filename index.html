@@ -740,6 +740,9 @@
   .document-card:hover .file-link{ background:var(--green-deep); color:#fff; }
   .document-card:hover .file-link svg{ transform:translateX(3px); }
   .document-card:focus-visible{ outline:2px solid var(--green-deep); outline-offset:4px; }
+  .file-card.media-document-card::after{ content:"MEDIA"; right:.1em; bottom:-.28em; font-size:4.45rem; letter-spacing:-.045em; }
+  .media-document-card .file-ico{ background:linear-gradient(145deg,#527c60,var(--green-deep)); }
+  .media-document-card:hover .file-ico{ background:linear-gradient(145deg,#699274,var(--green)); }
 
   /* DOCUMENT POP-UP VIEWER — shares the modal motion language with video */
   .document-modal .video-modal-dialog{ width:min(1160px,100%); height:min(880px,calc(100svh - clamp(1.5rem,5vw,3rem))); display:flex; flex-direction:column; overflow:hidden; background:linear-gradient(145deg,#f9f7ef,#edf3ed); color:var(--ink); }
@@ -2011,21 +2014,31 @@
     <div class="reveal">
       <p class="eyebrow">Dokumentasi 03</p>
       <h2 class="section-title">Analisis Media Pembelajaran</h2>
-      <p class="section-sub">Media presentasi dan alat bantu visual yang digunakan pada setiap tahap praktik mengajar.</p>
+      <p class="section-sub">Media presentasi dan alat bantu visual yang digunakan pada setiap tahap praktik mengajar. Buka tahap yang dipilih, lalu klik kartu PDF untuk melihatnya langsung di halaman ini.</p>
     </div>
     <div class="accordion-group" data-accordion>
-      <div class="accordion-item">
+      <div class="accordion-item active">
         <button class="accordion-header"><span class="ah-left"><span class="accordion-num">01</span><h3>Mengajar Terbimbing</h3></span><span class="accordion-icon"></span></button>
         <div class="accordion-panel-wrap"><div class="accordion-panel-inner"><div class="accordion-panel">
-          <div class="file-card"><div class="file-left"><div class="file-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="file-name">Media Presentasi (PPT) — Terbimbing</div></div></div><a href="#" class="file-link" target="_blank">Lihat</a></div>
-          <div class="file-card"><div class="file-left"><div class="file-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="file-name">Media Visual Pendukung — Terbimbing</div></div></div><a href="#" class="file-link" target="_blank">Lihat</a></div>
+          <button type="button" class="file-card document-card media-document-card" data-document-id="1VfvfEkAXU2TQdsG6EW7dgV0L9QbnBEoN" data-document-title="Media Pembelajaran — Mengajar Terbimbing" data-document-stage="Tahap 01 · Mengajar Terbimbing" data-document-category="Dokumentasi PPL · Media Pembelajaran" aria-haspopup="dialog" aria-controls="documentModal">
+            <span class="file-left">
+              <span class="file-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 7.5h6M9 11h4"/></svg></span>
+              <span class="document-card-copy"><span class="file-meta">PDF · Media Pembelajaran</span><span class="file-name">Media Pembelajaran — Mengajar Terbimbing</span><span class="document-card-description">Klik untuk melihat media pembelajaran langsung di dalam e-portofolio.</span></span>
+            </span>
+            <span class="file-link" aria-hidden="true"><span>Buka media</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
         </div></div></div>
       </div>
       <div class="accordion-item">
         <button class="accordion-header"><span class="ah-left"><span class="accordion-num">02</span><h3>Praktik Mengajar Mandiri Siklus 1</h3></span><span class="accordion-icon"></span></button>
         <div class="accordion-panel-wrap"><div class="accordion-panel-inner"><div class="accordion-panel">
-          <div class="file-card"><div class="file-left"><div class="file-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="file-name">Media Presentasi (PPT) — Siklus 1</div></div></div><a href="#" class="file-link" target="_blank">Lihat</a></div>
-          <div class="file-card"><div class="file-left"><div class="file-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="file-name">Media Visual Pendukung — Siklus 1</div></div></div><a href="#" class="file-link" target="_blank">Lihat</a></div>
+          <button type="button" class="file-card document-card media-document-card" data-document-id="1sFUjRBVFLvBqZ61kz5zaqP8OjOUj5gMN" data-document-title="Media Pembelajaran — Praktik Mengajar Mandiri Siklus 1" data-document-stage="Tahap 02 · Praktik Mengajar Mandiri Siklus 1" data-document-category="Dokumentasi PPL · Media Pembelajaran" aria-haspopup="dialog" aria-controls="documentModal">
+            <span class="file-left">
+              <span class="file-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 7.5h6M9 11h4"/></svg></span>
+              <span class="document-card-copy"><span class="file-meta">PDF · Media Pembelajaran</span><span class="file-name">Media Pembelajaran — Praktik Mandiri Siklus 1</span><span class="document-card-description">Klik untuk melihat media pembelajaran langsung di dalam e-portofolio.</span></span>
+            </span>
+            <span class="file-link" aria-hidden="true"><span>Buka media</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
         </div></div></div>
       </div>
       <div class="accordion-item">
@@ -2359,7 +2372,7 @@
   <div class="video-modal-dialog document-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="documentModalTitle" aria-describedby="documentModalDescription" tabindex="-1">
     <div class="video-modal-head">
       <div>
-        <p class="video-modal-kicker">Dokumentasi PPL · Rancangan Pembelajaran</p>
+        <p class="video-modal-kicker" id="documentModalKicker">Dokumentasi PPL · Rancangan Pembelajaran</p>
         <h2 class="video-modal-title" id="documentModalTitle">Dokumen Rancangan Pembelajaran</h2>
       </div>
       <button type="button" class="video-modal-close" data-document-close aria-label="Tutup dokumen">
@@ -2673,6 +2686,7 @@
   const documentModalDialog = documentModal?.querySelector('.document-modal-dialog');
   const documentModalFrame = document.getElementById('documentModalFrame');
   const documentModalTitle = document.getElementById('documentModalTitle');
+  const documentModalKicker = document.getElementById('documentModalKicker');
   const documentModalStage = document.getElementById('documentModalStage');
   const documentModalCloseButton = documentModal?.querySelector('.video-modal-close');
   const documentTriggers = [...document.querySelectorAll('[data-document-id]')];
@@ -2694,7 +2708,9 @@
     lastDocumentTrigger = trigger;
     const title = trigger.dataset.documentTitle || 'Dokumen Rancangan Pembelajaran';
     const stage = trigger.dataset.documentStage || 'Tahap Praktik Mengajar';
+    const category = trigger.dataset.documentCategory || 'Dokumentasi PPL · Rancangan Pembelajaran';
     if(documentModalTitle) documentModalTitle.textContent = title;
+    if(documentModalKicker) documentModalKicker.textContent = category;
     if(documentModalStage) documentModalStage.textContent = stage;
     documentModalFrame.title = title;
     documentModal.classList.remove('is-loaded');
