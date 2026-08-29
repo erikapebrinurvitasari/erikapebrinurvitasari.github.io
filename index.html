@@ -1857,6 +1857,290 @@
     ::view-transition-old(root),::view-transition-new(root){ animation-duration:.001ms !important; }
   }
 
+  /* DOCUMENTATION PPL — LEARNING ARCHIVE REDESIGN */
+  .documentation-hub{
+    --doc-night:#10251a;
+    --doc-night-soft:#1d4430;
+    --doc-glow:#b6d7bd;
+    min-height:100svh;
+    background:
+      radial-gradient(circle at 8% 8%,rgba(63,106,78,.16),transparent 24%),
+      radial-gradient(circle at 92% 58%,rgba(189,206,180,.2),transparent 28%),
+      linear-gradient(180deg,var(--cream) 0%,var(--green-mist) 56%,var(--cream) 100%);
+  }
+  .documentation-hub .wrap{ max-width:1180px; }
+  .doc-hub-hero{
+    position:relative; isolation:isolate; min-height:520px; display:grid; grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr); gap:clamp(2rem,5vw,5rem); align-items:center;
+    padding:clamp(2.2rem,5vw,4.6rem); overflow:hidden; border:1px solid rgba(255,255,255,.16); border-radius:40px;
+    background:
+      radial-gradient(circle at 78% 38%,rgba(173,216,183,.17),transparent 27%),
+      radial-gradient(circle at 12% 105%,rgba(123,169,135,.18),transparent 33%),
+      linear-gradient(138deg,#0d2116 0%,#173725 48%,#28563a 100%);
+    box-shadow:0 42px 90px rgba(24,54,35,.2),inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .doc-hub-hero::before{
+    content:""; position:absolute; inset:0; z-index:-2; opacity:.2; pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);
+    background-size:54px 54px; mask-image:linear-gradient(105deg,#000,transparent 72%); transform:perspective(700px) rotateX(58deg) scale(1.4) translateY(24%); transform-origin:center bottom;
+  }
+  .doc-hub-hero::after{
+    content:""; position:absolute; z-index:-1; width:520px; height:520px; right:-235px; bottom:-310px; border:1px solid rgba(255,255,255,.1); border-radius:50%;
+    box-shadow:0 0 0 52px rgba(255,255,255,.025),0 0 0 104px rgba(255,255,255,.018),0 0 0 156px rgba(255,255,255,.012); animation:docHaloBreathe 7s ease-in-out infinite;
+  }
+  .doc-hub-copy{ position:relative; z-index:2; }
+  .doc-hub-kicker{ display:flex; flex-wrap:wrap; align-items:center; gap:.55rem 1rem; margin:0 0 1.35rem; color:rgba(228,241,231,.66); font-family:var(--font-mono); font-size:.61rem; letter-spacing:.12em; text-transform:uppercase; }
+  .doc-hub-kicker span{ display:inline-flex; align-items:center; gap:.62rem; }
+  .doc-hub-kicker span:first-child::before{ content:""; width:28px; height:1px; background:#a9cdb1; }
+  .doc-hub-kicker span + span::before{ content:""; width:4px; height:4px; border-radius:50%; background:#a9cdb1; box-shadow:0 0 0 5px rgba(169,205,177,.09); }
+  .doc-hub-title{ margin:0; color:#f9fbf7; font-family:var(--font-display); font-size:clamp(3rem,6.8vw,5.7rem); font-weight:500; line-height:.91; letter-spacing:-.045em; }
+  .doc-hub-title span,.doc-hub-title em{ display:block; }
+  .doc-hub-title em{ margin-top:.12em; color:#a9cdb1; font-weight:500; }
+  .doc-hub-lead{ max-width:620px; margin:1.65rem 0 0; color:rgba(236,245,238,.7); font-size:clamp(.86rem,1.5vw,.98rem); line-height:1.82; }
+  .doc-hub-metrics{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; max-width:640px; margin-top:2.25rem; overflow:hidden; border:1px solid rgba(255,255,255,.13); border-radius:18px; background:rgba(255,255,255,.09); backdrop-filter:blur(10px); }
+  .doc-hub-metrics > div{ min-height:84px; display:flex; flex-direction:column; justify-content:center; gap:.18rem; padding:.85rem 1rem; background:rgba(8,25,15,.3); }
+  .doc-hub-metrics strong{ color:#fff; font-family:var(--font-display); font-size:1.35rem; font-weight:500; line-height:1; }
+  .doc-hub-metrics span{ color:rgba(225,239,228,.58); font-family:var(--font-mono); font-size:.52rem; letter-spacing:.05em; text-transform:uppercase; }
+  .doc-hub-orbit{ position:relative; width:min(390px,100%); aspect-ratio:1; justify-self:center; display:grid; place-items:center; filter:drop-shadow(0 30px 35px rgba(2,12,6,.28)); }
+  .doc-orbit-ring{ position:absolute; border-radius:50%; }
+  .doc-orbit-ring-a{ inset:7%; border:1px solid rgba(213,234,218,.26); box-shadow:inset 0 0 38px rgba(166,206,175,.045); animation:docOrbitSpin 24s linear infinite; }
+  .doc-orbit-ring-a::before,.doc-orbit-ring-a::after{ content:""; position:absolute; width:8px; height:8px; border:2px solid #c4dfca; border-radius:50%; background:#1f4a32; box-shadow:0 0 0 7px rgba(196,223,202,.08),0 0 22px rgba(196,223,202,.45); }
+  .doc-orbit-ring-a::before{ left:10%; top:18%; }
+  .doc-orbit-ring-a::after{ right:4%; bottom:28%; }
+  .doc-orbit-ring-b{ inset:23%; border:1px dashed rgba(213,234,218,.28); animation:docOrbitSpin 17s linear infinite reverse; }
+  .doc-orbit-axis{ position:absolute; background:linear-gradient(90deg,transparent,rgba(220,239,224,.18),transparent); }
+  .doc-orbit-axis-x{ width:100%; height:1px; }
+  .doc-orbit-axis-y{ width:1px; height:100%; background:linear-gradient(transparent,rgba(220,239,224,.18),transparent); }
+  .doc-orbit-core{ position:relative; z-index:3; width:39%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.22); border-radius:50%; background:radial-gradient(circle at 35% 28%,#47785a,#214b32 65%,#153622); color:#fff; box-shadow:0 24px 50px rgba(3,18,9,.38),0 0 0 12px rgba(255,255,255,.025); animation:docCoreFloat 5s ease-in-out infinite; }
+  .doc-orbit-core strong{ font-family:var(--font-display); font-size:clamp(2rem,5vw,3.5rem); font-weight:500; line-height:.9; }
+  .doc-orbit-core small{ margin-top:.5rem; color:rgba(235,245,237,.62); font-family:var(--font-mono); font-size:.5rem; letter-spacing:.12em; text-transform:uppercase; }
+  .doc-orbit-node{ position:absolute; z-index:4; padding:.48rem .7rem; border:1px solid rgba(255,255,255,.19); border-radius:999px; background:rgba(14,40,25,.72); color:rgba(239,247,241,.82); font-family:var(--font-mono); font-size:.53rem; letter-spacing:.06em; backdrop-filter:blur(10px); animation:docNodeFloat 4.6s ease-in-out infinite; }
+  .doc-orbit-node-1{ left:1%; top:38%; --node-x:-3px; --node-y:-7px; }
+  .doc-orbit-node-2{ right:1%; top:23%; --node-x:4px; --node-y:-5px; animation-delay:-1.2s; }
+  .doc-orbit-node-3{ left:16%; bottom:10%; --node-x:-2px; --node-y:6px; animation-delay:-2.2s; }
+  .doc-orbit-node-4{ right:7%; bottom:20%; --node-x:5px; --node-y:5px; animation-delay:-3.1s; }
+
+  .doc-archive-heading{ display:flex; align-items:end; justify-content:space-between; gap:2rem; margin:clamp(3.6rem,7vw,6rem) 0 1.6rem; padding:0 .25rem 1.25rem; border-bottom:1px solid var(--cream-line); }
+  .doc-archive-heading .eyebrow{ margin:0 0 .65rem; }
+  .doc-archive-heading h3{ margin:0; font-family:var(--font-display); font-size:clamp(1.75rem,3.6vw,2.7rem); font-weight:500; line-height:1.06; }
+  .doc-archive-heading > p{ max-width:390px; margin:0; color:var(--ink-soft); font-size:.82rem; line-height:1.75; }
+  .documentation-hub .doc-grid{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1rem; margin-top:0; perspective:1400px; }
+  .documentation-hub .doc-card{
+    --tilt-x:0deg; --tilt-y:0deg; --pointer-x:50%; --pointer-y:50%;
+    grid-column:span 6; min-height:350px; position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-rows:auto 1fr auto; padding:1.5rem;
+    border:1px solid rgba(43,74,55,.12); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(244,247,242,.9));
+    box-shadow:0 16px 42px rgba(31,58,39,.08); transform-style:preserve-3d; will-change:transform;
+    transition:transform .5s var(--ease),box-shadow .45s ease,border-color .4s ease,background .4s ease;
+  }
+  .documentation-hub .doc-card-wide{ grid-column:span 7; }
+  .documentation-hub .doc-card-narrow{ grid-column:span 5; }
+  .documentation-hub .doc-card-half{ grid-column:span 6; }
+  .documentation-hub .doc-card::before{
+    content:""; position:absolute; inset:0; z-index:-2; height:auto; background:
+      radial-gradient(circle at var(--pointer-x) var(--pointer-y),rgba(116,162,128,.2),transparent 29%),
+      linear-gradient(135deg,transparent 55%,rgba(63,106,78,.055));
+    opacity:.48; transform:none; transition:opacity .4s ease;
+  }
+  .documentation-hub .doc-card::after{ content:attr(data-index); right:.08em; bottom:-.2em; z-index:-1; color:rgba(63,106,78,.052); font-size:9.2rem; font-style:italic; opacity:1; transition:transform .7s var(--ease),color .4s ease; }
+  .documentation-hub .doc-card:hover{
+    transform:perspective(1100px) translateY(-10px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)); border-color:color-mix(in srgb,var(--doc-accent) 58%,transparent);
+    box-shadow:0 32px 68px rgba(31,58,39,.15);
+  }
+  .documentation-hub .doc-card:hover::before{ opacity:1; }
+  .documentation-hub .doc-card:hover::after{ color:rgba(63,106,78,.09); transform:translate3d(-9px,-5px,0); }
+  .documentation-hub .doc-card-head{ position:relative; z-index:3; display:flex; align-items:center; justify-content:space-between; gap:1rem; margin:0; transform:translateZ(24px); }
+  .documentation-hub .doc-card-num{ color:var(--green-deep); font-size:.58rem; font-weight:500; letter-spacing:.13em; }
+  .doc-card-status{ display:inline-flex; align-items:center; gap:.48rem; padding:.4rem .58rem; border:1px solid var(--cream-line); border-radius:999px; background:rgba(255,255,255,.58); color:var(--ink-faint); font-family:var(--font-mono); font-size:.49rem; letter-spacing:.05em; text-transform:uppercase; }
+  .doc-card-status i{ width:5px; height:5px; border-radius:50%; background:var(--doc-accent); box-shadow:0 0 0 4px color-mix(in srgb,var(--doc-accent) 20%,transparent); animation:docStatusPulse 2.4s ease-in-out infinite; }
+  .documentation-hub .doc-card-icon{ position:absolute; z-index:-1; right:clamp(1.2rem,3vw,2.2rem); top:50%; width:112px; height:112px; margin:0; border:1px solid color-mix(in srgb,var(--doc-accent) 46%,transparent); border-radius:50%; color:var(--green-deep); background:color-mix(in srgb,var(--doc-accent) 17%,transparent); transform:translateY(-50%) translateZ(8px); transition:transform .65s var(--ease),background .4s ease,border-color .4s ease; }
+  .documentation-hub .doc-card-icon::before,.documentation-hub .doc-card-icon::after,.documentation-hub .doc-card-icon span{ content:""; position:absolute; border-radius:50%; pointer-events:none; }
+  .documentation-hub .doc-card-icon::before{ inset:-16px; border:1px dashed color-mix(in srgb,var(--doc-accent) 34%,transparent); animation:docOrbitSpin 18s linear infinite; }
+  .documentation-hub .doc-card-icon::after{ inset:18px; border:1px solid color-mix(in srgb,var(--doc-accent) 32%,transparent); }
+  .documentation-hub .doc-card-icon span{ width:7px; height:7px; right:-19px; top:48%; background:var(--doc-accent); box-shadow:0 0 0 6px color-mix(in srgb,var(--doc-accent) 15%,transparent); animation:docIconSatellite 5.8s linear infinite; transform-origin:-65px 3px; }
+  .documentation-hub .doc-card-icon svg{ width:38px; height:38px; }
+  .documentation-hub .doc-card:hover .doc-card-icon{ transform:translateY(-50%) translateZ(32px) rotate(-7deg) scale(1.06); background:color-mix(in srgb,var(--doc-accent) 28%,transparent); }
+  .doc-card-copy{ align-self:end; position:relative; z-index:2; max-width:70%; padding-top:5.8rem; transform:translateZ(30px); }
+  .doc-card-label{ margin:0 0 .55rem !important; color:var(--green) !important; font-family:var(--font-mono); font-size:.54rem !important; font-weight:500; letter-spacing:.11em; line-height:1.3 !important; text-transform:uppercase; }
+  .documentation-hub .doc-card h3{ max-width:430px; margin:0 0 .62rem; font-size:clamp(1.35rem,2.5vw,2rem); font-weight:500; line-height:1.08; letter-spacing:-.02em; }
+  .doc-card-copy > p:last-child{ max-width:430px; margin:0; color:var(--ink-soft); font-size:.77rem; line-height:1.68; }
+  .documentation-hub .doc-card-link{ position:relative; z-index:3; display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.3rem; padding:1rem 0 0; border-top:1px solid var(--cream-line); color:var(--green-deep); transform:translateZ(28px); }
+  .documentation-hub .doc-card-link > span{ font-family:var(--font-mono); font-size:.57rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+  .documentation-hub .doc-card-link svg{ width:34px; height:34px; padding:8px; border:1px solid var(--cream-line); border-radius:50%; background:rgba(255,255,255,.62); transition:transform .42s var(--ease),background .35s ease,color .35s ease; }
+  .documentation-hub .doc-card:hover .doc-card-link svg{ transform:translateX(4px) rotate(-8deg); background:var(--green-deep); color:#fff; }
+
+  /* Documentation detail pages */
+  #rancangan{ --detail-number:"01"; --detail-accent:#8db497; }
+  #materi{ --detail-number:"02"; --detail-accent:#d4b77c; }
+  #media{ --detail-number:"03"; --detail-accent:#83aeb3; }
+  #video{ --detail-number:"04"; --detail-accent:#c58f7b; }
+  #nonmengajar{ --detail-number:"05"; --detail-accent:#a58ab4; }
+  #instrumen{ --detail-number:"06"; --detail-accent:#7ea38b; }
+  [data-nav-group="dokumentasi"]{
+    background:
+      radial-gradient(circle at 92% 5%,color-mix(in srgb,var(--detail-accent) 16%,transparent),transparent 23%),
+      radial-gradient(circle at 3% 52%,rgba(63,106,78,.08),transparent 25%),
+      linear-gradient(180deg,var(--cream),var(--green-mist) 48%,var(--cream)) !important;
+  }
+  [data-nav-group="dokumentasi"] > .wrap{ max-width:1120px; }
+  [data-nav-group="dokumentasi"] .breadcrumb{ position:relative; z-index:3; width:max-content; max-width:100%; margin-bottom:1.15rem; padding:.52rem .72rem; border:1px solid var(--cream-line); border-radius:999px; background:rgba(255,255,255,.68); box-shadow:0 8px 24px rgba(36,48,42,.06); backdrop-filter:blur(12px); }
+  [data-nav-group="dokumentasi"] .breadcrumb a{ padding:0; border:0; background:none; }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb){
+    position:relative; isolation:isolate; min-height:290px; display:flex; flex-direction:column; justify-content:center; margin-bottom:2.4rem; padding:clamp(2rem,5vw,4rem); overflow:hidden;
+    border:1px solid rgba(255,255,255,.14); border-radius:34px; background:
+      radial-gradient(circle at 82% 30%,color-mix(in srgb,var(--detail-accent) 21%,transparent),transparent 25%),
+      linear-gradient(135deg,#10251a,#1b422d 58%,#285b3c); color:#fff; box-shadow:0 30px 72px rgba(25,57,37,.17);
+  }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb)::before{ content:""; position:absolute; z-index:-1; inset:0; opacity:.18; background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px); background-size:44px 44px; mask-image:linear-gradient(90deg,#000,transparent 75%); }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb)::after{ content:var(--detail-number); position:absolute; z-index:-1; right:.05em; bottom:-.23em; color:rgba(255,255,255,.055); font-family:var(--font-display); font-size:clamp(10rem,26vw,18rem); font-style:italic; font-weight:600; line-height:1; }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .eyebrow{ width:max-content; margin:0 0 .35rem; color:color-mix(in srgb,var(--detail-accent) 72%,#fff); }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .eyebrow::before{ background:var(--detail-accent); }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .section-title{ max-width:760px; margin:.55rem 0 .8rem; color:#fff; font-size:clamp(2.15rem,5vw,4.25rem); font-weight:500; line-height:.98; letter-spacing:-.035em; }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .page-title-piece{ color:#fff; }
+  [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .section-sub{ position:relative; z-index:1; max-width:690px; margin:0; color:rgba(236,245,238,.7); font-size:.88rem; line-height:1.8; }
+
+  [data-nav-group="dokumentasi"] .accordion-group{ position:relative; gap:1rem; margin-top:0; padding-left:42px; }
+  [data-nav-group="dokumentasi"] .accordion-group::before{ content:""; position:absolute; left:10px; top:24px; bottom:24px; width:1px; background:linear-gradient(var(--detail-accent),var(--green-soft) 82%,transparent); }
+  [data-nav-group="dokumentasi"] .accordion-item{ position:relative; overflow:visible; border:1px solid rgba(43,74,55,.12); border-radius:22px; background:rgba(255,255,255,.8); box-shadow:0 12px 32px rgba(30,60,39,.055); backdrop-filter:blur(10px); }
+  [data-nav-group="dokumentasi"] .accordion-item::before{ content:""; position:absolute; left:-39px; top:25px; width:15px; height:15px; border:4px solid var(--cream); border-radius:50%; background:var(--green-soft); box-shadow:0 0 0 1px rgba(63,106,78,.24); transition:transform .4s var(--ease),background .35s ease,box-shadow .35s ease; }
+  [data-nav-group="dokumentasi"] .accordion-item.active{ border-color:color-mix(in srgb,var(--detail-accent) 55%,transparent); box-shadow:0 22px 48px rgba(31,62,41,.11); }
+  [data-nav-group="dokumentasi"] .accordion-item.active::before{ background:var(--detail-accent); transform:scale(1.12); box-shadow:0 0 0 1px color-mix(in srgb,var(--detail-accent) 65%,transparent),0 0 0 8px color-mix(in srgb,var(--detail-accent) 14%,transparent); animation:docStagePulse 2.7s ease-in-out infinite; }
+  [data-nav-group="dokumentasi"] .accordion-header{ min-height:76px; padding:1.15rem 1.25rem; border-radius:21px; transition:background .4s ease,color .35s ease,border-radius .35s ease; }
+  [data-nav-group="dokumentasi"] .accordion-header:hover{ background:color-mix(in srgb,var(--detail-accent) 10%,transparent); }
+  [data-nav-group="dokumentasi"] .accordion-item.active .accordion-header{ border-radius:21px 21px 0 0; background:linear-gradient(115deg,#183824,#28573a); }
+  [data-nav-group="dokumentasi"] .accordion-num{ width:39px; height:39px; border:1px solid color-mix(in srgb,var(--detail-accent) 42%,transparent); background:color-mix(in srgb,var(--detail-accent) 13%,transparent); color:var(--green-deep); font-size:.62rem; }
+  [data-nav-group="dokumentasi"] .accordion-item.active .accordion-num{ border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.1); color:#dcecdf; }
+  [data-nav-group="dokumentasi"] .accordion-header h3{ font-size:clamp(.92rem,2vw,1.12rem); }
+  [data-nav-group="dokumentasi"] .accordion-item.active .accordion-header h3{ color:#fff; }
+  [data-nav-group="dokumentasi"] .accordion-item.active .accordion-icon::before,[data-nav-group="dokumentasi"] .accordion-item.active .accordion-icon::after{ background:#dbeadf; }
+  [data-nav-group="dokumentasi"] .accordion-panel-wrap{ overflow:hidden; border-radius:0 0 21px 21px; }
+  [data-nav-group="dokumentasi"] .accordion-panel,[data-nav-group="dokumentasi"] .video-panel{ padding:1.15rem; gap:.8rem; border-top:1px solid rgba(63,106,78,.1); background:linear-gradient(180deg,rgba(250,252,249,.86),rgba(241,246,241,.8)); }
+  [data-nav-group="dokumentasi"] .file-card{ min-height:68px; border:1px solid rgba(63,106,78,.11); border-radius:16px; background:rgba(255,255,255,.8); box-shadow:0 8px 20px rgba(32,62,41,.045); }
+  [data-nav-group="dokumentasi"] .file-card:not(.document-card):hover{ transform:translateX(5px); border-color:color-mix(in srgb,var(--detail-accent) 48%,transparent); background:#fff; box-shadow:0 12px 28px rgba(32,62,41,.08); }
+  [data-nav-group="dokumentasi"] .file-card.document-card{ min-height:124px; border-radius:20px; background:linear-gradient(135deg,#fff,rgba(241,246,241,.92)); }
+  [data-nav-group="dokumentasi"] .document-card .file-ico{ width:54px; height:62px; border-radius:16px; background:linear-gradient(145deg,#477658,#234c33); }
+  [data-nav-group="dokumentasi"] .file-card.document-card::before{ background:linear-gradient(var(--detail-accent),var(--green)); }
+  [data-nav-group="dokumentasi"] .file-card.document-card::after{ color:color-mix(in srgb,var(--detail-accent) 10%,transparent); }
+
+  [data-nav-group="dokumentasi"] .video-card.video-card-featured{ min-height:360px; overflow:hidden; border-radius:26px; border-color:rgba(63,106,78,.14); box-shadow:0 22px 52px rgba(28,59,38,.12); }
+  [data-nav-group="dokumentasi"] .video-card-featured .video-body{ background:radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--detail-accent) 17%,transparent),transparent 38%),linear-gradient(145deg,#fff,#f2f6f1); }
+  [data-nav-group="dokumentasi"] .video-thumb .play{ width:74px; height:74px; }
+  [data-nav-group="dokumentasi"] .video-card:hover .play{ transform:scale(1.12) rotate(-4deg); }
+
+  [data-nav-group="dokumentasi"] .activity-grid{ grid-template-columns:repeat(12,minmax(0,1fr)); gap:1rem; margin-top:0; }
+  [data-nav-group="dokumentasi"] .activity-card{ grid-column:span 6; border-radius:26px; border-color:rgba(63,106,78,.12); background:rgba(255,255,255,.84); box-shadow:0 16px 38px rgba(31,61,40,.07); }
+  [data-nav-group="dokumentasi"] .activity-card:nth-child(1),[data-nav-group="dokumentasi"] .activity-card:nth-child(4){ grid-column:span 7; }
+  [data-nav-group="dokumentasi"] .activity-card:nth-child(2),[data-nav-group="dokumentasi"] .activity-card:nth-child(3){ grid-column:span 5; }
+  [data-nav-group="dokumentasi"] .activity-photo{ min-height:210px; background:radial-gradient(circle at 72% 20%,color-mix(in srgb,var(--detail-accent) 25%,transparent),transparent 27%),linear-gradient(145deg,#e9f1e9,#d9e7da); }
+  [data-nav-group="dokumentasi"] .activity-photo > svg{ width:62px; padding:16px; border:1px solid rgba(63,106,78,.17); border-radius:50%; background:rgba(255,255,255,.45); }
+  [data-nav-group="dokumentasi"] .activity-body{ padding:1.45rem 1.5rem 1.65rem; }
+  [data-nav-group="dokumentasi"] .activity-body h3{ font-size:clamp(1.12rem,2.4vw,1.5rem); line-height:1.18; }
+  [data-nav-group="dokumentasi"] .activity-body p{ color:var(--ink-soft); font-size:.8rem; line-height:1.8; text-align:left; }
+
+  /* Immersive documentation viewers */
+  .video-modal-backdrop{ background:radial-gradient(circle at 50% 44%,rgba(100,157,115,.3),transparent 38%),rgba(5,15,9,.84); backdrop-filter:blur(18px) saturate(.85); }
+  .video-modal-dialog{ border-radius:34px; box-shadow:0 52px 130px rgba(2,10,5,.62),inset 0 1px 0 rgba(255,255,255,.08); transform:translateY(44px) scale(.92); }
+  .video-modal.is-open .video-modal-dialog{ animation:docViewerSettle .72s var(--ease) both; }
+  .video-modal-head{ position:relative; }
+  .video-modal-head::after{ content:""; position:absolute; left:1.6rem; right:1.6rem; bottom:0; height:1px; background:linear-gradient(90deg,rgba(255,255,255,.18),transparent); }
+  .document-modal .video-modal-head{ background:radial-gradient(circle at 85% 0%,rgba(182,215,189,.15),transparent 32%),linear-gradient(115deg,#10291b,#285a3c); }
+  .document-modal-viewer-shell{ border-radius:21px; box-shadow:0 22px 48px rgba(24,53,34,.15); }
+  .activity-modal-image-shell{ border-radius:24px; }
+
+  @keyframes docOrbitSpin{ to{ transform:rotate(360deg); } }
+  @keyframes docCoreFloat{ 0%,100%{ transform:translateY(-5px) scale(.985); } 50%{ transform:translateY(6px) scale(1.02); } }
+  @keyframes docNodeFloat{ 0%,100%{ transform:translate3d(0,0,0); } 50%{ transform:translate3d(var(--node-x),var(--node-y),0); } }
+  @keyframes docHaloBreathe{ 0%,100%{ transform:scale(.94); opacity:.7; } 50%{ transform:scale(1.04); opacity:1; } }
+  @keyframes docStatusPulse{ 0%,100%{ transform:scale(.9); opacity:.7; } 50%{ transform:scale(1.15); opacity:1; } }
+  @keyframes docIconSatellite{ to{ transform:rotate(360deg); } }
+  @keyframes docStagePulse{ 0%,100%{ box-shadow:0 0 0 1px color-mix(in srgb,var(--detail-accent) 65%,transparent),0 0 0 6px color-mix(in srgb,var(--detail-accent) 12%,transparent); } 50%{ box-shadow:0 0 0 1px color-mix(in srgb,var(--detail-accent) 75%,transparent),0 0 0 11px color-mix(in srgb,var(--detail-accent) 5%,transparent); } }
+  @keyframes docViewerSettle{ 0%{ opacity:0; filter:blur(12px); transform:translateY(44px) scale(.92); } 68%{ opacity:1; filter:blur(0); transform:translateY(-4px) scale(1.008); } 100%{ opacity:1; filter:blur(0); transform:translateY(0) scale(1); } }
+
+  html[data-theme="dark"] .documentation-hub{ background:radial-gradient(circle at 8% 8%,rgba(112,162,124,.12),transparent 25%),radial-gradient(circle at 90% 54%,rgba(85,132,96,.1),transparent 28%),linear-gradient(180deg,#09120c,var(--cream) 54%,#0b1510); }
+  html[data-theme="dark"] .doc-hub-hero{ background:radial-gradient(circle at 78% 38%,rgba(153,201,164,.14),transparent 27%),linear-gradient(138deg,#07130c,#10281a 48%,#1c452d); box-shadow:0 42px 90px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.06); }
+  html[data-theme="dark"] .doc-archive-heading{ border-color:rgba(130,175,141,.16); }
+  html[data-theme="dark"] .documentation-hub .doc-card{ border-color:rgba(126,174,138,.16); background:linear-gradient(145deg,rgba(20,34,25,.98),rgba(13,24,17,.94)); box-shadow:0 18px 46px rgba(0,0,0,.25); }
+  html[data-theme="dark"] .documentation-hub .doc-card:hover{ border-color:color-mix(in srgb,var(--doc-accent) 48%,transparent); box-shadow:0 32px 72px rgba(0,0,0,.38); }
+  html[data-theme="dark"] .documentation-hub .doc-card::before{ background:radial-gradient(circle at var(--pointer-x) var(--pointer-y),rgba(116,162,128,.17),transparent 30%),linear-gradient(135deg,transparent 55%,rgba(126,174,138,.04)); }
+  html[data-theme="dark"] .documentation-hub .doc-card::after{ color:rgba(151,196,161,.045); }
+  html[data-theme="dark"] .doc-card-status,html[data-theme="dark"] .documentation-hub .doc-card-link svg{ border-color:rgba(130,175,141,.16); background:rgba(255,255,255,.035); }
+  html[data-theme="dark"] .documentation-hub .doc-card-link{ border-color:rgba(130,175,141,.14); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"]{ background:radial-gradient(circle at 92% 5%,color-mix(in srgb,var(--detail-accent) 9%,transparent),transparent 23%),linear-gradient(180deg,#09130d,var(--cream) 44%,#0b1610) !important; }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .breadcrumb{ border-color:rgba(130,175,141,.16); background:rgba(17,30,22,.78); box-shadow:0 10px 28px rgba(0,0,0,.2); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb){ background:radial-gradient(circle at 82% 30%,color-mix(in srgb,var(--detail-accent) 15%,transparent),transparent 25%),linear-gradient(135deg,#091a10,#133321 58%,#1f4c31); box-shadow:0 30px 72px rgba(0,0,0,.3); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .accordion-item{ border-color:rgba(130,175,141,.15); background:rgba(17,29,21,.9); box-shadow:0 12px 32px rgba(0,0,0,.18); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .accordion-item::before{ border-color:#0f1b14; }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .accordion-item.active .accordion-header{ background:linear-gradient(115deg,#102a1a,#204b31); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .accordion-panel,html[data-theme="dark"] [data-nav-group="dokumentasi"] .video-panel{ border-color:rgba(130,175,141,.12); background:linear-gradient(180deg,rgba(15,27,19,.96),rgba(10,20,14,.92)); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .file-card{ border-color:rgba(130,175,141,.14); background:rgba(20,34,25,.84); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .file-card:not(.document-card):hover{ background:#182b1f; }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .file-card.document-card{ background:linear-gradient(135deg,#15261b,#0e1c14); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .video-card-featured .video-body{ background:radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--detail-accent) 11%,transparent),transparent 38%),linear-gradient(145deg,#15251a,#0c1811); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .activity-card{ border-color:rgba(130,175,141,.15); background:rgba(17,30,22,.9); box-shadow:0 16px 38px rgba(0,0,0,.2); }
+  html[data-theme="dark"] [data-nav-group="dokumentasi"] .activity-photo{ border-color:rgba(130,175,141,.14); background:radial-gradient(circle at 72% 20%,color-mix(in srgb,var(--detail-accent) 13%,transparent),transparent 27%),linear-gradient(145deg,#182b1f,#112117); }
+
+  @media (max-width:900px){
+    .doc-hub-hero{ grid-template-columns:1fr; min-height:0; }
+    .doc-hub-orbit{ width:min(360px,82vw); margin:0 auto; }
+    .documentation-hub .doc-card-wide,.documentation-hub .doc-card-narrow,.documentation-hub .doc-card-half{ grid-column:span 6; }
+    .doc-card-copy{ max-width:78%; }
+    [data-nav-group="dokumentasi"] .activity-card,[data-nav-group="dokumentasi"] .activity-card:nth-child(n){ grid-column:span 6; }
+  }
+  @media (max-width:680px){
+    .documentation-hub{ padding-left:.9rem !important; padding-right:.9rem !important; }
+    .documentation-hub > .wrap > .doc-hub-hero.reveal:first-child{ padding:2rem 1.25rem 1.7rem; border-radius:27px; background:radial-gradient(circle at 78% 38%,rgba(173,216,183,.17),transparent 27%),linear-gradient(138deg,#0d2116 0%,#173725 48%,#28563a 100%); box-shadow:0 30px 62px rgba(24,54,35,.2),inset 0 1px 0 rgba(255,255,255,.08); }
+    .documentation-hub > .wrap > .doc-hub-hero.reveal:first-child::after{ right:-170px; top:auto; bottom:-215px; width:360px; height:360px; box-shadow:0 0 0 38px rgba(255,255,255,.025),0 0 0 76px rgba(255,255,255,.016); animation:docHaloBreathe 7s ease-in-out infinite; }
+    .documentation-hub > .wrap > .doc-archive-heading.reveal .eyebrow{ border:0; background:transparent; color:var(--green-deep); }
+    .documentation-hub > .wrap > .doc-archive-heading.reveal .eyebrow::before{ background:var(--green); }
+    .doc-hub-kicker{ gap:.55rem; font-size:.5rem; }
+    .doc-hub-kicker span + span::before{ display:none; }
+    .doc-hub-title{ font-size:clamp(2.65rem,14vw,4.25rem); }
+    .doc-hub-lead{ font-size:.82rem; }
+    .doc-hub-metrics{ grid-template-columns:1fr 1fr; border-radius:15px; }
+    .doc-hub-metrics > div{ min-height:72px; padding:.75rem .8rem; }
+    .doc-hub-metrics > div:last-child{ grid-column:1/-1; }
+    .doc-hub-orbit{ width:min(310px,84vw); }
+    .doc-archive-heading{ align-items:start; flex-direction:column; gap:.8rem; margin-top:3.2rem; }
+    .doc-archive-heading > p{ font-size:.76rem; }
+    .documentation-hub .doc-grid{ grid-template-columns:1fr; gap:.8rem; }
+    .documentation-hub .doc-card,.documentation-hub .doc-card-wide,.documentation-hub .doc-card-narrow,.documentation-hub .doc-card-half{ grid-column:1; min-height:310px; padding:1.2rem; border-radius:23px; }
+    .documentation-hub .doc-card:hover{ transform:translateY(-5px); }
+    .documentation-hub .doc-card-icon{ right:1.4rem; width:88px; height:88px; }
+    .documentation-hub .doc-card-icon svg{ width:31px; height:31px; }
+    .documentation-hub .doc-card-icon span{ right:-18px; transform-origin:-52px 3px; }
+    .doc-card-copy{ max-width:76%; padding-top:4.8rem; }
+    .documentation-hub .doc-card h3{ font-size:1.42rem; }
+    .doc-card-copy > p:last-child{ font-size:.71rem; }
+    [data-nav-group="dokumentasi"]{ padding-left:.9rem !important; padding-right:.9rem !important; }
+    [data-nav-group="dokumentasi"] .breadcrumb{ width:100%; padding:.55rem .65rem; overflow:hidden; font-size:.56rem; white-space:nowrap; }
+    [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb){ min-height:300px; margin-bottom:1.5rem; padding:2rem 1.3rem; border-radius:25px; }
+    [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .section-title{ font-size:clamp(2rem,11vw,3.1rem); }
+    [data-nav-group="dokumentasi"] > .wrap > .reveal:not(.breadcrumb) .section-sub{ font-size:.78rem; }
+    [data-nav-group="dokumentasi"] .accordion-group{ padding-left:25px; }
+    [data-nav-group="dokumentasi"] .accordion-group::before{ left:5px; }
+    [data-nav-group="dokumentasi"] .accordion-item::before{ left:-25px; width:11px; height:11px; border-width:3px; }
+    [data-nav-group="dokumentasi"] .accordion-header{ min-height:68px; padding:.9rem .82rem; }
+    [data-nav-group="dokumentasi"] .accordion-header .ah-left{ gap:.65rem; }
+    [data-nav-group="dokumentasi"] .accordion-num{ width:32px; height:32px; }
+    [data-nav-group="dokumentasi"] .accordion-header h3{ font-size:.88rem; line-height:1.3; }
+    [data-nav-group="dokumentasi"] .accordion-panel,[data-nav-group="dokumentasi"] .video-panel{ padding:.72rem; }
+    [data-nav-group="dokumentasi"] .file-card{ padding:.78rem; }
+    [data-nav-group="dokumentasi"] .file-card.document-card{ min-height:108px; border-radius:17px; }
+    [data-nav-group="dokumentasi"] .video-card.video-card-featured{ min-height:0; border-radius:20px; }
+    [data-nav-group="dokumentasi"] .video-card-featured .video-body{ padding:1.25rem 1rem 1.4rem; }
+    [data-nav-group="dokumentasi"] .activity-grid{ grid-template-columns:1fr; }
+    [data-nav-group="dokumentasi"] .activity-card,[data-nav-group="dokumentasi"] .activity-card:nth-child(n){ grid-column:1; border-radius:22px; }
+    [data-nav-group="dokumentasi"] .activity-photo{ min-height:180px; }
+    [data-nav-group="dokumentasi"] .activity-body{ padding:1.2rem 1.1rem 1.35rem; }
+    .video-modal-dialog{ border-radius:24px; }
+    .document-modal-viewer-shell,.activity-modal-image-shell{ border-radius:14px; }
+    html[data-theme="dark"] .documentation-hub > .wrap > .doc-hub-hero.reveal:first-child{ background:radial-gradient(circle at 78% 38%,rgba(153,201,164,.14),transparent 27%),linear-gradient(138deg,#07130c,#10281a 48%,#1c452d); box-shadow:0 32px 66px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.06); }
+    html[data-theme="dark"] .documentation-hub > .wrap > .doc-archive-heading.reveal .eyebrow{ background:transparent; color:var(--green-deep); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .doc-orbit-ring,.doc-orbit-core,.doc-orbit-node,.doc-card-status i,.documentation-hub .doc-card-icon::before,.documentation-hub .doc-card-icon span,[data-nav-group="dokumentasi"] .accordion-item.active::before{ animation:none !important; }
+    .documentation-hub .doc-card:hover{ transform:translateY(-4px); }
+    .video-modal.is-open .video-modal-dialog{ animation:none !important; opacity:1; filter:none; transform:none; }
+  }
+
   ::selection{ background:var(--green-soft); color:var(--ink); }
   :focus-visible{ outline:2px solid var(--green-deep); outline-offset:3px; }
 </style>
@@ -2125,47 +2409,72 @@
 <!-- 3. DOKUMENTASI PPL -->
 <section class="documentation-hub section-pad page-view" id="dokumentasi" data-page-title="Dokumentasi PPL" tabindex="-1" hidden>
   <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">Dokumentasi PPL</p>
-      <h2 class="section-title">Kegiatan &amp; Artefak Pembelajaran</h2>
-      <p class="section-sub">Jelajahi seluruh rancangan, materi, media, video, kegiatan, dan instrumen penilaian selama Praktik Pengalaman Lapangan.</p>
+    <header class="doc-hub-hero reveal">
+      <div class="doc-hub-copy">
+        <p class="doc-hub-kicker"><span>Praktik Pengalaman Lapangan</span><span>SDN Pandanwangi 3 Malang</span></p>
+        <h2 class="doc-hub-title"><span>Jejak belajar.</span><em>Bukti bertumbuh.</em></h2>
+        <p class="doc-hub-lead">Sebuah arsip perjalanan calon pendidik—merangkum proses merancang, mengajar, merefleksikan, dan bertumbuh melalui pengalaman nyata di sekolah.</p>
+        <div class="doc-hub-metrics" aria-label="Ringkasan dokumentasi">
+          <div><strong>06</strong><span>Kategori utama</span></div>
+          <div><strong>05</strong><span>Tahap praktik</span></div>
+          <div><strong>PPL</strong><span>Arsip pembelajaran</span></div>
+        </div>
+      </div>
+      <div class="doc-hub-orbit" aria-hidden="true">
+        <span class="doc-orbit-ring doc-orbit-ring-a"></span>
+        <span class="doc-orbit-ring doc-orbit-ring-b"></span>
+        <span class="doc-orbit-axis doc-orbit-axis-x"></span>
+        <span class="doc-orbit-axis doc-orbit-axis-y"></span>
+        <span class="doc-orbit-node doc-orbit-node-1">RPP</span>
+        <span class="doc-orbit-node doc-orbit-node-2">Materi</span>
+        <span class="doc-orbit-node doc-orbit-node-3">Media</span>
+        <span class="doc-orbit-node doc-orbit-node-4">Video</span>
+        <span class="doc-orbit-core"><strong>06</strong><small>arsip utama</small></span>
+      </div>
+    </header>
+    <div class="doc-archive-heading reveal">
+      <div>
+        <p class="eyebrow">Ruang Dokumentasi</p>
+        <h3>Pilih bagian yang ingin dijelajahi</h3>
+      </div>
+      <p>Setiap kategori menyimpan bukti proses, praktik, dan refleksi selama pelaksanaan PPL.</p>
     </div>
     <div class="doc-grid reveal-stagger">
-      <a class="doc-card" href="#rancangan" data-index="01">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span class="doc-card-num">KATEGORI 01</span></div>
-        <h3>Rancangan Pembelajaran</h3>
-        <p>Kumpulan RPP, modul ajar, serta rancangan asesmen pada setiap tahap praktik mengajar.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-wide" href="#rancangan" data-index="01" style="--doc-i:0;--doc-accent:#8db497;">
+        <div class="doc-card-head"><span class="doc-card-num">01 / 06</span><span class="doc-card-status"><i></i>Perencanaan</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Fondasi pembelajaran</p><h3>Rancangan Pembelajaran</h3><p>Kumpulan RPP, modul ajar, serta rancangan asesmen pada setiap tahap praktik mengajar.</p></div>
+        <span class="doc-card-link"><span>Jelajahi arsip</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="doc-card" href="#materi" data-index="02">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span class="doc-card-num">KATEGORI 02</span></div>
-        <h3>Materi Pembelajaran</h3>
-        <p>Bahan ajar dan ringkasan materi yang digunakan untuk mendukung proses pembelajaran.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-narrow" href="#materi" data-index="02" style="--doc-i:1;--doc-accent:#d4b77c;">
+        <div class="doc-card-head"><span class="doc-card-num">02 / 06</span><span class="doc-card-status"><i></i>Bahan ajar</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Isi pembelajaran</p><h3>Materi Pembelajaran</h3><p>Bahan ajar dan ringkasan materi yang mendukung proses pembelajaran.</p></div>
+        <span class="doc-card-link"><span>Jelajahi arsip</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="doc-card" href="#media" data-index="03">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="doc-card-num">KATEGORI 03</span></div>
-        <h3>Media Pembelajaran</h3>
-        <p>Presentasi dan media visual pendukung untuk menciptakan pengalaman belajar yang menarik.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-narrow" href="#media" data-index="03" style="--doc-i:2;--doc-accent:#83aeb3;">
+        <div class="doc-card-head"><span class="doc-card-num">03 / 06</span><span class="doc-card-status"><i></i>Eksplorasi visual</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Pengalaman belajar</p><h3>Media Pembelajaran</h3><p>Presentasi dan media visual untuk menciptakan pembelajaran yang menarik.</p></div>
+        <span class="doc-card-link"><span>Jelajahi arsip</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="doc-card" href="#video" data-index="04">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4Z"/></svg></span><span class="doc-card-num">KATEGORI 04</span></div>
-        <h3>Video Praktik Mengajar</h3>
-        <p>Rekaman proses praktik mengajar terbimbing dan mandiri pada setiap siklus pembelajaran.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-wide" href="#video" data-index="04" style="--doc-i:3;--doc-accent:#c58f7b;">
+        <div class="doc-card-head"><span class="doc-card-num">04 / 06</span><span class="doc-card-status"><i></i>Rekaman praktik</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4Z"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Praktik di kelas</p><h3>Video Praktik Mengajar</h3><p>Rekaman proses praktik mengajar terbimbing dan mandiri pada setiap siklus.</p></div>
+        <span class="doc-card-link"><span>Tonton perjalanan</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="doc-card" href="#nonmengajar" data-index="05">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="doc-card-num">KATEGORI 05</span></div>
-        <h3>Kegiatan Non-Mengajar</h3>
-        <p>Dokumentasi keterlibatan dalam kegiatan sekolah, kepanitiaan, dan pengembangan karakter.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-half" href="#nonmengajar" data-index="05" style="--doc-i:4;--doc-accent:#a58ab4;">
+        <div class="doc-card-head"><span class="doc-card-num">05 / 06</span><span class="doc-card-status"><i></i>Kehidupan sekolah</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Belajar dari kebersamaan</p><h3>Kegiatan Non-Mengajar</h3><p>Keterlibatan dalam kegiatan sekolah, kepanitiaan, dan pengembangan karakter.</p></div>
+        <span class="doc-card-link"><span>Lihat dokumentasi</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="doc-card" href="#instrumen" data-index="06">
-        <div class="doc-card-head"><span class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 5h6M9 3h6v4H9z"/><path d="M7 5H5a2 2 0 0 0-2 2v13h18V7a2 2 0 0 0-2-2h-2"/><path d="m8 14 2 2 5-5"/></svg></span><span class="doc-card-num">KATEGORI 06</span></div>
-        <h3>Instrumen Penilaian</h3>
-        <p>Kisi-kisi soal dan lembar penilaian yang digunakan pada setiap tahap praktik mengajar.</p>
-        <span class="doc-card-link">Buka kategori <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a class="doc-card doc-card-half" href="#instrumen" data-index="06" style="--doc-i:5;--doc-accent:#7ea38b;">
+        <div class="doc-card-head"><span class="doc-card-num">06 / 06</span><span class="doc-card-status"><i></i>Evaluasi</span></div>
+        <div class="doc-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 5h6M9 3h6v4H9z"/><path d="M7 5H5a2 2 0 0 0-2 2v13h18V7a2 2 0 0 0-2-2h-2"/><path d="m8 14 2 2 5-5"/></svg><span></span></div>
+        <div class="doc-card-copy"><p class="doc-card-label">Mengukur perkembangan</p><h3>Instrumen Penilaian</h3><p>Kisi-kisi soal dan lembar penilaian untuk setiap tahap praktik mengajar.</p></div>
+        <span class="doc-card-link"><span>Jelajahi instrumen</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
   </div>
@@ -2964,9 +3273,48 @@
   }, { threshold: 0.14 });
   revealEls.forEach(el => io.observe(el));
 
-  document.querySelectorAll('.accordion-header').forEach(btn => {
+  document.querySelectorAll('.documentation-hub .doc-card').forEach(card => {
+    if(reducedMotion) return;
+    card.addEventListener('pointermove', event => {
+      if(event.pointerType === 'touch') return;
+      const rect = card.getBoundingClientRect();
+      const x = Math.max(0,Math.min(1,(event.clientX - rect.left) / rect.width));
+      const y = Math.max(0,Math.min(1,(event.clientY - rect.top) / rect.height));
+      card.style.setProperty('--pointer-x',`${x * 100}%`);
+      card.style.setProperty('--pointer-y',`${y * 100}%`);
+      card.style.setProperty('--tilt-x',`${(x - .5) * 4.8}deg`);
+      card.style.setProperty('--tilt-y',`${(.5 - y) * 4.2}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--pointer-x','50%');
+      card.style.setProperty('--pointer-y','50%');
+      card.style.setProperty('--tilt-x','0deg');
+      card.style.setProperty('--tilt-y','0deg');
+    });
+  });
+
+  document.querySelectorAll('.accordion-header').forEach((btn,index) => {
+    const item = btn.closest('.accordion-item');
+    const panel = item?.querySelector('.accordion-panel-wrap');
+    const buttonId = `accordion-button-${index + 1}`;
+    const panelId = `accordion-panel-${index + 1}`;
+    btn.type = 'button';
+    btn.id = buttonId;
+    btn.setAttribute('aria-controls',panelId);
+    btn.setAttribute('aria-expanded',String(item?.classList.contains('active')));
+    if(panel){
+      panel.id = panelId;
+      panel.setAttribute('role','region');
+      panel.setAttribute('aria-labelledby',buttonId);
+      panel.setAttribute('aria-hidden',String(!item?.classList.contains('active')));
+      panel.inert = !item?.classList.contains('active');
+    }
     btn.addEventListener('click', () => {
-      btn.closest('.accordion-item').classList.toggle('active');
+      item?.classList.toggle('active');
+      const isExpanded = item?.classList.contains('active') || false;
+      btn.setAttribute('aria-expanded',String(isExpanded));
+      panel?.setAttribute('aria-hidden',String(!isExpanded));
+      if(panel) panel.inert = !isExpanded;
     });
   });
 
