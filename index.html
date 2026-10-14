@@ -175,7 +175,7 @@ function say(m){toast.textContent=m;toast.classList.add('visible');clearTimeout(
 function updateControl(){$('cur').textContent=ROUTES[active]||'Portofolio';$('swapl').textContent='Pindah ke '+ROUTES[active==='a'?'b':'a'];}
 
 /* Iframe tetap di stage (tidak dipindah → tidak reload) */
-function makeFrame(k){if(frames[k])return frames[k];const f=document.createElement('iframe');f.title=NAMES[k];f.referrerPolicy='strict-origin-when-cross-origin';f.allow='fullscreen; clipboard-read; clipboard-write';f.setAttribute('allowfullscreen','');f.dataset.loaded='false';
+function makeFrame(k){if(frames[k])return frames[k];const f=document.createElement('iframe');f.title=NAMES[k];f.referrerPolicy='strict-origin-when-cross-origin';f.allow='fullscreen; autoplay; encrypted-media; picture-in-picture; clipboard-read; clipboard-write';f.setAttribute('allowfullscreen','');f.dataset.loaded='false';
 f.addEventListener('load',()=>{f.dataset.loaded='true';if(active===k)hideLoader();});f.src=LINKS[k];frames[k]=f;stage.appendChild(f);return f;}
 const showFrame=k=>Object.keys(frames).forEach(x=>frames[x].classList.toggle('on',x===k));
 const hashKey=()=>location.hash==='#semester-1'?'a':location.hash==='#semester-2'?'b':null;
@@ -186,7 +186,7 @@ if(o.history!==false){const t=k==='a'?'#semester-1':'#semester-2';first?history.
 if(old&&old!==k&&o.toast!==false)say('Beralih ke '+ROUTES[k]);}
 
 function closeSite(upd=true){if(!active)return;const fromHist=Boolean(history.state&&history.state.epViewer);active=null;setPanel(false);viewer.classList.remove('visible');viewer.setAttribute('aria-hidden','true');Object.values(frames).forEach(f=>f.classList.remove('on'));homeD.hidden=homeM.hidden=false;hideLoader();
-if(upd&&fromHist)history.back();else if(location.hash.startsWith('#semester-'))history.replaceState(null,'',location.pathname+location.search);}
+if(location.hash.startsWith('#semester-'))history.replaceState(null,'',location.pathname+location.search);}
 
 /* Event */
 document.querySelectorAll('[data-site]').forEach(b=>{b.addEventListener('click',()=>openSite(b.dataset.site));
@@ -204,6 +204,7 @@ toggle.addEventListener('pointerup',up);toggle.addEventListener('pointercancel',
 addEventListener('resize',()=>{placeBtn(false);if(!panel.hidden)placePanel();});placeBtn(false);$('pclose').addEventListener('click',()=>setPanel(false));$('home').addEventListener('click',()=>closeSite(true));
 $('swap').addEventListener('click',()=>{if(active)openSite(active==='a'?'b':'a');});$('newtab').addEventListener('click',()=>{if(active)open(LINKS[active],'_blank','noopener,noreferrer');});
 document.addEventListener('pointerdown',e=>{if(!panel.hidden&&!panel.contains(e.target)&&!toggle.contains(e.target))setPanel(false);});
+addEventListener('blur',()=>{if(!panel.hidden)setPanel(false);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!panel.hidden)setPanel(false);else if(active)closeSite(true);}
 if(!active&&(e.key==='1'||e.key==='2')&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))openSite(e.key==='1'?'a':'b');});
 addEventListener('popstate',()=>{const k=hashKey();if(k)openSite(k,{history:false,toast:false});else if(active)closeSite(false);});
