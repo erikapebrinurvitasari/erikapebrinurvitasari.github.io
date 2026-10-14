@@ -781,6 +781,157 @@ kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 
   .animated-name .name-letter{transform:none!important;color:#eef1e6;text-shadow:none;}
 }
 
+
+
+/* === EXPERIENCE LAYERS: cursor FX, sticky 3D, opening cinematic, ambient atmosphere === */
+#home{isolation:isolate;overflow:hidden}
+.bar,.rooms{position:relative;z-index:1}
+.ambient-global{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;opacity:.22;mix-blend-mode:screen}
+.ambient-global::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 32%,#f1d36b88 50%,transparent 75%),radial-gradient(1.5px 1.5px at 71% 20%,#ffffff88 45%,transparent 75%),radial-gradient(1px 1px at 88% 77%,#a9c8b088 45%,transparent 75%),radial-gradient(1px 1px at 40% 82%,#f1d36b77 45%,transparent 75%);background-size:220px 230px,310px 280px,260px 300px,350px 290px;animation:global-particle-drift 34s linear infinite}
+.aurora{position:absolute;display:block;width:52vw;height:48vw;max-width:720px;max-height:600px;border-radius:50%;filter:blur(80px);opacity:.15;will-change:transform;animation:aurora-drift 19s ease-in-out infinite alternate}
+.aurora-a{left:7%;top:8%;background:#b6d8a4;transform:translate3d(-8%,0,0)}
+.aurora-b{right:1%;bottom:-18%;background:#e0c76d;animation-delay:-8s;animation-duration:24s}
+@keyframes global-particle-drift{to{background-position:0 -230px,310px 280px,-260px -300px,350px 290px}}
+@keyframes aurora-drift{0%{translate:-5% -2%;scale:.92}50%{translate:4% 4%;scale:1.07}100%{translate:-1% 6%;scale:1}}
+.ambient-particles{position:absolute;z-index:1;inset:-3%;display:block;pointer-events:none;opacity:.28;mix-blend-mode:screen;background-image:radial-gradient(1.5px 1.5px at 14% 21%,#f6edcb 45%,transparent 75%),radial-gradient(2px 2px at 72% 31%,#d8d8bc 40%,transparent 75%),radial-gradient(1px 1px at 54% 78%,#f1d36b 45%,transparent 75%),radial-gradient(1px 1px at 88% 63%,#ffffff 45%,transparent 75%),radial-gradient(1px 1px at 31% 54%,#d4e8d1 45%,transparent 75%);background-size:240px 260px,310px 280px,270px 300px,330px 260px,290px 320px;animation:panel-particle-drift 32s linear infinite}
+.paper .ambient-particles{opacity:.32;mix-blend-mode:multiply;background-image:radial-gradient(1.5px 1.5px at 14% 21%,#2a4ba0aa 45%,transparent 75%),radial-gradient(2px 2px at 72% 31%,#90aee9b3 40%,transparent 75%),radial-gradient(1px 1px at 54% 78%,#2a4ba0aa 45%,transparent 75%),radial-gradient(1px 1px at 88% 63%,#ffffff 45%,transparent 75%),radial-gradient(1px 1px at 31% 54%,#5778c0aa 45%,transparent 75%)}
+@keyframes panel-particle-drift{to{background-position:0 -260px,-310px 280px,270px -300px,-330px 260px,290px -320px}}
+
+/* Sticky note: tilt 3D kecil yang mengikuti titik pointer tanpa mengubah grid. */
+.sticky{transform:perspective(760px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d;will-change:transform,box-shadow;transition:transform .24s cubic-bezier(.2,.75,.25,1),rotate .42s var(--ease),translate .42s var(--ease),box-shadow .42s var(--ease),filter .3s ease}
+.sticky:hover{z-index:3;box-shadow:0 16px 30px #17233c26,0 3px 8px #17233c12;filter:saturate(1.08)}
+.sticky:active{scale:.975;filter:saturate(1.12);box-shadow:0 7px 14px #17233c25}
+.sticky::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(118deg,transparent 20%,#ffffff77 48%,transparent 70%);transform:translateX(-130%);transition:opacity .25s}
+.sticky:hover::after{opacity:.68;animation:sticky-glint .9s var(--ease) both}
+@keyframes sticky-glint{to{transform:translateX(130%)}}
+
+/* Opening cinematic */
+.opening-intro{--intro-accent:#f1d36b;position:fixed;inset:0;z-index:3000;isolation:isolate;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 47%,#263c2d 0%,#15251b 36%,#0b130f 78%);color:#eef1e6;opacity:1;visibility:visible;contain:layout paint}
+.opening-intro::before{content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;background:linear-gradient(112deg,transparent 35%,#f1d36b08 46%,#f1d36b29 49%,#ffffff0c 50%,transparent 56%);transform:translateX(-62%) skewX(-15deg);animation:intro-light-sweep 2.8s cubic-bezier(.2,.7,.2,1) .12s both}
+.opening-intro::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.18;background-image:radial-gradient(1px 1px at 12% 22%,#fff 50%,transparent 75%),radial-gradient(1px 1px at 38% 72%,#f1d36b 50%,transparent 75%),radial-gradient(2px 2px at 76% 48%,#fff 50%,transparent 75%),radial-gradient(1px 1px at 84% 85%,#d7e6d1 50%,transparent 75%);background-size:190px 220px,260px 280px,310px 320px,230px 250px;animation:intro-stars 22s linear infinite}
+.opening-intro.is-leaving{animation:intro-curtain-out .78s cubic-bezier(.2,.8,.2,1) forwards;pointer-events:none}
+.intro-grid{position:absolute;inset:-45%;pointer-events:none;opacity:.12;background-image:linear-gradient(#eef1e6 1px,transparent 1px),linear-gradient(90deg,#eef1e6 1px,transparent 1px);background-size:58px 58px;mask-image:radial-gradient(ellipse at center,#000 0%,transparent 68%);transform:perspective(900px) rotateX(57deg) scale(1.45);transform-origin:center 64%;animation:intro-grid-shift 30s linear infinite}
+.intro-aurora{position:absolute;width:min(58vw,650px);aspect-ratio:1;border-radius:50%;filter:blur(90px);opacity:.12;pointer-events:none;animation:intro-aurora-float 8s ease-in-out infinite alternate}
+.intro-aurora-a{left:-10%;top:-24%;background:#9dc58c}.intro-aurora-b{right:-12%;bottom:-35%;background:#d4b85e;animation-delay:-4s;animation-duration:10s}
+.intro-orbit{position:absolute;left:50%;top:47%;width:min(56vw,620px);aspect-ratio:1;transform:translate(-50%,-50%) scale(.8) rotate(-26deg);border:1px solid #f1d36b34;border-radius:50%;opacity:0;animation:intro-orbit-in 1.25s .18s var(--ease) forwards,intro-orbit-spin 36s 1.5s linear infinite}
+.intro-orbit::before,.intro-orbit::after{content:"";position:absolute;inset:9%;border:1px dashed #eef1e62e;border-radius:50%;transform:rotate(28deg)}
+.intro-orbit::after{inset:24%;border-style:solid;border-color:#f1d36b23;transform:rotate(-38deg)}
+.intro-orbit i{position:absolute;left:18%;top:14%;width:9px;height:9px;border:2px solid var(--intro-accent);border-radius:50%;background:#121816;box-shadow:0 0 18px #f1d36b9c}
+.intro-orbit b{position:absolute;right:12%;bottom:25%;width:6px;height:6px;border-radius:50%;background:#eef1e6;box-shadow:0 0 16px #eef1e6a8}
+.intro-orbit-b{width:min(39vw,420px);border-style:dotted;border-color:#eef1e624;animation:intro-orbit-in 1.4s .26s var(--ease) forwards,intro-orbit-spin-reverse 28s 1.7s linear infinite}
+.intro-orbit-b i{left:auto;right:12%;top:23%;width:6px;height:6px}
+.intro-content{position:relative;z-index:2;width:min(940px,88vw);padding:24px 0;text-align:center;animation:intro-content-in .95s .1s var(--ease) both}
+.intro-eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 clamp(21px,4vh,36px);color:#eef1e69c;font-size:clamp(7px,.72vw,10px);font-weight:800;letter-spacing:.22em}
+.intro-eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--intro-accent);box-shadow:0 0 15px #f1d36ba3;animation:intro-status 2s ease-in-out infinite}
+.intro-eyebrow span{color:var(--intro-accent)}
+.intro-name{position:relative;margin:0 auto;max-width:100%;font-family:var(--sans);font-size:clamp(26px,5.3vw,76px);font-weight:900;line-height:1.06;letter-spacing:-.055em;text-wrap:balance;color:#f6f5e9;text-shadow:0 6px 34px #f1d36b16}
+.intro-name .intro-char{display:inline-block;opacity:0;transform:translateY(28px) rotateX(-40deg);filter:blur(8px);animation:intro-char-in .72s var(--ease) calc(.28s + var(--i)*.032s) forwards;transform-origin:50% 90%}
+.intro-name .intro-char.space{width:.27em}
+.intro-name .intro-char:nth-child(3n+1){color:#fff4bd}
+.intro-subtitle{margin:clamp(18px,3vh,28px) 0 0;color:#c5d0c1;font:italic 400 clamp(16px,1.75vw,23px)/1.3 var(--serif);letter-spacing:.015em;animation:intro-sub-in .8s 1s var(--ease) both}
+.intro-subtitle span{padding:0 7px;color:var(--intro-accent)}
+.intro-progress{width:min(260px,46vw);height:2px;margin:clamp(26px,5vh,44px) auto 0;overflow:hidden;background:#ffffff19;animation:intro-sub-in .6s .95s var(--ease) both}
+.intro-progress i{display:block;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--intro-accent),#fff6c9,var(--intro-accent),transparent);transform:scaleX(0);transform-origin:left;animation:intro-progress-fill 2.7s .15s cubic-bezier(.65,0,.35,1) forwards}
+.intro-caption{margin:12px 0 0;color:#eef1e65e;font-size:7px;font-weight:700;letter-spacing:.25em;animation:intro-sub-in .6s 1.2s var(--ease) both}
+.intro-corner{position:absolute;width:clamp(18px,3.5vw,42px);height:clamp(18px,3.5vw,42px);border-color:#f1d36b76;opacity:0;animation:intro-corner-in .7s .35s var(--ease) forwards}
+.intro-corner-tl{left:clamp(18px,4vw,48px);top:clamp(18px,4vw,48px);border-left:1px solid;border-top:1px solid}.intro-corner-tr{right:clamp(18px,4vw,48px);top:clamp(18px,4vw,48px);border-right:1px solid;border-top:1px solid}.intro-corner-bl{left:clamp(18px,4vw,48px);bottom:clamp(18px,4vw,48px);border-left:1px solid;border-bottom:1px solid}.intro-corner-br{right:clamp(18px,4vw,48px);bottom:clamp(18px,4vw,48px);border-right:1px solid;border-bottom:1px solid}
+.skip-intro{position:absolute;z-index:5;right:clamp(18px,3.5vw,42px);bottom:clamp(18px,3.5vw,36px);display:flex;align-items:center;gap:12px;padding:10px 13px;border:1px solid #eef1e62d;border-radius:999px;background:#ffffff08;color:#eef1e6b7;font-size:10px;font-weight:650;letter-spacing:.045em;backdrop-filter:blur(10px);transition:color .25s,border-color .25s,background .25s,transform .25s}
+.skip-intro span{color:var(--intro-accent);font-size:14px;transition:transform .25s}.skip-intro:hover{color:#fff;border-color:#f1d36b8c;background:#ffffff12;transform:translateY(-2px)}.skip-intro:hover span{transform:translate(2px,-2px)}
+@keyframes intro-light-sweep{0%{transform:translateX(-62%) skewX(-15deg)}100%{transform:translateX(65%) skewX(-15deg)}}
+@keyframes intro-stars{to{background-position:190px -220px,-260px 280px,310px -320px,-230px 250px}}
+@keyframes intro-grid-shift{to{background-position:58px 58px}}
+@keyframes intro-aurora-float{0%{transform:translate3d(-3%,0,0) scale(.92)}100%{transform:translate3d(6%,7%,0) scale(1.08)}}
+@keyframes intro-orbit-in{to{opacity:.66;transform:translate(-50%,-50%) scale(1) rotate(-8deg)}}
+@keyframes intro-orbit-spin{to{rotate:342deg}}
+@keyframes intro-orbit-spin-reverse{to{rotate:-360deg}}
+@keyframes intro-content-in{from{opacity:0;transform:translateY(12px);filter:blur(8px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes intro-char-in{to{opacity:1;transform:translateY(0) rotateX(0);filter:blur(0)}}
+@keyframes intro-sub-in{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+@keyframes intro-progress-fill{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes intro-corner-in{to{opacity:.72}}
+@keyframes intro-status{50%{opacity:.32;box-shadow:0 0 3px transparent}}
+@keyframes intro-curtain-out{0%{opacity:1;filter:blur(0);transform:scale(1)}100%{opacity:0;filter:blur(8px);transform:scale(1.025);visibility:hidden}}
+
+/* Lightweight desktop cursor: compositor transforms, tanpa DOM particle churn. */
+#cursorFX{position:fixed;inset:0;z-index:90;display:none;pointer-events:none;opacity:0;contain:layout style;transition:opacity .18s ease}
+body.cursor-enabled #cursorFX{display:block}
+body.cursor-enabled #home,body.cursor-enabled #home *{cursor:none!important}
+#cursorFX.is-visible{opacity:1}
+.cursor-ring,.cursor-dot{position:absolute;left:0;top:0;display:block;border-radius:50%;pointer-events:none;will-change:transform;backface-visibility:hidden}
+.cursor-ring{width:38px;height:38px;border:1px solid #f1d36b9c;background:radial-gradient(circle,#f1d36b08 0%,transparent 68%);box-shadow:0 0 16px #f1d36b10;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);transition:width .22s var(--ease),height .22s var(--ease),border-color .22s,box-shadow .22s}
+.cursor-dot{width:4px;height:4px;background:#fff4bd;box-shadow:0 0 7px #f1d36b9c;transform:translate3d(-100px,-100px,0) translate(-50%,-50%)}
+#cursorFX.is-on-room .cursor-ring{width:50px;height:50px;box-shadow:0 0 22px #f1d36b1a}
+#cursorFX.is-paper .cursor-ring{border-color:#2a4ba0aa;background:radial-gradient(circle,#2a4ba008 0%,transparent 68%);box-shadow:0 0 16px #2a4ba015}
+#cursorFX.is-paper .cursor-dot{background:#2a4ba0;box-shadow:0 0 7px #2a4ba077}
+@media(prefers-reduced-motion:reduce){#cursorFX{display:none!important}body.cursor-enabled #home,body.cursor-enabled #home *{cursor:auto!important}}
+
+@media(max-width:760px){
+ .ambient-global{opacity:.14}.aurora{width:85vw;filter:blur(60px)}
+ .ambient-particles{opacity:.24;background-size:190px 210px,220px 230px,240px 240px,250px 220px,230px 260px}
+ .opening-intro{padding:20px}.intro-orbit{width:min(92vw,500px);top:46%}.intro-orbit-b{width:min(70vw,350px)}
+ .intro-content{width:91vw;padding-bottom:40px}.intro-eyebrow{gap:6px;font-size:6.5px;letter-spacing:.11em;margin-bottom:24px;flex-wrap:wrap}
+ .intro-name{font-size:clamp(25px,8vw,48px);line-height:1.12;letter-spacing:-.06em}.intro-subtitle{font-size:17px;margin-top:19px}
+ .intro-progress{margin-top:30px}.intro-caption{font-size:6px;letter-spacing:.15em}.skip-intro{right:18px;bottom:calc(18px + var(--sab));font-size:10px}
+}
+@media(max-width:380px){.intro-eyebrow{max-width:86vw;line-height:1.8}.intro-name{font-size:clamp(23px,7.5vw,30px)}.intro-subtitle{font-size:15px}.intro-orbit{width:104vw}.intro-caption{letter-spacing:.09em}}
+@media(max-height:560px){.intro-content{padding:8px 0}.intro-eyebrow{margin-bottom:12px}.intro-name{font-size:clamp(24px,6vh,48px)}.intro-subtitle{margin-top:10px}.intro-progress{margin-top:16px}.intro-caption{margin-top:7px}.intro-orbit{width:min(45vh,330px);left:76%;top:48%}.intro-orbit-b{width:min(32vh,240px);left:76%}.skip-intro{bottom:12px}}
+@media(prefers-reduced-motion:reduce){
+ .ambient-global::after,.aurora,.ambient-particles,.sticky,.sticky::after{animation:none!important;transition:none!important}
+ .opening-intro,.opening-intro *{animation:none!important;transition:none!important}
+ .intro-name .intro-char{opacity:1;transform:none;filter:none}
+ #cursorFX{display:none!important}body.cursor-enabled #home,body.cursor-enabled #home *{cursor:auto!important}
+}
+
+
+
+/* === Minimal floating education quotes: no card, no manual arrows === */
+.bar{z-index:4}
+.education-quote{
+ --quote-accent:var(--yellow);
+ position:relative;isolation:isolate;display:grid;grid-template-columns:18px minmax(0,1fr);align-items:center;gap:7px;
+ width:clamp(220px,27vw,340px);min-width:0;margin-left:auto;padding:3px 0 3px 9px;overflow:hidden;
+ border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+ color:var(--chalk);
+}
+.education-quote::before{content:"";position:absolute;z-index:-1;top:-45%;bottom:-45%;left:-38%;width:24%;pointer-events:none;background:linear-gradient(90deg,transparent,#f1d36b12,transparent);transform:skewX(-18deg);animation:quote-light-sweep 13s ease-in-out infinite}
+.education-quote::after{content:"";position:absolute;left:0;top:7px;bottom:7px;width:1px;border-radius:2px;background:linear-gradient(180deg,transparent,var(--quote-accent),transparent);opacity:.8;transform-origin:center;animation:quote-accent-breathe 3.4s ease-in-out infinite}
+.quote-symbol{align-self:start;padding-top:0;color:var(--quote-accent);font:700 31px/.9 var(--serif);opacity:.86;text-shadow:0 0 14px #f1d36b21;transform:translateY(-1px);animation:quote-symbol-float 5s ease-in-out infinite}
+.quote-content{min-width:0;align-self:center}
+.quote-meta{display:flex;align-items:center;gap:5px;min-width:0;margin-bottom:3px;color:#aab9a8;font-size:6px;line-height:1.2;font-weight:800;letter-spacing:.14em;white-space:nowrap}
+.quote-pulse{width:4px;height:4px;flex:0 0 4px;border-radius:50%;background:var(--quote-accent);box-shadow:0 0 8px #f1d36b88;animation:quote-pulse 2.3s ease-in-out infinite}
+.quote-line{display:-webkit-box;min-height:2.55em;max-height:2.55em;margin:0;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;color:#f0f2e8;font-family:var(--serif);font-size:clamp(9px,.78vw,11px);font-style:italic;font-weight:500;line-height:1.32;letter-spacing:.005em;text-wrap:pretty;text-shadow:0 2px 12px #00000013}
+.education-quote:not(.is-visible) .quote-line{opacity:0;transform:translateY(7px);filter:blur(3px)}
+.education-quote.is-visible .quote-line{animation:quote-text-in .62s var(--ease) both}
+.quote-progress{display:block;position:relative;height:1px;overflow:hidden;margin-top:5px;background:#ffffff18}
+.quote-progress i{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--quote-accent),#fff4c2,var(--quote-accent));box-shadow:0 0 7px #f1d36b55}
+.education-quote.is-visible .quote-progress i{animation:quote-progress-fill 10.5s linear forwards}
+@keyframes quote-light-sweep{0%,20%{left:-38%;opacity:0}35%{opacity:1}65%,100%{left:125%;opacity:0}}
+@keyframes quote-accent-breathe{0%,100%{opacity:.38;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes quote-symbol-float{0%,100%{transform:translateY(-1px) rotate(-4deg)}50%{transform:translateY(2px) rotate(2deg)}}
+@keyframes quote-pulse{0%,100%{opacity:1;box-shadow:0 0 8px #f1d36b88}50%{opacity:.4;box-shadow:0 0 2px #f1d36b22}}
+@keyframes quote-text-in{from{opacity:0;transform:translateY(7px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes quote-progress-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:760px){
+ .bar{gap:6px}
+ .education-quote{width:clamp(112px,36vw,205px);grid-template-columns:13px minmax(0,1fr);gap:5px;padding:2px 0 2px 7px}
+ .quote-symbol{font-size:24px}.quote-meta{font-size:5.3px;letter-spacing:.065em;gap:3px;margin-bottom:2px}
+ .quote-line{font-size:clamp(7.5px,1.95vw,9px);line-height:1.27;min-height:2.5em;max-height:2.5em}
+ .quote-progress{margin-top:4px}
+}
+@media(max-width:390px){
+ .education-quote{width:clamp(102px,35vw,140px);grid-template-columns:10px minmax(0,1fr);gap:4px;padding-left:6px}
+ .quote-symbol{font-size:20px}.quote-meta{font-size:5px;letter-spacing:.025em;gap:3px}
+ .quote-line{font-size:7.2px;line-height:1.23;min-height:2.45em;max-height:2.45em}
+}
+@media(max-height:560px) and (max-width:760px){
+ .education-quote{padding-top:1px;padding-bottom:1px}.quote-symbol{font-size:19px}.quote-line{font-size:7px;min-height:2.35em;max-height:2.35em}.quote-progress{margin-top:2px}
+}
+@media(prefers-reduced-motion:reduce){
+ .education-quote::before,.education-quote::after,.quote-symbol,.quote-pulse{animation:none!important}
+ .education-quote.is-visible .quote-line{animation:none!important;opacity:1;filter:none;transform:none}
+ .quote-progress i{animation:none!important;transform:scaleX(1)!important}
+}
+
 </style>
 
 </head>
@@ -789,9 +940,21 @@ kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 
 
 <main id="home" aria-label="Pilih semester">
 
+ <div class="ambient-global" aria-hidden="true"><span class="aurora aurora-a"></span><span class="aurora aurora-b"></span></div>
+
  <header class="bar">
 
   <div class="brand"><div class="who"><strong class="animated-name" aria-label="Erika Pebri Nurvitasari"><span class="name-letter" style="--i:0" aria-hidden="true">E</span><span class="name-letter" style="--i:1" aria-hidden="true">r</span><span class="name-letter" style="--i:2" aria-hidden="true">i</span><span class="name-letter" style="--i:3" aria-hidden="true">k</span><span class="name-letter" style="--i:4" aria-hidden="true">a</span><span class="name-space" aria-hidden="true"></span><span class="name-letter" style="--i:5" aria-hidden="true">P</span><span class="name-letter" style="--i:6" aria-hidden="true">e</span><span class="name-letter" style="--i:7" aria-hidden="true">b</span><span class="name-letter" style="--i:8" aria-hidden="true">r</span><span class="name-letter" style="--i:9" aria-hidden="true">i</span><span class="name-space" aria-hidden="true"></span><span class="name-letter" style="--i:10" aria-hidden="true">N</span><span class="name-letter" style="--i:11" aria-hidden="true">u</span><span class="name-letter" style="--i:12" aria-hidden="true">r</span><span class="name-letter" style="--i:13" aria-hidden="true">v</span><span class="name-letter" style="--i:14" aria-hidden="true">i</span><span class="name-letter" style="--i:15" aria-hidden="true">t</span><span class="name-letter" style="--i:16" aria-hidden="true">a</span><span class="name-letter" style="--i:17" aria-hidden="true">s</span><span class="name-letter" style="--i:18" aria-hidden="true">a</span><span class="name-letter" style="--i:19" aria-hidden="true">r</span><span class="name-letter" style="--i:20" aria-hidden="true">i</span></strong><span>PPG Prajabatan PGSD</span></div></div>
+
+
+  <aside class="education-quote is-visible" id="educationQuote" aria-label="Rotating education quote">
+   <span class="quote-symbol" aria-hidden="true">“</span>
+   <div class="quote-content">
+    <div class="quote-meta"><span class="quote-pulse" aria-hidden="true"></span><span id="quoteCategory">THOUGHT FOR TODAY</span></div>
+    <p class="quote-line" id="quoteText" aria-live="polite">Every curious question opens a new door to learning.</p>
+    <span class="quote-progress" aria-hidden="true"><i></i></span>
+   </div>
+  </aside>
 
 
  </header>
@@ -802,7 +965,7 @@ kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 
 
    <span class="dust" aria-hidden="true"></span><span class="dust d2" aria-hidden="true"></span>
 
-    <span class="ambient-wash" aria-hidden="true"></span><span class="light-sweep" aria-hidden="true"></span>
+    <span class="ambient-wash" aria-hidden="true"></span><span class="ambient-particles" aria-hidden="true"></span><span class="light-sweep" aria-hidden="true"></span>
 
     <span class="room-stamp"><i></i> REFLECTION JOURNAL <b>01</b></span>
 
@@ -832,7 +995,7 @@ kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 
 
    <span class="margin" aria-hidden="true"></span>
 
-    <span class="ambient-wash" aria-hidden="true"></span><span class="light-sweep" aria-hidden="true"></span>
+    <span class="ambient-wash" aria-hidden="true"></span><span class="ambient-particles" aria-hidden="true"></span><span class="light-sweep" aria-hidden="true"></span>
 
     <span class="room-stamp"><i></i> PRACTICE ARCHIVE <b>02</b></span>
 
@@ -897,7 +1060,26 @@ kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 
 
 </section>
 
+<!-- Opening cinematic: dapat dilewati dan otomatis selesai. -->
+<section id="openingIntro" class="opening-intro" role="dialog" aria-modal="true" aria-label="Pembuka e-portofolio" aria-hidden="false">
+ <div class="intro-aurora intro-aurora-a"></div><div class="intro-aurora intro-aurora-b"></div>
+ <div class="intro-grid" aria-hidden="true"></div>
+ <div class="intro-orbit intro-orbit-a" aria-hidden="true"><i></i><b></b></div>
+ <div class="intro-orbit intro-orbit-b" aria-hidden="true"><i></i></div>
+ <span class="intro-corner intro-corner-tl" aria-hidden="true"></span><span class="intro-corner intro-corner-tr" aria-hidden="true"></span>
+ <span class="intro-corner intro-corner-bl" aria-hidden="true"></span><span class="intro-corner intro-corner-br" aria-hidden="true"></span>
+ <div class="intro-content">
+  <p class="intro-eyebrow"><i></i> DIGITAL TEACHING PORTFOLIO <span>·</span> PPG PRAJABATAN PGSD</p>
+  <h1 id="introName" class="intro-name" aria-label="Erika Pebri Nurvitasari">ERIKA PEBRI NURVITASARI</h1>
+  <p class="intro-subtitle">Belajar <span>·</span> Bertumbuh <span>·</span> Menginspirasi</p>
+  <div class="intro-progress" aria-hidden="true"><i></i></div>
+  <p class="intro-caption">REFLECTION &nbsp; / &nbsp; PRACTICE &nbsp; / &nbsp; GROWTH</p>
+ </div>
+ <button id="skipIntro" class="skip-intro" type="button">Lewati intro <span aria-hidden="true">↗</span></button>
+</section>
 
+<!-- Custom cursor hanya aktif pada desktop dengan pointer presisi. -->
+<div id="cursorFX" aria-hidden="true"><span class="cursor-ring"></span><span class="cursor-dot"></span></div>
 
 <script>
 
@@ -917,12 +1099,65 @@ const home=$('#home'),viewer=$('#viewer'),stage=$('#stage'),load=$('#load'),lmsg
 
 const transitionFx=$('#semesterTransition');
 const transitionTitle=$('#transitionTitle'),transitionNumber=$('#transitionNumber'),transitionKicker=$('#transitionKicker'),transitionSubtitle=$('#transitionSubtitle'),transitionTag=$('#transitionTag');
+const openingIntro=$('#openingIntro'),skipIntro=$('#skipIntro'),introName=$('#introName'),cursorFX=$('#cursorFX');
+const cursorRing=cursorFX.querySelector('.cursor-ring'),cursorDot=cursorFX.querySelector('.cursor-dot');
+
+/* Rotating education thoughts: shuffled deck, one low-frequency timer, no external dependencies. */
+const EDUCATION_QUOTES = [{"text":"Every curious question opens a new door to learning.","category":"CURIOSITY"},{"text":"A great teacher helps every learner discover their own light.","category":"TEACHING"},{"text":"Small steps in learning create remarkable journeys over time.","category":"GROWTH"},{"text":"Teach with patience, lead with kindness, inspire with purpose.","category":"TEACHING"},{"text":"The classroom grows brighter when every voice is valued.","category":"BELONGING"},{"text":"Mistakes are proof that courage is taking part in learning.","category":"COURAGE"},{"text":"Education turns today's questions into tomorrow's possibilities.","category":"POSSIBILITY"},{"text":"Curiosity keeps the mind moving long after the lesson ends.","category":"CURIOSITY"},{"text":"Every learner carries a story worth listening to.","category":"BELONGING"},{"text":"A thoughtful lesson can echo far beyond the classroom.","category":"TEACHING"},{"text":"Progress matters more than perfection; keep showing up.","category":"GROWTH"},{"text":"Teach the mind, encourage the heart, empower the future.","category":"PURPOSE"},{"text":"Reflection turns experience into wisdom for the next step.","category":"REFLECTION"},{"text":"Learning blooms where questions are welcomed, not feared.","category":"CURIOSITY"},{"text":"The best classrooms make room for wonder and discovery.","category":"DISCOVERY"},{"text":"Every day is another chance to help someone grow.","category":"GROWTH"},{"text":"Kindness is a lesson students remember long after the bell.","category":"KINDNESS"},{"text":"A patient explanation can change a learner's whole day.","category":"TEACHING"},{"text":"Great teaching begins with seeing the person behind the answer.","category":"EMPATHY"},{"text":"Knowledge grows stronger when it is shared generously.","category":"SHARING"},{"text":"Make learning meaningful, and curiosity will keep it alive.","category":"PURPOSE"},{"text":"A good question can be more powerful than a quick answer.","category":"CURIOSITY"},{"text":"Every child deserves the chance to feel capable and seen.","category":"BELONGING"},{"text":"Teach for understanding, not simply for the next test.","category":"UNDERSTANDING"},{"text":"The seeds of confidence are planted through encouragement.","category":"CONFIDENCE"},{"text":"A classroom is a community built one moment at a time.","category":"COMMUNITY"},{"text":"Listen closely; every learner has something important to teach.","category":"LISTENING"},{"text":"A little progress each day becomes a powerful transformation.","category":"GROWTH"},{"text":"Education is the art of helping possibility take shape.","category":"POSSIBILITY"},{"text":"Be the reason a learner believes they can try again.","category":"COURAGE"},{"text":"Meaningful learning connects ideas to life beyond the page.","category":"CONNECTION"},{"text":"Teach with intention, and let compassion guide the method.","category":"PURPOSE"},{"text":"The courage to ask is the beginning of understanding.","category":"COURAGE"},{"text":"A reflective teacher is always becoming a better teacher.","category":"REFLECTION"},{"text":"Celebrate effort; it is where lasting skills begin.","category":"EFFORT"},{"text":"The future changes when learning becomes an everyday habit.","category":"HABITS"},{"text":"Every student needs both a challenge and a safe place to try.","category":"BELONGING"},{"text":"Learning is not a race; it is a lifelong unfolding.","category":"GROWTH"},{"text":"Teach a concept clearly, then give curiosity room to wander.","category":"CURIOSITY"},{"text":"Good feedback builds a bridge from effort to improvement.","category":"FEEDBACK"},{"text":"A warm welcome can be the first lesson of the day.","category":"KINDNESS"},{"text":"Knowledge gives direction; imagination expands the horizon.","category":"IMAGINATION"},{"text":"The smallest breakthrough can spark a lifetime of confidence.","category":"CONFIDENCE"},{"text":"Make room for different minds, methods, and ways of shining.","category":"INCLUSION"},{"text":"Every lesson is a chance to connect, guide, and encourage.","category":"TEACHING"},{"text":"Learning deepens when students feel safe to be curious.","category":"CURIOSITY"},{"text":"A strong foundation makes room for brave new ideas.","category":"FOUNDATION"},{"text":"Patience gives understanding the time it needs to grow.","category":"PATIENCE"},{"text":"The goal is not to know everything, but to keep learning.","category":"LIFELONG LEARNING"},{"text":"Let wonder enter the room before the answers do.","category":"WONDER"},{"text":"A teacher's influence often outlasts the lesson itself.","category":"INFLUENCE"},{"text":"Practice turns uncertainty into confidence, one try at a time.","category":"PRACTICE"},{"text":"Every perspective adds color to the picture of learning.","category":"PERSPECTIVE"},{"text":"Great questions invite learners to think beyond the obvious.","category":"THINKING"},{"text":"Teach students how to think, explore, and keep questioning.","category":"THINKING"},{"text":"A meaningful education helps people shape a kinder world.","category":"PURPOSE"},{"text":"The most useful lessons often begin with listening.","category":"LISTENING"},{"text":"Let your classroom be a place where hope has room.","category":"HOPE"},{"text":"Growth begins the moment we stay open to feedback.","category":"REFLECTION"},{"text":"Learning becomes memorable when students help create it.","category":"PARTICIPATION"},{"text":"Encouragement can turn hesitation into the first brave step.","category":"ENCOURAGEMENT"},{"text":"Teach with your knowledge; inspire through your example.","category":"INSPIRATION"},{"text":"A prepared lesson leaves space for real discovery.","category":"DISCOVERY"},{"text":"Every challenge can become a doorway to deeper understanding.","category":"RESILIENCE"},{"text":"Learning thrives where effort is noticed and progress is celebrated.","category":"EFFORT"},{"text":"Make the difficult clear, and the possible feel closer.","category":"CLARITY"},{"text":"Education is a shared journey, not a solo performance.","category":"COMMUNITY"},{"text":"Respect makes room for trust, and trust makes room for growth.","category":"RESPECT"},{"text":"Let feedback guide you, not define you.","category":"FEEDBACK"},{"text":"The best lessons invite students to bring their whole selves.","category":"INCLUSION"},{"text":"A curious mind can find lessons in ordinary moments.","category":"CURIOSITY"},{"text":"Build confidence by giving learners chances to make choices.","category":"CONFIDENCE"},{"text":"Learning starts with attention and grows through reflection.","category":"REFLECTION"},{"text":"A small act of encouragement can unlock a bold idea.","category":"ENCOURAGEMENT"},{"text":"Teach for today, nurture the potential of tomorrow.","category":"FUTURE"},{"text":"An open mind turns change into a chance to learn.","category":"OPEN-MINDEDNESS"},{"text":"When students feel heard, they become ready to explore.","category":"LISTENING"},{"text":"A lesson succeeds when understanding travels beyond the classroom.","category":"UNDERSTANDING"},{"text":"Curiosity is a spark; meaningful practice keeps it glowing.","category":"PRACTICE"},{"text":"Let mistakes start conversations instead of closing doors.","category":"RESILIENCE"},{"text":"Great educators keep learning alongside their students.","category":"LIFELONG LEARNING"},{"text":"Give ideas time, give learners trust, and give growth space.","category":"GROWTH"},{"text":"Teaching is thoughtful work shaped by care and purpose.","category":"PURPOSE"},{"text":"Every learner's pace deserves patience and respect.","category":"PATIENCE"},{"text":"Create moments that make students eager to return tomorrow.","category":"INSPIRATION"},{"text":"The path to mastery is made of many imperfect attempts.","category":"PRACTICE"},{"text":"Learning together makes success more meaningful.","category":"COMMUNITY"},{"text":"Let questions lead the way and evidence shape the answer.","category":"INQUIRY"},{"text":"A clear goal gives effort somewhere useful to go.","category":"INTENTION"},{"text":"A teacher plants possibilities that time helps reveal.","category":"POSSIBILITY"},{"text":"Every day in education offers another chance to make a difference.","category":"IMPACT"},{"text":"Learning shines brightest when curiosity meets encouragement.","category":"CURIOSITY"},{"text":"Be flexible in your methods and steady in your care.","category":"TEACHING"},{"text":"The classroom is a place to practice both skills and empathy.","category":"EMPATHY"},{"text":"Reflect honestly, improve gently, and keep moving forward.","category":"REFLECTION"},{"text":"A brave question can begin a beautiful journey.","category":"COURAGE"},{"text":"Learning lasts when it connects with purpose.","category":"PURPOSE"},{"text":"Good teaching makes room for discovery, dialogue, and delight.","category":"DISCOVERY"},{"text":"Help learners notice how far they have already come.","category":"GROWTH"},{"text":"A supportive word today can strengthen tomorrow's confidence.","category":"ENCOURAGEMENT"},{"text":"Teach with wonder; let your students see you learning too.","category":"WONDER"},{"text":"The future is shaped by what we help learners believe possible.","category":"FUTURE"},{"text":"An encouraging classroom makes trying feel worthwhile.","category":"COURAGE"},{"text":"Learning is a collection of small moments that change us.","category":"GROWTH"},{"text":"Make every explanation an invitation to think more deeply.","category":"THINKING"},{"text":"Education grows stronger when knowledge meets compassion.","category":"COMPASSION"},{"text":"A little wonder can turn a lesson into an adventure.","category":"WONDER"},{"text":"The most important progress is the progress we keep making.","category":"PERSISTENCE"},{"text":"Every learner deserves a chance to begin again.","category":"SECOND CHANCES"},{"text":"Teach the lesson, notice the learner, nurture the possibility.","category":"TEACHING"},{"text":"Learning grows when confidence and curiosity grow together.","category":"CURIOSITY"},{"text":"A thoughtful pause can make the next step clearer.","category":"REFLECTION"}];
+const quotePanel=$('#educationQuote'),quoteText=$('#quoteText'),quoteCategory=$('#quoteCategory');
+let quoteDeck=EDUCATION_QUOTES.map((_,i)=>i),quotePosition=0,quoteTimer=null,quoteTransitionTimer=null;
+function shuffleQuoteDeck(){for(let i=quoteDeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[quoteDeck[i],quoteDeck[j]]=[quoteDeck[j],quoteDeck[i]];}}
+shuffleQuoteDeck();
+function scheduleQuoteRotation(){clearTimeout(quoteTimer);if(document.hidden||home.classList.contains('away'))return;quoteTimer=setTimeout(()=>showNextQuote(false),10500);}
+function showNextQuote(manual=false){
+ clearTimeout(quoteTimer);clearTimeout(quoteTransitionTimer);
+ if(!quotePanel)return;
+ quotePanel.classList.remove('is-visible');
+ quoteTransitionTimer=setTimeout(()=>{
+  const item=EDUCATION_QUOTES[quoteDeck[quotePosition]];
+  quoteText.textContent=item.text;quoteCategory.textContent=item.category;
+  quotePosition++;
+  if(quotePosition>=quoteDeck.length){shuffleQuoteDeck();quotePosition=0;}
+  quotePanel.classList.add('is-visible');
+  scheduleQuoteRotation();
+ },manual?50:260);
+}
+if(quotePanel){
+ showNextQuote(true);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(quoteTimer);else scheduleQuoteRotation();});
+}
+
 
 const rooms=[...document.querySelectorAll('.room')];
 
 const frames={};let active=null,lastRoom=null,slowT,toastT,idleT,justDragged=false,isTransitioning=false;
 
 const M=10,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let introFinished=false,introTimer=null;
+let cursorTargetX=-100,cursorTargetY=-100,cursorRingX=-100,cursorRingY=-100,cursorFrame=0,currentCursorRoom=null,currentCursorPaper=false;
+const supportsFinePointer=()=>window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const reducedMotion=()=>window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function syncCursorMode(){
+ const enabled=introFinished&&openingIntro.hidden&&!viewer.classList.contains('show')&&supportsFinePointer()&&!reducedMotion();
+ document.body.classList.toggle('cursor-enabled',!!enabled);
+ if(!enabled){cursorFX.classList.remove('is-visible','is-on-room','is-paper');currentCursorRoom=null;currentCursorPaper=false;if(cursorFrame){cancelAnimationFrame(cursorFrame);cursorFrame=0;}}
+}
+function finishIntro(immediate=false){
+ if(introFinished)return;
+ clearTimeout(introTimer);
+ introFinished=true;
+ if(immediate){openingIntro.hidden=true;openingIntro.setAttribute('aria-hidden','true');syncCursorMode();return;}
+ openingIntro.classList.add('is-leaving');
+ openingIntro.setAttribute('aria-hidden','true');
+ setTimeout(()=>{openingIntro.hidden=true;syncCursorMode();},820);
+}
+// Reveal nama intro per huruf dengan stagger yang pendek, tanpa dependensi eksternal.
+if(introName){
+ const chars=[...introName.textContent];
+ introName.textContent='';
+ chars.forEach((ch,i)=>{const span=document.createElement('span');span.className='intro-char'+(ch===' '?' space':'');span.style.setProperty('--i',i);span.setAttribute('aria-hidden','true');span.textContent=ch===' '?'\u00a0':ch;introName.appendChild(span);});
+}
+skipIntro.addEventListener('click',()=>finishIntro(true));
 
 let pos={side:'r',y:.72};
 
@@ -975,7 +1210,9 @@ function open(k,o={}){
  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(prev&&prev!==k&&!o.instant&&!reduced){playSemesterTransition(k,o);return;}
  const f=frame(k);active=k;
+ document.body.classList.remove('cursor-enabled');
  home.classList.add('away');home.inert=true;viewer.classList.add('show');viewer.setAttribute('aria-hidden','false');
+ syncCursorMode();
  Object.keys(frames).forEach(x=>frames[x].classList.toggle('on',x===k));
  f.dataset.ok==='1'?hideLoad():showLoad('Membuka '+s.name+'…');
  $('#cur').textContent=s.name;$('#swapl').textContent='Pindah ke '+SITES[k==='a'?'b':'a'].name;
@@ -1023,23 +1260,78 @@ function close(){if(!active)return;active=null;menu.hidden=true;dock.setAttribut
 
  if(location.hash.startsWith('#semester-'))history.replaceState(null,'',location.pathname+location.search);
 
- if(lastRoom)lastRoom.focus({preventScroll:true});}
+ if(lastRoom)lastRoom.focus({preventScroll:true});syncCursorMode();scheduleQuoteRotation();}
 
 
 
 /* Interaksi halaman awal */
 
 rooms.forEach(r=>{
-
  r.addEventListener('click',()=>{lastRoom=r;open(r.dataset.site);});
-
- r.addEventListener('pointermove',e=>{const b=r.getBoundingClientRect();r.style.setProperty('--mx',(e.clientX-b.left)+'px');r.style.setProperty('--my',(e.clientY-b.top)+'px');r.style.setProperty('--px',((e.clientX-b.left)/b.width-.5)*2);r.style.setProperty('--py',((e.clientY-b.top)/b.height-.5)*2);r.style.setProperty('--scene-x',(((e.clientX-b.left)/b.width)-.5)*18+'px');r.style.setProperty('--scene-y',(((e.clientY-b.top)/b.height)-.5)*14+'px');});
-
- r.addEventListener('pointerleave',()=>{r.style.setProperty('--px',0);r.style.setProperty('--py',0);r.style.setProperty('--scene-x','0px');r.style.setProperty('--scene-y','0px');});
-
+ let moveFrame=0,lastX=0,lastY=0;
+ r.addEventListener('pointermove',e=>{
+  if(e.pointerType==='touch')return;
+  lastX=e.clientX;lastY=e.clientY;
+  if(moveFrame)return;
+  moveFrame=requestAnimationFrame(()=>{
+   moveFrame=0;
+   const b=r.getBoundingClientRect(),w=Math.max(1,b.width),h=Math.max(1,b.height);
+   const nx=(lastX-b.left)/w,ny=(lastY-b.top)/h;
+   r.style.setProperty('--mx',(lastX-b.left)+'px');r.style.setProperty('--my',(lastY-b.top)+'px');
+   r.style.setProperty('--px',((nx-.5)*2).toFixed(3));r.style.setProperty('--py',((ny-.5)*2).toFixed(3));
+   r.style.setProperty('--scene-x',((nx-.5)*18).toFixed(2)+'px');r.style.setProperty('--scene-y',((ny-.5)*14).toFixed(2)+'px');
+  });
+ });
+ r.addEventListener('pointerleave',()=>{if(moveFrame){cancelAnimationFrame(moveFrame);moveFrame=0;}r.style.setProperty('--px',0);r.style.setProperty('--py',0);r.style.setProperty('--scene-x','0px');r.style.setProperty('--scene-y','0px');});
 });
 
+/* Sticky-note tilt uses at most one geometry read per animation frame. */
+document.querySelectorAll('.sticky').forEach(note=>{
+ let moveFrame=0,lastX=0,lastY=0;
+ note.addEventListener('pointermove',e=>{
+  if(e.pointerType!=='mouse')return;
+  lastX=e.clientX;lastY=e.clientY;
+  if(moveFrame)return;
+  moveFrame=requestAnimationFrame(()=>{
+   moveFrame=0;const b=note.getBoundingClientRect();
+   const nx=clamp((lastX-b.left)/Math.max(1,b.width),0,1)-.5;
+   const ny=clamp((lastY-b.top)/Math.max(1,b.height),0,1)-.5;
+   note.style.setProperty('--tilt-x',(-ny*7).toFixed(2)+'deg');
+   note.style.setProperty('--tilt-y',(nx*8).toFixed(2)+'deg');
+  });
+ });
+ const reset=()=>{if(moveFrame){cancelAnimationFrame(moveFrame);moveFrame=0;}note.style.setProperty('--tilt-x','0deg');note.style.setProperty('--tilt-y','0deg');};
+ note.addEventListener('pointerleave',reset);note.addEventListener('pointercancel',reset);
+});
 
+/* Smooth cursor: update the target on input, move visuals once per frame using GPU transforms. */
+function renderCursor(){
+ cursorFrame=0;
+ if(!document.body.classList.contains('cursor-enabled'))return;
+ cursorDot.style.transform=`translate3d(${cursorTargetX.toFixed(2)}px,${cursorTargetY.toFixed(2)}px,0) translate(-50%,-50%)`;
+ const dx=cursorTargetX-cursorRingX,dy=cursorTargetY-cursorRingY;
+ cursorRingX+=dx*.24;cursorRingY+=dy*.24;
+ cursorRing.style.transform=`translate3d(${cursorRingX.toFixed(2)}px,${cursorRingY.toFixed(2)}px,0) translate(-50%,-50%)`;
+ if(Math.abs(dx)>.25||Math.abs(dy)>.25)cursorFrame=requestAnimationFrame(renderCursor);
+}
+document.addEventListener('pointermove',e=>{
+ if(e.pointerType!=='mouse'||!document.body.classList.contains('cursor-enabled'))return;
+ cursorTargetX=e.clientX;cursorTargetY=e.clientY;
+ if(!cursorFX.classList.contains('is-visible'))cursorFX.classList.add('is-visible');
+ const target=e.target&&e.target.closest?e.target.closest('.room'):null;
+ const onPaper=!!target&&target.classList.contains('paper');
+ if(target!==currentCursorRoom){currentCursorRoom=target;cursorFX.classList.toggle('is-on-room',!!target);}
+ if(onPaper!==currentCursorPaper){currentCursorPaper=onPaper;cursorFX.classList.toggle('is-paper',onPaper);}
+ if(!cursorFrame)cursorFrame=requestAnimationFrame(renderCursor);
+},{passive:true});
+function hideCursor(){cursorFX.classList.remove('is-visible');currentCursorRoom=null;currentCursorPaper=false;}
+window.addEventListener('blur',hideCursor);
+window.addEventListener('focus',()=>syncCursorMode());
+
+/* Intro pembuka: otomatis selesai setelah tampil, atau dapat dilewati. */
+const initialDirectSemester=!!keyFromHash();
+if(reducedMotion()||initialDirectSemester){finishIntro(true);}
+else{introTimer=setTimeout(()=>finishIntro(false),2850);}
 
 /* Dock: klik membuka menu, tarik memindahkan */
 
@@ -1079,7 +1371,7 @@ document.addEventListener('pointerdown',e=>{if(!menu.hidden&&!menu.contains(e.ta
 
 addEventListener('blur',()=>{if(!menu.hidden)setMenu(false);});
 
-addEventListener('resize',()=>{place(false);if(!menu.hidden)placeMenu();});
+addEventListener('resize',()=>{place(false);if(!menu.hidden)placeMenu();syncCursorMode();});
 
 
 
